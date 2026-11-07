@@ -45,6 +45,8 @@ export const viewport: Viewport = {
   viewportFit: "cover",
 };
 
+import { JsFlag } from "@/components/layout/JsFlag";
+
 /** Marks the document as JS-enabled before first paint so motion pre-states only apply when JS can resolve them. */
 const jsFlag = `document.documentElement.classList.add('js')`;
 
@@ -55,6 +57,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script dangerouslySetInnerHTML={{ __html: jsFlag }} />
       </head>
       <body>
+        <JsFlag />
         <a href="#main" className="skip-link">
           Skip to content
         </a>
