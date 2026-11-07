@@ -1,0 +1,58 @@
+/* Design tokens — Devereux Digitals (see DESIGN.md §2). Single source of truth. */
+:root {
+  /* Surfaces */
+  --color-bg: #050505;
+  --color-surface: #0b0c0f;
+  --color-surface-2: #111318;
+  --color-surface-3: #1a1d23;
+
+  /* Text. `subtle` lifted from the spec's #737984 (4.3:1) to clear WCAG AA 4.5:1 on --color-bg. */
+  --color-text: #f7f8fa;
+  --color-text-muted: #a5a9b2;
+  --color-text-subtle: #868c97;
+
+  /* Signal blue */
+  --color-accent: #398bff;
+  --color-accent-bright: #63a5ff;
+  --color-accent-deep: #0b2b54;
+  --color-on-accent: #050505; /* near-black on blue = 6.4:1; white on blue is only 3.3:1 */
+
+  /* Lines */
+  --color-border: rgba(255, 255, 255, 0.12);
+  --color-border-strong: rgba(255, 255, 255, 0.22);
+  --color-border-faint: rgba(255, 255, 255, 0.07);
+
+  /* State */
+  --color-success: #6dd6a2;
+  --color-danger: #ff7373;
+
+  /* Type */
+  --font-display: var(--font-space-grotesk), "Satoshi", ui-sans-serif, system-ui, sans-serif;
+  --font-body: var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  /* Radii */
+  --radius-card: 18px;
+  --radius-card-sm: 12px;
+  --radius-pill: 999px;
+
+  /* Layout */
+  --gutter: clamp(1.25rem, 0.45rem + 3.4vw, 4.5rem);
+  --max-wrap: 1320px;
+  --header-h: 72px;
+  --section-y: clamp(4rem, 2rem + 8vw, 9.5rem);
+
+  /* Motion (DESIGN.md §6.2) */
+  --motion-micro: 150ms;
+  --motion-ui: 240ms;
+  --motion-reveal: 640ms;
+  --motion-feature: 1000ms;
+  --motion-stagger: 60ms;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+@media (max-width: 767px) {
+  :root {
+    --header-h: 64px;
+  }
+}

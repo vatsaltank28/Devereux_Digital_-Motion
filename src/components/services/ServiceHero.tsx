@@ -1,0 +1,59 @@
+import type { Service } from "@/data/types";
+import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
+import { SectionLabel } from "@/components/ui/SectionLabel";
+import { SplitHeading } from "@/components/motion/SplitHeading";
+import { LinkButton } from "@/components/ui/Button";
+import { ProjectArt } from "@/components/visuals/ProjectArt";
+import Magnet from "@/components/reactbits/Magnet";
+
+/** S01 — Service introduction. Same entrance grammar as the home hero, with service-specific artwork. */
+export function ServiceHero({ service }: { service: Service }) {
+  return (
+    <header className="relative isolate overflow-hidden pb-16 pt-[calc(var(--header-h)+2.5rem)] sm:pb-20 sm:pt-[calc(var(--header-h)+4rem)] lg:pb-28">
+      <div className="hero-atmosphere absolute inset-0 -z-10 opacity-80" aria-hidden="true" />
+      <div className="wrap-wide grid gap-12 lg:grid-cols-12 lg:items-center lg:gap-16">
+        <div className="lg:col-span-7">
+          <div className="mb-8">
+            <Breadcrumbs
+              trail={[{ name: "Home", href: "/" }, { name: "Services", href: "/services" }, { name: service.shortTitle }]}
+            />
+          </div>
+          <SectionLabel index={service.number}>Service</SectionLabel>
+          <SplitHeading as="h1" trigger="load" delay={0.05} className="t-h1 mt-6 max-w-[15ch]">
+            {service.heroHeadline}
+          </SplitHeading>
+          <p className="hero-rise t-lead mt-7" style={{ animationDelay: "0.4s" }}>
+            {service.heroDescription}
+          </p>
+          <p className="hero-rise t-body mt-5" style={{ animationDelay: "0.5s" }}>
+            {service.intro}
+          </p>
+          <div className="hero-rise mt-9 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4" style={{ animationDelay: "0.62s" }}>
+            <Magnet padding={70} magnetStrength={3.5} maxOffset={12} wrapperClassName="max-sm:block max-sm:w-full">
+              <LinkButton
+                href={`/contact?service=${service.slug}`}
+                arrow
+                location={`service-hero:${service.slug}`}
+                className="max-sm:w-full"
+              >
+                Start Your Project
+              </LinkButton>
+            </Magnet>
+            <LinkButton href="#work" variant="secondary" location={`service-hero-work:${service.slug}`} className="max-sm:w-full">
+              View Our Work
+            </LinkButton>
+          </div>
+        </div>
+
+        <div className="hero-scene-in lg:col-span-5">
+          <figure>
+            <div className="overflow-hidden rounded-[var(--radius-card)] border border-line bg-surface" style={{ aspectRatio: "4 / 3" }}>
+              <ProjectArt variant={service.art} className="h-full w-full" />
+            </div>
+            <figcaption className="t-caption mt-3">Illustrative artwork — client project imagery will replace this.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </header>
+  );
+}

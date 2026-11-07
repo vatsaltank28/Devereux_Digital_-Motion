@@ -1,0 +1,740 @@
+@import "tailwindcss";
+@import "./tokens.css";
+
+/* Expose tokens to Tailwind utilities (bg-surface-2, text-muted, border-line …) */
+@theme inline {
+  --color-bg: var(--color-bg);
+  --color-surface: var(--color-surface);
+  --color-surface-2: var(--color-surface-2);
+  --color-surface-3: var(--color-surface-3);
+  --color-ink: var(--color-text);
+  --color-muted: var(--color-text-muted);
+  --color-subtle: var(--color-text-subtle);
+  --color-accent: var(--color-accent);
+  --color-accent-bright: var(--color-accent-bright);
+  --color-accent-deep: var(--color-accent-deep);
+  --color-line: var(--color-border);
+  --color-line-strong: var(--color-border-strong);
+  --color-line-faint: var(--color-border-faint);
+  --color-danger: var(--color-danger);
+  --color-success: var(--color-success);
+  --font-display: var(--font-display);
+  --font-sans: var(--font-body);
+  --breakpoint-xs: 30rem;
+}
+
+/*
+ * Cascade layers: element defaults live in `base`, project classes in `components`.
+ * Tailwind's `utilities` layer sits above both, so utility classes (hidden, max-w-*, mt-*) always win
+ * over .btn / .t-lead / .card etc. — avoiding the classic "my component class beats my utility" bug.
+ */
+@layer base {
+html {
+  background: var(--color-bg);
+  color-scheme: dark;
+  scrollbar-gutter: stable;
+  -webkit-text-size-adjust: 100%;
+  scroll-padding-top: calc(var(--header-h) + 16px);
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  overflow-x: clip;
+}
+
+::selection {
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+}
+
+img,
+svg,
+video,
+canvas {
+  display: block;
+  max-width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+/* Visible keyboard focus everywhere (WCAG 2.4.7 / 2.4.11) */
+:focus-visible {
+  outline: 2px solid var(--color-accent-bright);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+}
+
+@layer components {
+/* ───────────────────────── Layout ───────────────────────── */
+.wrap {
+  width: min(100% - 2 * var(--gutter), var(--max-wrap));
+  margin-inline: auto;
+}
+
+.wrap-wide {
+  width: min(100% - 2 * var(--gutter), 1440px);
+  margin-inline: auto;
+}
+
+.section {
+  padding-block: var(--section-y);
+  position: relative;
+}
+
+.section-tight {
+  padding-block: calc(var(--section-y) * 0.6);
+  position: relative;
+}
+
+.hairline-top {
+  border-top: 1px solid var(--color-border);
+}
+
+/* ───────────────────────── Type scale (DESIGN.md §2.2) ───────────────────────── */
+.t-display {
+  font-family: var(--font-display);
+  font-size: clamp(2.6rem, 1.5rem + 5.4vw, 6.75rem);
+  line-height: 0.98;
+  letter-spacing: -0.04em;
+  font-weight: 600;
+}
+
+.t-h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 1.5rem + 4.4vw, 5.5rem);
+  line-height: 1;
+  letter-spacing: -0.038em;
+  font-weight: 600;
+}
+
+.t-h2 {
+  font-family: var(--font-display);
+  font-size: clamp(2.125rem, 1.4rem + 2.8vw, 4rem);
+  line-height: 1.04;
+  letter-spacing: -0.032em;
+  font-weight: 600;
+}
+
+.t-h3 {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 1.2rem + 1.1vw, 2.25rem);
+  line-height: 1.12;
+  letter-spacing: -0.024em;
+  font-weight: 600;
+}
+
+.t-h4 {
+  font-family: var(--font-display);
+  font-size: clamp(1.1875rem, 1.1rem + 0.4vw, 1.5rem);
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  font-weight: 600;
+}
+
+.t-lead {
+  font-size: clamp(1.125rem, 1.04rem + 0.45vw, 1.5rem);
+  line-height: 1.5;
+  color: var(--color-text-muted);
+  max-width: 38em;
+}
+
+.t-body {
+  font-size: clamp(1rem, 0.96rem + 0.2vw, 1.125rem);
+  line-height: 1.62;
+  color: var(--color-text-muted);
+  max-width: 62ch;
+}
+
+.t-caption {
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  font-weight: 500;
+  color: var(--color-text-subtle);
+}
+
+/* ───────────────────────── Section label pill (DESIGN.md §4.5) ───────────────────────── */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.375rem 0.75rem;
+  border-radius: var(--radius-pill);
+  background: var(--color-accent-deep);
+  color: var(--color-accent-bright);
+  font-size: 0.75rem;
+  line-height: 1;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+}
+
+.pill-outline {
+  background: transparent;
+  border: 1px solid var(--color-border-strong);
+  color: var(--color-text-muted);
+}
+
+/* ───────────────────────── Buttons (DESIGN.md §4.4) ───────────────────────── */
+.btn {
+  --btn-h: 3.25rem;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem;
+  min-height: var(--btn-h);
+  padding-inline: 1.625rem;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-body);
+  font-size: 0.96875rem;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.005em;
+  white-space: nowrap;
+  text-decoration: none;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition:
+    background-color var(--motion-ui) var(--ease-out),
+    border-color var(--motion-ui) var(--ease-out),
+    color var(--motion-ui) var(--ease-out),
+    transform var(--motion-micro) var(--ease-out);
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn-primary {
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+}
+
+.btn-primary:hover {
+  background: var(--color-accent-bright);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--color-text);
+  border-color: var(--color-border-strong);
+}
+
+.btn-secondary:hover {
+  border-color: rgba(255, 255, 255, 0.55);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.btn-sm {
+  --btn-h: 2.75rem;
+  padding-inline: 1.25rem;
+  font-size: 0.9rem;
+}
+
+.btn[disabled],
+.btn[aria-disabled="true"] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn .arrow {
+  transition: transform var(--motion-ui) var(--ease-out);
+}
+.btn:hover .arrow,
+.link-arrow:hover .arrow,
+.arrow-host:hover .arrow,
+.arrow-host:focus-visible .arrow {
+  transform: translateX(4px);
+}
+
+/* Inline text link with directional affordance */
+.link-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  color: var(--color-text);
+  text-decoration: none;
+  transition: color var(--motion-ui) var(--ease-out);
+}
+.link-arrow:hover {
+  color: var(--color-accent-bright);
+}
+.link-arrow .arrow {
+  transition: transform var(--motion-ui) var(--ease-out);
+}
+
+/* Underline-on-hover link used in footers / body copy */
+.link-quiet {
+  color: var(--color-text-muted);
+  text-decoration: none;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition:
+    color var(--motion-ui) var(--ease-out),
+    background-size var(--motion-ui) var(--ease-out);
+}
+.link-quiet:hover,
+.link-quiet:focus-visible {
+  color: var(--color-text);
+  background-size: 100% 1px;
+}
+
+/* ───────────────────────── Surfaces ───────────────────────── */
+.card {
+  position: relative;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  background: var(--color-surface-2);
+}
+
+.divider {
+  height: 1px;
+  background: var(--color-border);
+  border: 0;
+}
+
+/* Skip link */
+.skip-link {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 200;
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--radius-pill);
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+  font-weight: 600;
+  transform: translateY(-200%);
+  transition: transform var(--motion-ui) var(--ease-out);
+}
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+/* ───────────────────────── Motion plumbing ───────────────────────── */
+/*
+ * Headings that get a GSAP line reveal are hidden ONLY while JS is booting (html.js)
+ * and only when the visitor has not asked for reduced motion. A CSS timer un-hides them
+ * after 2.4 s so content can never stay invisible if the animation layer fails.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  .js [data-split-pending] {
+    visibility: hidden;
+    animation: split-failsafe 0s linear 2.4s forwards;
+  }
+}
+@keyframes split-failsafe {
+  to {
+    visibility: visible;
+  }
+}
+
+.split-line-mask {
+  overflow: hidden;
+  /* room for descenders so masked lines are never clipped */
+  padding-bottom: 0.12em;
+  margin-bottom: -0.12em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+  .btn,
+  .btn .arrow,
+  .link-arrow .arrow {
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* Reveal wrappers are visible when JavaScript is off (Motion can't run) */
+html:not(.js) [data-reveal] {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* ───────────────────────── Hero ───────────────────────── */
+.hero-atmosphere {
+  background:
+    radial-gradient(60% 55% at 78% 42%, rgba(57, 139, 255, 0.16), transparent 70%),
+    radial-gradient(40% 40% at 8% 100%, rgba(11, 43, 84, 0.45), transparent 70%),
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.028) 0 1px, transparent 1px calc(100% / 12));
+  mask-image: linear-gradient(180deg, #000 70%, transparent);
+}
+
+/* Supporting hero copy + CTAs: CSS-owned entrance (visible without JS; fill-mode `backwards` never hides) */
+@keyframes hero-rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.hero-rise {
+  animation: hero-rise var(--motion-reveal) var(--ease-out) backwards;
+}
+
+@keyframes scene-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.hero-scene-in {
+  animation: scene-in var(--motion-feature) var(--ease-out) 0.2s backwards;
+}
+
+/* ───────────────────────── Spotlight card (React Bits SpotlightCard, adapted) ───────────────────────── */
+.spotlight-card {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  background: var(--color-surface-2);
+  transition:
+    border-color var(--motion-ui) var(--ease-out),
+    transform var(--motion-ui) var(--ease-out),
+    background-color var(--motion-ui) var(--ease-out);
+}
+.spotlight-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(var(--size) circle at var(--mx) var(--my), rgba(var(--rgb), 0.16), transparent 65%);
+  opacity: var(--glow);
+  transition: opacity 300ms var(--ease-out);
+}
+.spotlight-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  border-radius: inherit;
+  padding: 1px;
+  background: radial-gradient(calc(var(--size) * 0.7) circle at var(--mx) var(--my), rgba(var(--rgb), 0.95), transparent 62%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  opacity: var(--glow);
+  transition: opacity 300ms var(--ease-out);
+}
+.spotlight-card:hover,
+.spotlight-card:focus-within {
+  border-color: var(--color-border-strong);
+  background: var(--color-surface-3);
+}
+.spotlight-card:hover {
+  transform: translateY(-3px);
+}
+.spotlight-card:has(:focus-visible) {
+  border-color: var(--color-accent-bright);
+}
+.spotlight-card:hover .arrow,
+.spotlight-card:focus-within .arrow {
+  transform: translateX(4px);
+}
+@media (prefers-reduced-motion: reduce) {
+  .spotlight-card:hover {
+    transform: none;
+  }
+}
+
+/* ───────────────────────── Process steps ───────────────────────── */
+@media (prefers-reduced-motion: no-preference) {
+  /* Inactive steps dim the marker + heading only; body copy always keeps AA contrast. */
+  .js .process-step .process-dot {
+    color: var(--color-text-muted);
+  }
+  .js .process-step h3 {
+    color: var(--color-text-muted);
+    transition: color 450ms var(--ease-out);
+  }
+  .js .process-step.is-active h3 {
+    color: var(--color-text);
+  }
+  .js .process-step.is-active .process-dot {
+    border-color: var(--color-accent);
+    background: var(--color-accent);
+    color: var(--color-on-accent);
+  }
+}
+.process-dot {
+  transition:
+    background-color 350ms var(--ease-out),
+    border-color 350ms var(--ease-out),
+    color 350ms var(--ease-out);
+}
+
+/* ───────────────────────── Form fields (DESIGN.md §4.10) ───────────────────────── */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.field-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+.field-input {
+  width: 100%;
+  min-height: 3.25rem;
+  padding-inline: 1rem;
+  border-radius: 12px;
+  border: 1px solid var(--color-border-strong);
+  background: var(--color-bg);
+  color: var(--color-text);
+  font: inherit;
+  font-size: 1rem;
+  transition:
+    border-color var(--motion-ui) var(--ease-out),
+    box-shadow var(--motion-ui) var(--ease-out);
+}
+.field-input:hover {
+  border-color: rgba(255, 255, 255, 0.4);
+}
+.field-input:focus-visible {
+  outline: none;
+  border-color: var(--color-accent-bright);
+  box-shadow: 0 0 0 3px rgba(57, 139, 255, 0.35);
+}
+.field-input[aria-invalid="true"] {
+  border-color: var(--color-danger);
+}
+.field-error {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  overflow: hidden;
+  color: var(--color-danger);
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+select.field-input option {
+  background: var(--color-surface-2);
+  color: var(--color-text);
+}
+
+/* Decorative footer sign-off drawn via ::before so it is not exposed (or audited) as page text */
+.footer-wordmark::before {
+  content: attr(data-text);
+}
+
+/* ───────────────────────── Final CTA ───────────────────────── */
+.cta-glow {
+  background: radial-gradient(55% 80% at 85% 50%, rgba(57, 139, 255, 0.14), transparent 70%);
+}
+
+/* ───────────────────────── Cinematic scroll stage ───────────────────────── */
+.st-stick {
+  --ch: min(72svh, 118vw);
+  --cw: calc(var(--ch) * 0.62);
+  --ph: min(88svh, 100vw);
+  --pw: calc(var(--ph) * 1.1);
+  --hw: min(96vw, 1400px);
+  --hh: min(88svh, 780px);
+  --frame: 12px;
+}
+@media (min-width: 900px) {
+  .st-stick {
+    --frame: 20px;
+  }
+}
+@media (max-width: 767px) {
+  .st-stick {
+    --hw: 88vw;
+    --hh: min(84svh, 720px);
+    --ph: min(62svh, 112vw);
+    --pw: calc(var(--ph) * 0.76);
+  }
+}
+.st-violet {
+  background: radial-gradient(120% 85% at 50% 0%, #c7b2ff 0%, #7a45ff 34%, #3a15a8 68%, #14063d 100%);
+}
+.st-violet-deep {
+  background: linear-gradient(160deg, #1a0a45 0%, #3b1aa8 55%, #7a45ff 100%);
+}
+.st-glow {
+  background:
+    radial-gradient(70% 45% at 42% 108%, #ffc2f7 0%, rgba(190, 120, 255, 0.75) 28%, rgba(122, 69, 255, 0) 70%),
+    radial-gradient(50% 40% at 85% 10%, rgba(255, 255, 255, 0.12), transparent 70%);
+}
+.st-white,
+.st-cards {
+  perspective: 1500px;
+}
+.st-card {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: var(--cw);
+  height: var(--ch);
+  margin: calc(var(--ch) / -2) 0 0 calc(var(--cw) / -2);
+  will-change: transform;
+}
+.st-hero {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: var(--hw);
+  height: var(--hh);
+  margin: calc(var(--hh) / -2) 0 0 calc(var(--hw) / -2);
+  will-change: transform;
+}
+.st-marquee {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  width: max-content;
+  white-space: nowrap;
+  will-change: transform;
+}
+.st-marquee-row {
+  display: flex;
+  flex: none;
+}
+.st-marquee-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  padding-right: 0.5em;
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 7.4vw, 8rem);
+  font-weight: 500;
+  letter-spacing: -0.045em;
+  line-height: 1;
+  color: #0a0a0a;
+}
+.st-marquee-item i {
+  display: inline-block;
+  width: 0.14em;
+  height: 0.14em;
+  border: 2px solid #0a0a0a;
+  border-radius: 50%;
+  opacity: 0.6;
+}
+.st-gallery {
+  perspective: 1300px;
+  transform-style: preserve-3d;
+}
+.st-panel {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: var(--pw);
+  height: var(--ph);
+  margin: calc(var(--ph) / -2) 0 0 calc(var(--pw) / -2);
+  will-change: transform;
+}
+.st-bar {
+  position: absolute;
+  z-index: 6;
+  background: #fff;
+  pointer-events: none;
+}
+.st-bar-top,
+.st-bar-bottom {
+  left: 0;
+  right: 0;
+  height: var(--frame);
+}
+.st-bar-top {
+  top: 0;
+}
+.st-bar-bottom {
+  bottom: 0;
+}
+.st-bar-left,
+.st-bar-right {
+  top: 0;
+  bottom: 0;
+  width: var(--frame);
+}
+.st-bar-left {
+  left: 0;
+}
+.st-bar-right {
+  right: 0;
+}
+
+/* Animated ↔ static twin: reduced motion, no WebGL (set by JS) and no JS all show the static version */
+[data-stage-static] {
+  display: none;
+}
+html:not(.js) [data-stage-animated],
+html[data-stage="static"] [data-stage-animated] {
+  display: none;
+}
+html:not(.js) [data-stage-static],
+html[data-stage="static"] [data-stage-static] {
+  display: block;
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-stage-animated] {
+    display: none;
+  }
+  [data-stage-static] {
+    display: block;
+  }
+}
+
+/* The header sits on white during the paper phase: flip it to dark ink (written by ScrollStage) */
+html[data-stage-light="1"] header {
+  color: #0a0a0a !important;
+  background: transparent !important;
+  backdrop-filter: none !important;
+  border-color: transparent !important;
+}
+html[data-stage-light="1"] header a,
+html[data-stage-light="1"] header button {
+  border-color: rgba(0, 0, 0, 0.28) !important;
+  color: #0a0a0a !important;
+}
+
+/* Safe areas */
+.safe-bottom {
+  padding-bottom: max(1.25rem, env(safe-area-inset-bottom));
+}
+
+}
