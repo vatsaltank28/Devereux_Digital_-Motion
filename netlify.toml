@@ -1,0 +1,15 @@
+# Netlify deploy config for the Next.js 16 app (App Router, API route, SSG).
+# The Next.js runtime plugin serves the JS chunks, the /api/enquiry function and dynamic routes.
+# Do NOT set the publish directory to "out" or "public" in the Netlify UI — that serves HTML without
+# the JavaScript bundle, which leaves the homepage on its static (no-animation) fallback.
+
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "22"
+  NEXT_TELEMETRY_DISABLED = "1"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
