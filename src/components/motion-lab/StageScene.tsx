@@ -125,6 +125,9 @@ function Rig({ prog, tier }: { prog: Progress; tier: Tier }) {
       const still = smooth(Math.min(shape, 1));
       sphere.current.rotation.y = lerp(t * 0.07 + p * 2.4, shape > 1.5 && shape < 2.5 ? 0.35 : 0, still);
       sphere.current.rotation.x = lerp(Math.sin(t * 0.05) * 0.2 + p * 0.6, 0, still);
+      // Portrait screens: shrink the ring/helix to fit the narrow frame; horizon/tunnel return to full size.
+      const narrow = still * (1 - smooth(Math.min(Math.max(shape - 2, 0), 1)));
+      sphere.current.scale.setScalar(portrait ? lerp(1, 0.62, narrow) : 1);
     }
 
     // Flat star: constant on-screen size (scales with camera distance), billboarded.

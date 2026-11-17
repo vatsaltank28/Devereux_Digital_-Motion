@@ -54,10 +54,10 @@ export function SiteHeader() {
         <div className="wrap-wide flex h-[var(--header-h)] items-center justify-between">
           <Link href="/" className="flex min-h-11 items-center gap-3 rounded-full" aria-label={`${site.name} — home`}>
             <LogoMark />
-            <span className="font-display text-[1.15rem] font-semibold tracking-tight">{site.name}</span>
+            <span className="whitespace-nowrap font-display text-[1.02rem] font-semibold tracking-tight sm:text-[1.15rem]">{site.name}</span>
           </Link>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3">
             <ThemeToggle />
             <LinkButton href="/contact" variant="secondary" size="sm" className="hidden md:inline-flex" location="header">
               {ctaLabels.startProject}
