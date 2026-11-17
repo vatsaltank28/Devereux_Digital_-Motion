@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ContactIcons } from "@/components/ui/ContactLinks";
 import { site, primaryNav, legalNav } from "@/lib/site";
 import { publishedServices, comingSoonServices } from "@/data/services";
 import { LogoMark } from "@/components/visuals/LogoMark";
@@ -6,7 +7,6 @@ import { CurrentYear } from "./CurrentYear";
 
 /** Complete footer (PRD §7.3). Contact details and socials render only when approved + configured. */
 export function SiteFooter() {
-  const hasContact = Boolean(site.contact.email || site.contact.phone || site.contact.address);
 
   return (
     <footer className="relative overflow-hidden border-t border-line bg-bg">
@@ -20,36 +20,7 @@ export function SiteFooter() {
             <p className="mt-6 max-w-sm text-[1.0625rem] leading-relaxed text-muted">
               A full-service digital agency for web, marketing, advertising, commerce, content, AI and brand.
             </p>
-            {(hasContact || site.social.length > 0) && (
-              <div className="mt-8 space-y-2 text-[0.95rem]">
-                {site.contact.email && (
-                  <p>
-                    <a className="link-quiet" href={`mailto:${site.contact.email}`}>
-                      {site.contact.email}
-                    </a>
-                  </p>
-                )}
-                {site.contact.phone && (
-                  <p>
-                    <a className="link-quiet" href={`tel:${site.contact.phone.replace(/\s+/g, "")}`}>
-                      {site.contact.phone}
-                    </a>
-                  </p>
-                )}
-                {site.contact.address && <p className="text-muted">{site.contact.address}</p>}
-                {site.social.length > 0 && (
-                  <ul className="flex flex-wrap gap-x-5 gap-y-1 pt-2">
-                    {site.social.map((s) => (
-                      <li key={s.label}>
-                        <a className="link-quiet" href={s.href} target="_blank" rel="noopener noreferrer">
-                          {s.label}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </div>
-            )}
+            <ContactIcons className="mt-8" />
           </div>
 
           <nav aria-label="Footer" className="grid grid-cols-2 gap-10 md:col-span-7 md:grid-cols-[1fr_1.6fr]">

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { buildMetadata } from "@/lib/seo";
 import { site } from "@/lib/site";
+import { ContactCards } from "@/components/ui/ContactLinks";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { SplitHeading } from "@/components/motion/SplitHeading";
@@ -51,33 +52,10 @@ export default async function ContactPage({ searchParams }: { searchParams: Prom
             </ul>
           </div>
 
-          {(site.contact.email || site.contact.phone) && (
-            <div className="hero-rise mt-10 space-y-2" style={{ animationDelay: "0.6s" }}>
-              <h2 className="t-h4">Prefer to write directly?</h2>
-              {site.contact.email && (
-                <p>
-                  <a className="link-quiet text-[1.0625rem]" href={`mailto:${site.contact.email}`}>
-                    {site.contact.email}
-                  </a>
-                </p>
-              )}
-              {site.contact.phone && (
-                <p>
-                  <a className="link-quiet text-[1.0625rem]" href={`tel:${site.contact.phone.replace(/\s+/g, "")}`}>
-                    {site.contact.phone}
-                  </a>
-                </p>
-              )}
-              <p className="flex items-center gap-2 pt-2 text-sm text-muted">
-                <span aria-hidden="true" className="size-2 rounded-full bg-[var(--color-success)]" />
-                {site.contact.availability}
-              </p>
-              <div className="flex flex-wrap gap-3 pt-3">
-                <a className="pill pill-outline" href={site.contact.whatsapp} target="_blank" rel="noopener noreferrer">WhatsApp</a>
-                <a className="pill pill-outline" href={site.contact.discord} target="_blank" rel="noopener noreferrer">Discord</a>
-              </div>
-            </div>
-          )}
+          <div className="mt-10">
+            <h2 className="t-h4">Prefer to reach us directly?</h2>
+            <ContactCards className="mt-5" />
+          </div>
         </div>
 
         <div className="lg:col-span-7">

@@ -760,3 +760,19 @@ html[data-stage-gl="off"] .st-gl-fallback {
     radial-gradient(60% 60% at 50% 50%, rgba(140, 90, 255, 0.18), transparent 75%);
   filter: blur(18px);
 }
+.st-glow-static {
+  background:
+    radial-gradient(40% 50% at 78% 40%, rgba(57, 139, 255, 0.28), transparent 70%),
+    radial-gradient(35% 45% at 92% 70%, rgba(255, 120, 60, 0.2), transparent 70%);
+}
+
+/* Header over the always-dark hero stage: light ink + dark glass, whatever the page theme */
+html[data-over-stage="1"] header {
+  color: #fff;
+  background: rgba(5, 5, 5, 0.55) !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+}
+html[data-over-stage="1"] header a,
+html[data-over-stage="1"] header button { color: #fff !important; border-color: rgba(255, 255, 255, 0.28) !important; }

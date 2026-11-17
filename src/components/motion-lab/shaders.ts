@@ -39,13 +39,13 @@ export const particleVertex = /* glsl */ `
 
   vec3 ringShape(float s, vec3 r) {
     float a = s * TAU;
-    float R = 1.85 + 0.12 * sin(a * 3.0 + uTime * 0.6) + (r.y - 0.5) * 0.32;
+    float R = 2.35 + 0.1 * sin(a * 3.0 + uTime * 0.6) + (r.y - 0.5) * 0.32;
     float tw = r.z * TAU;
-    float tube = 0.16 * (0.4 + r.x);
+    float tube = 0.2 * (0.4 + r.x);
     return vec3(cos(a) * (R + tube * cos(tw)), sin(a) * (R + tube * cos(tw)), tube * sin(tw) * 1.6);
   }
   vec3 helixShape(float s, vec3 r) {
-    float y = (s - 0.5) * 4.4;
+    float y = (s - 0.5) * 3.7;
     float a = y * 1.7 + uTime * 0.35;
     float rad = 0.72;
     vec3 a0 = vec3(cos(a) * rad, y, sin(a) * rad);

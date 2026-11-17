@@ -72,20 +72,3 @@ export const finalCta = {
     "Tell us what you’re working on. We’ll reply to talk through the scope and whether we’re the right fit.",
 } as const;
 
-/** Track record carried over from the Devereux Edits video practice (devereuxedits.com). */
-export const proof = {
-  title: "Numbers behind the work.",
-  intro:
-    "Our video and content practice started as Devereux Edits. These are its numbers — and the creators who trust it with their uploads.",
-  stats: [
-    { value: "450+", label: "Videos edited" },
-    { value: "300M+", label: "Views generated" },
-    { value: "3+", label: "Years of experience" },
-  ],
-  creators: [
-    { name: "Lynix", subs: "1.64M", image: "/creators/lynix.jpg", href: "https://youtube.com/@lynix" },
-    { name: "ROBLOX GAMING 1M", subs: "109K", image: "/creators/robloxgaming1m-y5i.jpg", href: "https://youtube.com/@robloxgaming1m-y5i" },
-    { name: "Minecraft Moments", subs: "52.1K", image: "/creators/minecraftmomentsfr.jpg", href: "https://youtube.com/@minecraftmomentsfr" },
-    { name: "Rank It Shorts", subs: "34.2K", image: "/creators/rank-it-shorts.jpg", href: "https://youtube.com/@rank-it-shorts" },
-  ],
-} as const;

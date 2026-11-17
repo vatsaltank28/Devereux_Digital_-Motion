@@ -11,7 +11,6 @@ import { ServiceHero } from "./ServiceHero";
 import { ProblemList } from "./ProblemList";
 import { DeliverablesGrid } from "./DeliverablesGrid";
 import { ProcessSteps } from "./ProcessSteps";
-import { ServiceProjects } from "./ServiceProjects";
 import { BenefitsBlock } from "./BenefitsBlock";
 import { Testimonials } from "./Testimonials";
 import { PricingBlock } from "./PricingBlock";
@@ -42,7 +41,6 @@ export function ServicePageTemplate({ service }: { service: Service }) {
       <ProblemList items={service.problems} />
       <DeliverablesGrid items={service.deliverables} />
       <ProcessSteps steps={service.processSteps} />
-      <ServiceProjects service={service} projects={projects} />
       <BenefitsBlock items={service.benefits} />
       <Testimonials items={testimonials} />
       <PricingBlock service={service} />
