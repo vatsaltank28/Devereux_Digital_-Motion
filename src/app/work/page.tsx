@@ -4,6 +4,7 @@ import { publishedProjects } from "@/data/projects";
 import { PageHero } from "@/components/ui/PageHero";
 import { ProjectGrid } from "@/components/portfolio/ProjectGrid";
 import { FinalCTA } from "@/components/home/FinalCTA";
+import { ProofSection } from "@/components/home/ProofSection";
 
 export const metadata: Metadata = buildMetadata({
   title: "Work",
@@ -30,6 +31,7 @@ export default function WorkPage() {
           <ProjectGrid projects={publishedProjects} />
         </div>
       </section>
+      <ProofSection />
       <FinalCTA />
     </>
   );

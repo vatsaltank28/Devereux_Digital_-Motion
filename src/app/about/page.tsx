@@ -6,6 +6,9 @@ import { SectionLabel } from "@/components/ui/SectionLabel";
 import { SplitHeading } from "@/components/motion/SplitHeading";
 import { Reveal } from "@/components/motion/Reveal";
 import { FinalCTA } from "@/components/home/FinalCTA";
+import { WhyChooseUs } from "@/components/home/WhyChooseUs";
+import { Testimonials } from "@/components/services/Testimonials";
+import { approvedTestimonials } from "@/data/testimonials";
 
 export const metadata: Metadata = buildMetadata({
   title: "About Us",
@@ -104,6 +107,8 @@ export default function AboutPage() {
         </div>
       </section>
 
+      <WhyChooseUs />
+      <Testimonials items={approvedTestimonials} heading="What clients say" />
       <FinalCTA />
     </>
   );
