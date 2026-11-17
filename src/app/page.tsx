@@ -1,5 +1,6 @@
 import { ScrollStage } from "@/components/motion-lab/ScrollStage";
 import { homeStage } from "@/data/stage";
+import { OrbitIntro } from "@/components/home/OrbitIntro";
 import { ServicesGrid } from "@/components/home/ServicesGrid";
 import { FinalCTA } from "@/components/home/FinalCTA";
 
@@ -12,6 +13,7 @@ export default function HomePage() {
   return (
     <>
       <ScrollStage content={homeStage} />
+      <OrbitIntro />
       <ServicesGrid />
       <FinalCTA />
     </>

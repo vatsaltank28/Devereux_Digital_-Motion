@@ -776,3 +776,16 @@ html[data-over-stage="1"] header {
 }
 html[data-over-stage="1"] header a,
 html[data-over-stage="1"] header button { color: #fff !important; border-color: rgba(255, 255, 255, 0.28) !important; }
+
+/* Orbit intro: picks up where the black hero tunnel ends, then settles into the page theme */
+.orbit-intro {
+  background: linear-gradient(180deg, #000 0, var(--color-bg) 6rem);
+}
+.orbit-intro > .wrap-wide { position: relative; }
+.orbit-spin {
+  transform-box: view-box;
+  transform-origin: 0 0;
+  animation: orbit-spin 50s linear infinite;
+}
+@keyframes orbit-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .orbit-spin { animation: none; } }
