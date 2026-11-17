@@ -65,7 +65,7 @@ export function ContactCards({ className }: { className?: string }) {
   return (
     <ul className={cn("grid gap-3 sm:grid-cols-2", className)}>
       {channels.map((ch) => (
-        <li key={ch.key}>
+        <li key={ch.key} className={ch.key === "email" ? "sm:col-span-2" : undefined}>
           <a
             href={ch.href}
             {...(ch.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
