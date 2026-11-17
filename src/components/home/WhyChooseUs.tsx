@@ -9,7 +9,7 @@ export function WhyChooseUs() {
     <section aria-labelledby="why-title" className="section border-t border-line">
       <div className="wrap-wide grid gap-14 lg:grid-cols-12">
         <div className="lg:col-span-6">
-          <SectionLabel index="02">Why Devereux</SectionLabel>
+          <SectionLabel>Why Devereux</SectionLabel>
           <SplitHeading id="why-title" className="t-h1 mt-6 max-w-[14ch]">
             {whyUs.statement}
           </SplitHeading>

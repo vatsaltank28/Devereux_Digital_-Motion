@@ -35,7 +35,7 @@ export function ServiceCard({ service, className }: { service: Service; classNam
   return (
     <SpotlightCard className={cn("group flex h-full min-h-[17rem] flex-col p-6 md:p-7", className)}>
       <div className="flex items-start justify-between">
-        <span className="font-display text-sm tabular-nums text-subtle">{service.number}</span>
+        <span />
         <ServiceGlyph slug={service.slug} className="text-muted transition-colors duration-300 group-hover:text-ink" />
       </div>
       <h3 className="t-h4 mt-auto pt-10">

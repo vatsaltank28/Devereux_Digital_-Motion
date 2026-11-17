@@ -1,6 +1,7 @@
 import { ScrollStage } from "@/components/motion-lab/ScrollStage";
 import { homeStage } from "@/data/stage";
 import { ServicesGrid } from "@/components/home/ServicesGrid";
+import { TrustStrip } from "@/components/home/TrustStrip";
 import { FinalCTA } from "@/components/home/FinalCTA";
 
 /**
@@ -13,6 +14,7 @@ export default function HomePage() {
     <>
       <ScrollStage content={homeStage} />
       <ServicesGrid />
+      <TrustStrip />
       <FinalCTA />
     </>
   );

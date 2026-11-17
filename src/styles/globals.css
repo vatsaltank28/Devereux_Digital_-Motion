@@ -749,3 +749,14 @@ html[data-stage-light="1"] header button {
 :root[data-theme-resolved="light"] .theme-switch .icon-sun { transform: none; opacity: 1; }
 :root[data-theme-resolved="light"] .theme-switch .icon-moon { transform: rotate(90deg) scale(0.4); opacity: 0; }
 ::selection { background: color-mix(in srgb, var(--color-accent) 30%, transparent); }
+
+/* Particle substitute when WebGL is unavailable: the scroll sequence still plays over a breathing glow */
+.st-gl-fallback { display: none; }
+html[data-stage-gl="off"] .st-gl-fallback {
+  display: block;
+  background:
+    radial-gradient(28% 34% at 42% 50%, rgba(57, 139, 255, 0.55), transparent 70%),
+    radial-gradient(26% 32% at 60% 50%, rgba(255, 120, 60, 0.45), transparent 70%),
+    radial-gradient(60% 60% at 50% 50%, rgba(140, 90, 255, 0.18), transparent 75%);
+  filter: blur(18px);
+}

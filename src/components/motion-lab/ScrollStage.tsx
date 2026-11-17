@@ -46,8 +46,10 @@ export function ScrollStage({ content, debug = false }: ScrollStageProps) {
   const root = useRef<HTMLElement>(null);
   const prog = useRef<Progress>({ v: 0 });
 
+  // No WebGL (GPU blocklisted, hardware acceleration off, embedded browsers): keep the scroll-driven DOM sequence
+  // and swap the particle layer for a soft CSS glow. Only reduced motion / no JS fall back to <StaticStage>.
   const onUnavailable = useCallback(() => {
-    document.documentElement.dataset.stage = "static";
+    document.documentElement.dataset.stageGl = "off";
   }, []);
 
   useGSAP(
@@ -336,6 +338,7 @@ export function ScrollStage({ content, debug = false }: ScrollStageProps) {
           </div>
 
           <div data-st="canvas" className="absolute inset-0 z-[4]">
+            <div aria-hidden="true" className="st-gl-fallback absolute inset-0" />
             <StageCanvas prog={prog} onUnavailable={onUnavailable} />
           </div>
 
