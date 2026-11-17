@@ -74,6 +74,8 @@ function Rig({ prog, tier }: { prog: Progress; tier: Tier }) {
         uOpacity: { value: 0 },
         uPixel: { value: 1 },
         uSizeScale: { value: 21 },
+        uShape: { value: 0 },
+        uWarm: { value: 0 },
       },
     });
     return { geometry: g, material: m };
@@ -99,22 +101,30 @@ function Rig({ prog, tier }: { prog: Progress; tier: Tier }) {
     // Camera: outside → inside the sphere → (unseen) back to rest for the chrome star.
     const fly = easeInOut(sm(T.fly, p));
     const back = smooth(sm(T.camBack, p));
-    let z = lerp(13.5, 1.25, fly);
+    // Approach the sphere, hold while the swarm morphs (New Era), dive down the tunnel, then return
+    // (unseen, behind the gallery) to rest for the chrome star.
+    let z = lerp(13.5, 9.2, fly);
+    z = lerp(z, -15, easeInOut(sm(T.tunnelFly, p)));
     z = lerp(z, REST_Z, back);
     const drift = smooth(sm(T.chromeIn, p));
     camera.position.set(Math.sin(t * 0.12) * 0.12 * drift, 0.04 + Math.cos(t * 0.1) * 0.06 * drift, z);
-    camera.lookAt(0, 0, 0);
+    camera.lookAt(0, 0, z - 9);
 
     // Particle sphere
     const mat = material.uniforms;
     mat.uTime!.value = t;
     mat.uPixel!.value = gl.getPixelRatio();
     mat.uOpacity!.value = smooth(sm(T.dustIn, p)) * (1 - smooth(sm(T.dustOut, p)));
-    mat.uSpread!.value = smooth(sm(T.spread, p)) * 3.4;
+    mat.uSpread!.value = 0;
+    const shape = sm(T.toRing, p) + sm(T.toHelix, p) + sm(T.toHorizon, p) + sm(T.toTunnel, p);
+    mat.uShape!.value = shape;
+    mat.uWarm!.value = smooth(sm(T.warm, p));
     if (sphere.current) {
       sphere.current.visible = (mat.uOpacity!.value as number) > 0.002;
-      sphere.current.rotation.y = t * 0.07 + p * 2.4;
-      sphere.current.rotation.x = Math.sin(t * 0.05) * 0.2 + p * 0.6;
+      // The sphere tumbles; formed shapes settle upright so they read clearly.
+      const still = smooth(Math.min(shape, 1));
+      sphere.current.rotation.y = lerp(t * 0.07 + p * 2.4, shape > 1.5 && shape < 2.5 ? 0.35 : 0, still);
+      sphere.current.rotation.x = lerp(Math.sin(t * 0.05) * 0.2 + p * 0.6, 0, still);
     }
 
     // Flat star: constant on-screen size (scales with camera distance), billboarded.

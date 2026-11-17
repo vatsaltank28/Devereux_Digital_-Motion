@@ -126,3 +126,18 @@
     --art-ground-2: #f6f8fd;
     --art-hi: #0b0d12;
   }
+
+/* The cinematic stage is always a dark scene, whatever the page theme */
+.st-stick {
+  --art-ink: rgba(255, 255, 255, 0.62);
+  --art-mid: rgba(255, 255, 255, 0.34);
+  --art-faint: rgba(255, 255, 255, 0.16);
+  --art-panel: #0b0c0f;
+  --art-panel-2: #1a1d23;
+  --art-ground: #050505;
+  --art-ground-2: #08090c;
+  --art-hi: #f7f8fa;
+  --color-accent: #398bff;
+  --color-accent-bright: #63a5ff;
+  --color-accent-deep: #0b2b54;
+}

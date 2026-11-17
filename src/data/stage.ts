@@ -18,6 +18,7 @@ export interface StageContent {
   sideCards: { left: { tag: string; title: string; art: ArtVariant }; right: { tag: string; title: string; body: string } };
   starCard: { tag: string; title: string };
   particleCopy: string[];
+  morph: { ring: { title: string; body: string }; stats: { value: string; label: string }[] };
   cornerLabel: string;
   gallery: StageGalleryItem[];
   final: { headline: [string, string]; body: string; cta: { label: string; href: string } };
@@ -41,6 +42,17 @@ export const homeStage: StageContent = {
     "Seven services that work alone or together. Chosen to fit the job, delivered in stages you can follow.",
   ],
   cornerLabel: "Seven services",
+  morph: {
+    ring: {
+      title: "Strategy, design and growth in one orbit.",
+      body: "Every service connects, so your brand, site and campaigns move in the same direction.",
+    },
+    stats: [
+      { value: "450+", label: "Videos edited" },
+      { value: "300M+", label: "Views generated" },
+      { value: "7", label: "Services under one roof" },
+    ],
+  },
   gallery: [
     { title: "Web Design", label: "Websites & landing pages", art: "web", href: "/services/web-design-development" },
     { title: "E-commerce", label: "Stores that sell", art: "ecommerce", href: "/services/ecommerce-solutions" },

@@ -67,6 +67,8 @@ export function ScrollStage({ content, debug = false }: ScrollStageProps) {
         const right = $("right");
         const center = $("center");
         const copy = $("copy");
+        const ringCopy = $("ring");
+        const helixCopy = $("helix");
         const gallery = $("gallery");
         const cta = $("cta");
         const canvasWrap = $("canvas");
@@ -180,7 +182,14 @@ export function ScrollStage({ content, debug = false }: ScrollStageProps) {
         tl.fromTo(hole, { s: 0 }, { s: iconPx, ease: "power2.out", duration: dur(T.holeOpen), onUpdate: applyHole }, T.holeOpen[0]);
         tl.to(hole, { s: growPx, ease: "power2.in", duration: dur(T.holeGrow), onUpdate: applyHole }, T.holeGrow[0]);
 
-        // D — particle-sphere copy
+        // N — New Era beats: ring headline, helix stats, horizon copy
+        gsap.set([ringCopy, helixCopy], { autoAlpha: 0 });
+        tl.fromTo(ringCopy, { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, ease: "power2.out", duration: 0.02 }, T.ringCopy[0]);
+        tl.to(ringCopy, { autoAlpha: 0, y: -16, ease: "power2.in", duration: 0.016 }, T.ringCopy[1] - 0.016);
+        tl.fromTo(helixCopy, { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, ease: "power2.out", duration: 0.02 }, T.helixCopy[0]);
+        tl.to(helixCopy, { autoAlpha: 0, y: -16, ease: "power2.in", duration: 0.016 }, T.helixCopy[1] - 0.016);
+
+        // D — horizon copy
         tl.fromTo(copy, { opacity: 0, y: 24 }, { opacity: 1, y: 0, ease: "power2.out", duration: dur(T.copyIn) }, T.copyIn[0]);
         tl.to(copy, { opacity: 0, y: -18, ease: "power2.in", duration: dur(T.copyOut) }, T.copyOut[0]);
 
@@ -258,7 +267,7 @@ export function ScrollStage({ content, debug = false }: ScrollStageProps) {
 
   return (
     <>
-      <section ref={root} data-stage-animated="" aria-label="Introduction" className="relative h-[560svh] md:h-[720svh]">
+      <section ref={root} data-stage-animated="" aria-label="Introduction" className="relative h-[750svh] md:h-[965svh]">
         <div data-st="stick" className="st-stick sticky top-0 h-[100svh] w-full overflow-hidden bg-black">
           {/* F — closing violet card (clipped open by the timeline) */}
           <div data-st="cta" className="st-violet st-cta absolute inset-0 z-[2]">
@@ -330,7 +339,31 @@ export function ScrollStage({ content, debug = false }: ScrollStageProps) {
             <StageCanvas prog={prog} onUnavailable={onUnavailable} />
           </div>
 
-          {/* D — copy that fades in beside the particle sphere */}
+          {/* N1 — headline centred inside the particle ring */}
+          <div data-st="ring" className="pointer-events-none absolute inset-0 z-[5] grid place-items-center px-[var(--gutter)] text-center" aria-hidden="true">
+            <div className="max-w-[22rem] md:max-w-[30rem]">
+              <p className="font-display text-[clamp(1.5rem,1rem+2.2vw,2.6rem)] font-semibold leading-[1.08] tracking-[-0.03em] text-white [text-shadow:0_2px_24px_#000]">
+                {content.morph.ring.title}
+              </p>
+              <p className="mx-auto mt-4 max-w-[24rem] text-[0.95rem] leading-relaxed text-white/80 [text-shadow:0_1px_14px_#000]">{content.morph.ring.body}</p>
+            </div>
+          </div>
+
+          {/* N2 — stat chips floating beside the helix */}
+          <div data-st="helix" className="pointer-events-none absolute inset-0 z-[5]" aria-hidden="true">
+            {content.morph.stats.map((s, i) => (
+              <div
+                key={s.label}
+                className="absolute rounded-xl border border-white/15 bg-black/55 px-4 py-3 text-white backdrop-blur-md"
+                style={i === 0 ? { left: "max(var(--gutter), 18vw)", top: "34%" } : i === 1 ? { right: "max(var(--gutter), 18vw)", top: "24%" } : { right: "max(var(--gutter), 22vw)", bottom: "22%" }}
+              >
+                <p className="font-display text-[clamp(1.4rem,1.1rem+1.2vw,2.1rem)] font-semibold leading-none tracking-[-0.03em] tabular-nums">{s.value}</p>
+                <p className="mt-1.5 text-xs text-white/70">{s.label}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* D — copy that fades in over the horizon */}
           <div data-st="copy" className="pointer-events-none absolute inset-0 z-[5]" aria-hidden="true">
             <div className="absolute inset-0" style={{ background: "radial-gradient(60% 45% at 14% 100%, rgba(0,0,0,0.85), transparent 70%)" }} />
             <div className="absolute bottom-[clamp(1.5rem,5vh,3.5rem)] left-[var(--gutter)] max-w-[26rem] space-y-4 text-[clamp(0.82rem,0.78rem+0.2vw,0.98rem)] leading-relaxed text-white/90 [text-shadow:0_1px_14px_#000]">

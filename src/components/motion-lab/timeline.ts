@@ -11,7 +11,18 @@
  */
 export type Range = readonly [number, number];
 
-export const T = {
+/**
+ * New Era blend: after the star opens onto the particle sphere, the swarm morphs ring -> helix -> horizon -> tunnel
+ * (raw units inside [MORPH_AT, MORPH_AT + MORPH_LEN]); the camera then flies down the tunnel into the gallery.
+ * Everything after MORPH_AT is pushed back by MORPH_LEN and the whole sequence is re-normalised to 0 -> 1.
+ */
+const MORPH_AT = 0.345;
+const MORPH_LEN = 0.34;
+const TOTAL = 1 + MORPH_LEN;
+const n = (v: number) => (v > MORPH_AT ? v + MORPH_LEN : v) / TOTAL;
+const m = (a: number, b: number) => [(MORPH_AT + a) / TOTAL, (MORPH_AT + b) / TOTAL] as const;
+
+const RAW = {
   heroExit: [0.0, 0.1],
   sideIn: [0.05, 0.2],
   cardFocus: [0.18, 0.255],
@@ -22,11 +33,7 @@ export const T = {
 
   dustIn: [0.272, 0.3],
   fly: [0.285, 0.345],
-  spread: [0.3, 0.36],
-  dustOut: [0.34, 0.385],
-  starOut: [0.38, 0.42],
-  copyIn: [0.33, 0.37],
-  copyOut: [0.4, 0.44],
+  starOut: [0.33, 0.345],
 
   galleryIn: [0.37, 0.46],
   scatter: [0.52, 0.68],
@@ -40,6 +47,28 @@ export const T = {
   ctaCopy: [0.88, 0.98],
   chromeIn: [0.57, 0.8],
   camBack: [0.4, 0.56],
+} as const;
+
+type Norm<V> = { -readonly [K in keyof V]: V[K] extends readonly [number, number] ? Range : number };
+const norm = <V extends Record<string, number | readonly [number, number]>>(o: V) =>
+  Object.fromEntries(
+    Object.entries(o).map(([k, v]) => [k, typeof v === "number" ? n(v) : ([n(v[0]), n(v[1])] as const)]),
+  ) as Norm<V>;
+
+export const T = {
+  ...norm(RAW),
+  // New Era morph window
+  toRing: m(0.0, 0.045),
+  ringCopy: [m(0.02, 0.05)[0], m(0.07, 0.09)[1]] as Range,
+  toHelix: m(0.085, 0.135),
+  helixCopy: [m(0.11, 0.13)[0], m(0.165, 0.185)[1]] as Range,
+  toHorizon: m(0.18, 0.225),
+  copyIn: m(0.205, 0.235),
+  copyOut: m(0.255, 0.275),
+  toTunnel: m(0.265, 0.3),
+  tunnelFly: m(0.285, 0.345),
+  dustOut: m(0.315, 0.345),
+  warm: m(0.0, 0.05),
 } as const;
 
 /**
@@ -84,7 +113,11 @@ export function phaseName(p: number): string {
   if (p < T.heroExit[1]) return "A · hero card swings away";
   if (p < T.cardFocus[1]) return "B · side cards converge on ✦ card";
   if (p < T.holeGrow[1]) return "C · ✦ scales to fill the screen";
-  if (p < T.fly[1]) return "D · camera flies through particle sphere";
+  if (p < T.fly[1]) return "D · camera approaches the particle sphere";
+  if (p < T.toHelix[0]) return "N1 · swarm becomes a ring";
+  if (p < T.toHorizon[0]) return "N2 · helix + stats";
+  if (p < T.toTunnel[0]) return "N3 · horizon";
+  if (p < T.tunnelFly[1]) return "N4 · tunnel fly-through";
   if (p < T.galleryIn[1]) return "E1 · gallery pans";
   if (p < T.scatter[1]) return "E2 · panels scatter in depth";
   if (p < T.cardGrow1[1]) return "F1 · violet card grows, chrome star enters";
