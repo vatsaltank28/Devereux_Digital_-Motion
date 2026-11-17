@@ -241,8 +241,8 @@ p {
 }
 
 .btn-secondary:hover {
-  border-color: rgba(255, 255, 255, 0.55);
-  background: rgba(255, 255, 255, 0.04);
+  border-color: var(--color-text);
+  background: var(--color-hover);
 }
 
 .btn-sm {
@@ -529,7 +529,7 @@ html:not(.js) [data-reveal] {
     box-shadow var(--motion-ui) var(--ease-out);
 }
 .field-input:hover {
-  border-color: rgba(255, 255, 255, 0.4);
+  border-color: var(--color-border-strong);
 }
 .field-input:focus-visible {
   outline: none;
@@ -738,3 +738,14 @@ html[data-stage-light="1"] header button {
 }
 
 }
+
+/* Theme switch: circular reveal from the tap point (View Transitions), instant fallback elsewhere */
+::view-transition-old(root),
+::view-transition-new(root) { animation: none; mix-blend-mode: normal; }
+::view-transition-new(root) { z-index: 2; }
+.theme-switch svg { transition: transform 420ms var(--ease-out), opacity 260ms var(--ease-out); }
+.theme-switch .icon-sun { transform: rotate(-90deg) scale(0.4); opacity: 0; }
+.theme-switch .icon-moon { transform: none; opacity: 1; }
+:root[data-theme-resolved="light"] .theme-switch .icon-sun { transform: none; opacity: 1; }
+:root[data-theme-resolved="light"] .theme-switch .icon-moon { transform: rotate(90deg) scale(0.4); opacity: 0; }
+::selection { background: color-mix(in srgb, var(--color-accent) 30%, transparent); }

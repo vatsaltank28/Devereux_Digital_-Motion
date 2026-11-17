@@ -1,6 +1,7 @@
 import { ScrollStage } from "@/components/motion-lab/ScrollStage";
 import { homeStage } from "@/data/stage";
 import { ServicesGrid } from "@/components/home/ServicesGrid";
+import { ProofSection } from "@/components/home/ProofSection";
 import { WhyChooseUs } from "@/components/home/WhyChooseUs";
 import { FeaturedWork } from "@/components/home/FeaturedWork";
 import { ProcessSection } from "@/components/home/ProcessSection";
@@ -17,6 +18,7 @@ export default function HomePage() {
     <>
       <ScrollStage content={homeStage} />
       <ServicesGrid />
+      <ProofSection />
       <WhyChooseUs />
       <FeaturedWork />
       <ProcessSection />

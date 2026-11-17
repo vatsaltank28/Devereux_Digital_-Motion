@@ -68,6 +68,14 @@ export default async function ContactPage({ searchParams }: { searchParams: Prom
                   </a>
                 </p>
               )}
+              <p className="flex items-center gap-2 pt-2 text-sm text-muted">
+                <span aria-hidden="true" className="size-2 rounded-full bg-[var(--color-success)]" />
+                {site.contact.availability}
+              </p>
+              <div className="flex flex-wrap gap-3 pt-3">
+                <a className="pill pill-outline" href={site.contact.whatsapp} target="_blank" rel="noopener noreferrer">WhatsApp</a>
+                <a className="pill pill-outline" href={site.contact.discord} target="_blank" rel="noopener noreferrer">Discord</a>
+              </div>
             </div>
           )}
         </div>

@@ -1,5 +1,15 @@
 /* Design tokens — Devereux Digitals (see DESIGN.md §2). Single source of truth. */
 :root {
+  color-scheme: dark;
+  --color-hover: rgba(255, 255, 255, 0.05);
+  --art-ink: rgba(255, 255, 255, 0.62);
+  --art-mid: rgba(255, 255, 255, 0.34);
+  --art-faint: rgba(255, 255, 255, 0.16);
+  --art-panel: #0b0c0f;
+  --art-panel-2: #1a1d23;
+  --art-ground: #050505;
+  --art-ground-2: #08090c;
+  --art-hi: #f7f8fa;
   /* Surfaces */
   --color-bg: #050505;
   --color-surface: #0b0c0f;
@@ -56,3 +66,63 @@
     --header-h: 64px;
   }
 }
+
+/* Light theme: explicit choice, or the OS setting when the visitor has not chosen */
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    color-scheme: light;
+    --color-bg: #ffffff;
+    --color-surface: #f6f7fa;
+    --color-surface-2: #eef0f5;
+    --color-surface-3: #e2e6ee;
+    --color-text: #0b0d12;
+    --color-text-muted: #4a5160;
+    --color-text-subtle: #5c6474;
+    --color-accent: #1f6fe5;
+    --color-accent-bright: #1559c4;
+    --color-accent-deep: #e6efff;
+    --color-on-accent: #ffffff;
+    --color-border: rgba(11, 13, 18, 0.12);
+    --color-border-strong: rgba(11, 13, 18, 0.24);
+    --color-border-faint: rgba(11, 13, 18, 0.07);
+    --color-hover: rgba(11, 13, 18, 0.04);
+    --color-success: #138a52;
+    --color-danger: #c62f2f;
+    --art-ink: rgba(11, 13, 18, 0.55);
+    --art-mid: rgba(11, 13, 18, 0.28);
+    --art-faint: rgba(11, 13, 18, 0.12);
+    --art-panel: #ffffff;
+    --art-panel-2: #e2e6ee;
+    --art-ground: #eef2fb;
+    --art-ground-2: #f6f8fd;
+    --art-hi: #0b0d12;
+  }
+}
+:root[data-theme="light"] {
+    color-scheme: light;
+    --color-bg: #ffffff;
+    --color-surface: #f6f7fa;
+    --color-surface-2: #eef0f5;
+    --color-surface-3: #e2e6ee;
+    --color-text: #0b0d12;
+    --color-text-muted: #4a5160;
+    --color-text-subtle: #5c6474;
+    --color-accent: #1f6fe5;
+    --color-accent-bright: #1559c4;
+    --color-accent-deep: #e6efff;
+    --color-on-accent: #ffffff;
+    --color-border: rgba(11, 13, 18, 0.12);
+    --color-border-strong: rgba(11, 13, 18, 0.24);
+    --color-border-faint: rgba(11, 13, 18, 0.07);
+    --color-hover: rgba(11, 13, 18, 0.04);
+    --color-success: #138a52;
+    --color-danger: #c62f2f;
+    --art-ink: rgba(11, 13, 18, 0.55);
+    --art-mid: rgba(11, 13, 18, 0.28);
+    --art-faint: rgba(11, 13, 18, 0.12);
+    --art-panel: #ffffff;
+    --art-panel-2: #e2e6ee;
+    --art-ground: #eef2fb;
+    --art-ground-2: #f6f8fd;
+    --art-hi: #0b0d12;
+  }

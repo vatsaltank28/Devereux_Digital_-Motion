@@ -21,12 +21,21 @@ export const site = {
   url: (clean(process.env.NEXT_PUBLIC_SITE_URL) ?? "http://localhost:3000").replace(/\/$/, ""),
   locale: "en",
   contact: {
-    email: clean(process.env.NEXT_PUBLIC_CONTACT_EMAIL),
-    phone: clean(process.env.NEXT_PUBLIC_CONTACT_PHONE),
+    email: clean(process.env.NEXT_PUBLIC_CONTACT_EMAIL) ?? "devereuxedits.01@gmail.com",
+    phone: clean(process.env.NEXT_PUBLIC_CONTACT_PHONE) ?? "+1 682 793 8815",
+    whatsapp: "https://wa.me/16827938815",
+    discord: "https://discord.com/users/1323213896240205845",
+    availability: "Online 24/7 · typical reply within 10 minutes",
+    founder: "Lorenzo Devereux",
+    location: "Buffalo, New York",
     /** Only publish a postal address once the client approves one. */
     address: null as string | null,
   },
   social: [
+    { label: "WhatsApp", href: "https://wa.me/16827938815" },
+    { label: "Discord", href: "https://discord.com/users/1323213896240205845" },
+    { label: "TikTok", href: "https://www.tiktok.com/@devereux_digital_hub" },
+    { label: "Facebook", href: "https://www.facebook.com/share/1M8XFMZTkR/?mibextid=wwXIfr" },
     { label: "LinkedIn", href: clean(process.env.NEXT_PUBLIC_LINKEDIN_URL) },
     { label: "Instagram", href: clean(process.env.NEXT_PUBLIC_INSTAGRAM_URL) },
     { label: "X", href: clean(process.env.NEXT_PUBLIC_X_URL) },

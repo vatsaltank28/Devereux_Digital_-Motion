@@ -40,15 +40,18 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#050505",
-  colorScheme: "dark",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#050505" },
+  ],
+  colorScheme: "dark light",
   viewportFit: "cover",
 };
 
 import { JsFlag } from "@/components/layout/JsFlag";
 
 /** Marks the document as JS-enabled before first paint so motion pre-states only apply when JS can resolve them. */
-const jsFlag = `document.documentElement.classList.add('js')`;
+const jsFlag = `document.documentElement.classList.add('js');try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t}catch(e){}`;
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (

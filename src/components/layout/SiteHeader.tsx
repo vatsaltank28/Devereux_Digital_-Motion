@@ -8,6 +8,7 @@ import { cn } from "@/lib/cn";
 import { LogoMark } from "@/components/visuals/LogoMark";
 import { LinkButton } from "@/components/ui/Button";
 import { NavigationOverlay } from "./NavigationOverlay";
+import { ThemeToggle } from "./ThemeToggle";
 
 /**
  * Fixed header: transparent over the hero, opaque + blurred after scroll (DESIGN.md §4.1).
@@ -57,6 +58,7 @@ export function SiteHeader() {
           </Link>
 
           <div className="flex items-center gap-3">
+            <ThemeToggle />
             <LinkButton href="/contact" variant="secondary" size="sm" className="hidden md:inline-flex" location="header">
               {ctaLabels.startProject}
             </LinkButton>
@@ -67,7 +69,7 @@ export function SiteHeader() {
               aria-expanded={open}
               aria-controls="site-menu"
               onClick={() => setOpenedOn(pathname)}
-              className="flex min-h-11 min-w-11 items-center justify-center gap-3 rounded-full border border-line-strong px-4 text-sm font-semibold transition-colors hover:border-white/55"
+              className="flex min-h-11 min-w-11 items-center justify-center gap-3 rounded-full border border-line-strong px-4 text-sm font-semibold transition-colors hover:border-[var(--color-text)]"
             >
               <span>Menu</span>
               <span aria-hidden="true" className="flex flex-col gap-[5px]">
