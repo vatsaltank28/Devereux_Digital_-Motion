@@ -21,7 +21,7 @@ export function WorkMarquee() {
         <div className="lg:col-span-7">
           <SectionLabel>Our work</SectionLabel>
           <SplitHeading id="work-marquee-title" className="t-h2 mt-5 max-w-[18ch]">
-            Websites, stores, brands, campaigns and AI tools — built for real businesses.
+            Websites, stores, brands, campaigns and AI tools, built for real businesses.
           </SplitHeading>
         </div>
         <p className="t-body lg:col-span-4 lg:col-start-9">

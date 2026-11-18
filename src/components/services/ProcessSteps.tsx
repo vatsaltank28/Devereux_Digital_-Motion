@@ -3,7 +3,7 @@ import { SectionLabel } from "@/components/ui/SectionLabel";
 import { SplitHeading } from "@/components/motion/SplitHeading";
 import { Reveal } from "@/components/motion/Reveal";
 
-/** S04 — Our process. A genuine sequence, so numbered. Horizontal rail on desktop, vertical on mobile. */
+/** S04, Our process. A genuine sequence, so numbered. Horizontal rail on desktop, vertical on mobile. */
 export function ProcessSteps({ steps }: { steps: TitledText[] }) {
   return (
     <section id="process" aria-labelledby="process-steps-title" className="section-tight border-t border-line">

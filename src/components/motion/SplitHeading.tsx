@@ -16,7 +16,7 @@ interface SplitHeadingProps {
 }
 
 /**
- * GSAP owns this element's line reveal (SplitText → masked yPercent, 500–800 ms).
+ * GSAP owns this element's line reveal (SplitText → masked yPercent, 500 to 800 ms).
  *
  *  - Real HTML text stays in the DOM (SplitText `aria: auto` keeps a clean accessible name).
  *  - Pre-hidden only while JS boots and only when motion is allowed (see `[data-split-pending]` in globals.css),

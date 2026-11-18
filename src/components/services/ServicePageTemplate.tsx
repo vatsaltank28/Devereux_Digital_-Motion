@@ -13,7 +13,6 @@ import { ProblemList } from "./ProblemList";
 import { IncludedList } from "./IncludedList";
 import { WorkGallery } from "./WorkGallery";
 import { ReviewWall } from "./ReviewWall";
-import { EditsPromo } from "./EditsPromo";
 import { ProcessSteps } from "./ProcessSteps";
 import { BenefitsBlock } from "./BenefitsBlock";
 import { PricingBlock } from "./PricingBlock";
@@ -44,9 +43,7 @@ export function ServicePageTemplate({ service }: { service: Service }) {
       />
       <ServiceHero service={service} cover={work[0]} />
       <IncludedList items={included[service.slug] ?? []} />
-      {isEditing ? (
-        <EditsPromo />
-      ) : (
+      {!isEditing && (
         <>
           <WorkGallery images={work} serviceTitle={service.title} />
           <ProblemList items={service.problems} />

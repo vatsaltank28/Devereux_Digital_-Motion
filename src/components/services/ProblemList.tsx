@@ -2,7 +2,7 @@ import type { TitledText } from "@/data/types";
 import { Reveal } from "@/components/motion/Reveal";
 import { ServiceSection } from "./ServiceSection";
 
-/** S02 — Problems we solve. */
+/** S02, Problems we solve. */
 export function ProblemList({ items }: { items: TitledText[] }) {
   return (
     <ServiceSection id="problems" label="The challenge" title="Problems we solve">

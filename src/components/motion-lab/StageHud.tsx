@@ -6,7 +6,7 @@ import type { Progress } from "./StageScene";
 
 /**
  * Debug HUD for /reference-motion-lab: live scroll progress + phase name, and a slider that scrolls the page
- * to an exact progress value (used for side-by-side captures). Writes to the DOM directly — no React renders.
+ * to an exact progress value (used for side-by-side captures). Writes to the DOM directly, no React renders.
  */
 export function StageHud({ rootRef, prog }: { rootRef: RefObject<HTMLElement | null>; prog: { current: Progress } }) {
   const valueRef = useRef<HTMLSpanElement>(null);

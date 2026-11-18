@@ -1,12 +1,12 @@
 "use client";
 
 /**
- * SpotlightCard — adapted from React Bits (https://www.reactbits.dev/ · github.com/DavidHDev/react-bits, MIT + Commons Clause).
+ * SpotlightCard, adapted from React Bits (https://www.reactbits.dev/ · github.com/DavidHDev/react-bits, MIT + Commons Clause).
  *
  * Changes from upstream:
  *  - Simplified to a pointer-following radial light plus a lit border (the two effects used on the services grid).
  *  - Visual tokens come from the project design system; shape/padding are controlled by the caller via className.
- *  - Keyboard parity: focus-within lights the card (DESIGN.md §4.3 — "focus state at least as clear as hover").
+ *  - Keyboard parity: focus-within lights the card (DESIGN.md §4.3, "focus state at least as clear as hover").
  *  - Light is driven by CSS variables updated in one rAF; skipped for touch and reduced-motion.
  *  - Owns only the --mx/--my/--glow variables; no other library writes to this element's style.
  */

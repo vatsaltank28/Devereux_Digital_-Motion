@@ -1,7 +1,7 @@
 /**
  * Privacy-conscious analytics hook (PRD §3.2).
  *
- * No provider is bundled — the client must approve one first. Events are pushed to
+ * No provider is bundled, the client must approve one first. Events are pushed to
  * `window.dataLayer` (compatible with GTM/GA4/Plausible-via-GTM) and dispatched as a
  * DOM `CustomEvent` so any approved provider can subscribe later.
  *

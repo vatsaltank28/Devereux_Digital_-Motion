@@ -103,7 +103,7 @@ export function ScrollStage({ content, debug = false }: ScrollStageProps) {
             <StageCanvas prog={prog} onUnavailable={onUnavailable} />
           </div>
 
-          {/* 1 — hero copy, centred inside the particle ring */}
+          {/* 1, hero copy, centred inside the particle ring */}
           <div data-st="hero" className="absolute inset-0 z-10 grid place-items-center px-[var(--gutter)] pt-[var(--header-h)] text-center">
             <div className="max-w-[34rem]">
               <h1 className="font-display text-[clamp(1.9rem,1.2rem+2.6vw,3.3rem)] font-semibold leading-[1.04] tracking-[-0.035em] [text-shadow:0_2px_30px_#000]">
@@ -124,7 +124,7 @@ export function ScrollStage({ content, debug = false }: ScrollStageProps) {
             </div>
           </div>
 
-          {/* 2 — the seven services, either side of the helix */}
+          {/* 2, the seven services, either side of the helix */}
           <div data-st="services" className="absolute inset-0 z-10 px-[var(--gutter)] pt-[calc(var(--header-h)+1rem)]">
             <p className="text-center font-display text-[clamp(1.3rem,1rem+1.2vw,2rem)] font-semibold tracking-[-0.02em] [text-shadow:0_2px_24px_#000]">
               {content.services.title}
@@ -148,7 +148,7 @@ export function ScrollStage({ content, debug = false }: ScrollStageProps) {
             </div>
           </div>
 
-          {/* 3 — who we are, over the horizon */}
+          {/* 3, who we are, over the horizon */}
           <div data-st="about" className="absolute inset-x-0 top-[22%] z-10 px-[var(--gutter)] text-center">
             <p className="font-display text-[clamp(1.6rem,1.1rem+2.2vw,3rem)] font-semibold leading-[1.08] tracking-[-0.03em] [text-shadow:0_2px_24px_#000]">
               {content.about.title}

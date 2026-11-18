@@ -140,9 +140,9 @@ export function NavigationOverlay({ open, onClose, triggerRef }: NavigationOverl
           animate="show"
           exit="exit"
         >
-          {/* Overlay top bar — mirrors the header so the logo and close control never move */}
+          {/* Overlay top bar, mirrors the header so the logo and close control never move */}
           <div className="wrap-wide flex h-[var(--header-h)] shrink-0 items-center justify-between">
-            <Link href="/" onClick={onClose} className="flex min-h-11 items-center gap-3" aria-label={`${site.name} — home`}>
+            <Link href="/" onClick={onClose} className="flex min-h-11 items-center gap-3" aria-label={`${site.name} home`}>
               <LogoMark animateOnMount={false} />
               <span className="font-display text-[1.15rem] font-semibold tracking-tight">{site.name}</span>
             </Link>

@@ -15,7 +15,7 @@ interface FinalCTAProps {
   location?: string;
 }
 
-/** H05 — Final CTA. Reused by every page so the conversion path is identical everywhere. */
+/** H05, Final CTA. Reused by every page so the conversion path is identical everywhere. */
 export function FinalCTA({
   heading = finalCta.headline,
   description = finalCta.description,

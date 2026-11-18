@@ -9,9 +9,9 @@ import { RotatingText } from "@/components/reactbits/RotatingText";
  * Black & white with cobalt + hot-pink accents. One idea: your business at the centre,
  * Design · Build · Grow on the left; a stack of real client work on the right (anime.js).
  */
-const COBALT = "#2f6bff";
-const PINK = "#ff2e88";
-const WHITE = "#f4f5f8";
+const COBALT = "var(--hero-c1, #2f6bff)";
+const PINK = "var(--hero-c2, #ff2e88)";
+const WHITE = "var(--color-text)";
 
 const PILLARS = [
   {
@@ -110,7 +110,7 @@ export function HomeHero() {
         </div>
       </div>
 
-      {/* Seven services. One team. — a slow ticker of every service */}
+      {/* Seven services. One team., a slow ticker of every service */}
       <nav className="home-ticker border-t border-line" aria-label={services.title}>
         <div className="home-ticker-track">
           {[0, 1].map((dup) => (

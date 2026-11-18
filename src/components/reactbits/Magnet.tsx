@@ -1,7 +1,7 @@
 "use client";
 
 /**
- * Magnet — adapted from React Bits (https://www.reactbits.dev/ · github.com/DavidHDev/react-bits, MIT + Commons Clause).
+ * Magnet, adapted from React Bits (https://www.reactbits.dev/ · github.com/DavidHDev/react-bits, MIT + Commons Clause).
  *
  * Changes from upstream (kept intentionally small):
  *  - Condensed to a single self-contained spring loop per instance (no cross-instance registry).

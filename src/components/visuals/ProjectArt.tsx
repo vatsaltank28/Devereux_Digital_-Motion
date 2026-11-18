@@ -3,7 +3,7 @@ import type { ArtVariant } from "@/data/types";
 
 /**
  * Generated artwork for services and concept projects.
- * One shared grammar — hairline white linework, a single blue signal, black ground — so all
+ * One shared grammar, hairline white linework, a single blue signal, black ground, so all
  * seven pieces read as one family (DESIGN.md §3.3). Replace with real project imagery via `heroImage`.
  * Purely decorative: aria-hidden; the card/page that uses it carries the accessible name.
  */

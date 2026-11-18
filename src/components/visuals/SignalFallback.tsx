@@ -24,7 +24,7 @@ interface SignalFallbackProps {
  * Shown when WebGL is unavailable, on weak devices, with data-saver, or under prefers-reduced-motion,
  * and as the poster layer while the 3D scene loads.
  *
- * It is the same concept as the 3D scene — a central knot, three orbits and eight service nodes.
+ * It is the same concept as the 3D scene, a central knot, three orbits and eight service nodes.
  * Anime.js owns the one-time stroke draw (skipped for reduced motion, where it simply renders complete).
  */
 export function SignalFallback({ className }: SignalFallbackProps) {
@@ -49,7 +49,7 @@ export function SignalFallback({ className }: SignalFallbackProps) {
     };
   }, []);
 
-  // Eight service nodes on three orbits (3 + 3 + 2) — one per service card.
+  // Eight service nodes on three orbits (3 + 3 + 2), one per service card.
   const nodes: Array<[number, number, boolean?]> = [
     [300, 98, true],
     [514, 360],
@@ -91,7 +91,7 @@ export function SignalFallback({ className }: SignalFallbackProps) {
         <ellipse data-ring cx="300" cy="300" rx="286" ry="176" transform="rotate(100 300 300)" strokeOpacity="0.25" stroke="#f7f8fa" />
       </g>
 
-      {/* Knot: a (2,3) torus-knot silhouette — the same form as the 3D sculpture — as a layered tube */}
+      {/* Knot: a (2,3) torus-knot silhouette, the same form as the 3D sculpture, as a layered tube */}
       <g strokeLinejoin="round" strokeLinecap="round">
         <path data-knot d={TREFOIL} stroke="#398bff" strokeOpacity="0.55" strokeWidth="38" />
         <path d={TREFOIL} stroke="#0a0b0f" strokeWidth="32" />

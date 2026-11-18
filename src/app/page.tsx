@@ -6,7 +6,7 @@ import { CapabilityStats } from "@/components/home/CapabilityStats";
 import { FinalCTA } from "@/components/home/FinalCTA";
 
 /**
- * Landing page (client revision): no scroll animation — it opens straight on the
+ * Landing page (client revision): no scroll animation, it opens straight on the
  * Design · Build · Grow hero, then the headline client review, every service, and the closing CTA.
  */
 export default function HomePage() {

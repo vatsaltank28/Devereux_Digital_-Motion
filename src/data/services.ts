@@ -1,11 +1,11 @@
 import type { Service } from "./types";
 
 /**
- * Service catalogue (PRD §9–10).
+ * Service catalogue (PRD §9 to 10).
  *
  * Content status:
  *  - 01 Web Design & Development: problems, deliverables and process come from the client reference screenshots.
- *  - 02–07: DRAFT copy written for review. Capabilities must be confirmed by the client before launch (PRD §21 Q2).
+ *  - 02 to 07: DRAFT copy written for review. Capabilities must be confirmed by the client before launch (PRD §21 Q2).
  *  - 08 Coming Soon: intentionally non-routable until the client confirms intended behaviour (PRD §21 Q3).
  *
  * No prices, client names, metrics or timelines are stated here.
@@ -20,9 +20,9 @@ export const services: Service[] = [
       "Fast, responsive websites that look credible and make it easy for visitors to get in touch.",
     heroHeadline: "Websites built to earn trust and start conversations.",
     heroDescription:
-      "We design and develop responsive websites for businesses that need a professional online presence — from a focused landing page to a full multi-page build.",
+      "We design and develop responsive websites for businesses that need a professional online presence, from a focused landing page to a full multi-page build.",
     intro:
-      "A website is often the first place a potential customer decides whether to trust you. We design for clarity first — what you do, who it is for and what to do next — then build it to load quickly and work properly on every screen size.",
+      "A website is often the first place a potential customer decides whether to trust you. We design for clarity first: what you do, who it is for and what to do next. Then we build it to load quickly and work properly on every screen size.",
     ctaHeading: "Ready to build your website?",
     art: "web",
     problems: [
@@ -52,7 +52,7 @@ export const services: Service[] = [
       { title: "E-commerce websites", description: "Online stores built around how your customers browse and buy." },
       { title: "Landing pages", description: "Single-purpose pages for a campaign, launch or specific offer." },
       { title: "Website redesign", description: "A fresh structure, design and codebase for a site that has outgrown itself." },
-      { title: "Mobile-responsive design", description: "Layouts composed for phone, tablet and desktop — each intentionally." },
+      { title: "Mobile-responsive design", description: "Layouts composed for phone, tablet and desktop, each intentionally." },
       { title: "Website optimization", description: "Performance, accessibility and on-page improvements for an existing site." },
     ],
     processSteps: [
@@ -78,7 +78,7 @@ export const services: Service[] = [
     packages: [],
     seoTitle: "Web Design & Development",
     seoDescription:
-      "Responsive business websites, landing pages, redesigns and e-commerce builds from Devereux Digitals — designed for clarity and built for speed.",
+      "Responsive business websites, landing pages, redesigns and e-commerce builds from Devereux Digitals, designed for clarity and built for speed.",
     status: "published",
     sortOrder: 1,
   },
@@ -89,7 +89,7 @@ export const services: Service[] = [
     shortTitle: "Digital & Sales",
     shortDescription:
       "Strategy, content and channel management that connect your marketing to your business goals.",
-    heroHeadline: "A marketing plan you can follow — and measure.",
+    heroHeadline: "A marketing plan you can follow and measure.",
     heroDescription:
       "We build the strategy, plan the content and manage the channels, then report in plain language on what is and isn’t working.",
     intro:
@@ -131,7 +131,7 @@ export const services: Service[] = [
     packages: [],
     seoTitle: "Digital & Sales Marketing",
     seoDescription:
-      "Digital marketing strategy, content planning, channel management and reporting from Devereux Digitals — built around your business goals.",
+      "Digital marketing strategy, content planning, channel management and reporting from Devereux Digitals, built around your business goals.",
     status: "published",
     sortOrder: 2,
   },
@@ -144,7 +144,7 @@ export const services: Service[] = [
       "Structured campaigns, tested creative and clear reporting so every part of your budget has a job.",
     heroHeadline: "Paid campaigns with structure behind every budget decision.",
     heroDescription:
-      "We set up, test and optimize paid campaigns — and report on spend and results without the jargon.",
+      "We set up, test and optimize paid campaigns, then report on spend and results without the jargon.",
     intro:
       "Paid advertising rewards discipline: clear objectives, clean tracking and steady testing. We build campaigns around the outcome you actually want, keep you in control of budget, and share what we learn as the campaigns run.",
     art: "ads",
@@ -184,7 +184,7 @@ export const services: Service[] = [
     packages: [],
     seoTitle: "Paid Advertising",
     seoDescription:
-      "Paid advertising campaign setup, creative testing, optimization and reporting from Devereux Digitals — structured around your goals and budget.",
+      "Paid advertising campaign setup, creative testing, optimization and reporting from Devereux Digitals, structured around your goals and budget.",
     status: "published",
     sortOrder: 3,
   },
@@ -237,7 +237,7 @@ export const services: Service[] = [
     packages: [],
     seoTitle: "E-commerce Solutions",
     seoDescription:
-      "E-commerce store design and build from Devereux Digitals — catalogue structure, product pages, checkout experience and integrations.",
+      "E-commerce store design and build from Devereux Digitals: catalogue structure, product pages, checkout experience and integrations.",
     status: "published",
     sortOrder: 4,
   },
@@ -252,7 +252,7 @@ export const services: Service[] = [
     heroDescription:
       "We plan, produce and edit video and creative content that fits your brand and the platforms where your audience spends time.",
     intro:
-      "Good content starts with a clear idea of who it is for and where it will be seen. We shape the concept, plan the production, and deliver edits in the formats each channel needs — so one shoot works harder.",
+      "Good content starts with a clear idea of who it is for and where it will be seen. We shape the concept, plan the production, and deliver edits in the formats each channel needs, so one shoot works harder.",
     art: "video",
     problems: [
       { title: "A brand story told inconsistently", description: "Different tones and visuals across channels make a business harder to remember." },
@@ -290,7 +290,7 @@ export const services: Service[] = [
     packages: [],
     seoTitle: "Video & Content",
     seoDescription:
-      "Video production, editing, short-form content and creative assets from Devereux Digitals — planned for your brand and your channels.",
+      "Video production, editing, short-form content and creative assets from Devereux Digitals, planned for your brand and your channels.",
     status: "published",
     sortOrder: 5,
   },
@@ -343,7 +343,7 @@ export const services: Service[] = [
     packages: [],
     seoTitle: "AI & Business Solutions",
     seoDescription:
-      "Process discovery, workflow automation, integrations and prototypes from Devereux Digitals — practical AI and business tooling for real workflows.",
+      "Process discovery, workflow automation, integrations and prototypes from Devereux Digitals. Practical AI and business tooling for real workflows.",
     status: "published",
     sortOrder: 6,
   },
@@ -396,7 +396,7 @@ export const services: Service[] = [
     packages: [],
     seoTitle: "Branding & Creative Design",
     seoDescription:
-      "Brand strategy, visual identity, guidelines and campaign creative from Devereux Digitals — built to make your business recognizable.",
+      "Brand strategy, visual identity, guidelines and campaign creative from Devereux Digitals, built to make your business recognizable.",
     status: "published",
     sortOrder: 7,
   },

@@ -6,7 +6,7 @@
 
 /**
  * The WebGL half of the hero stage: one particle swarm whose shape is a pure function of scroll progress
- * (`prog.v`, written by the GSAP timeline in ScrollStage) — ring → helix → horizon → tunnel — plus a camera that
+ * (`prog.v`, written by the GSAP timeline in ScrollStage), ring → helix → horizon → tunnel, plus a camera that
  * holds still, then dives down the tunnel at the end. Scrolling back reverses everything exactly.
  */
 import { useEffect, useMemo, useRef } from "react";

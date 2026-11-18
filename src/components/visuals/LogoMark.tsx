@@ -11,7 +11,7 @@ interface LogoMarkProps {
 }
 
 /**
- * Devereux Digitals mark — a "D" form with a single signal node.
+ * Devereux Digitals mark, a "D" form with a single signal node.
  * PLACEHOLDER until the client supplies the final logo (PRD §18); keep the API when swapping the SVG.
  *
  * Anime.js owns the SVG stroke draw on these <path>/<circle> nodes only; no other library touches them.

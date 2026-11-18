@@ -31,7 +31,7 @@ export function prefersReducedMotion(): boolean {
 
 let cachedTier: QualityTier | null = null;
 
-/** Probe once per page load — creating a throwaway WebGL context is not free. */
+/** Probe once per page load, creating a throwaway WebGL context is not free. */
 export function getQualityTierCached(): QualityTier {
   if (typeof window === "undefined") return "off";
   cachedTier ??= getQualityTier();

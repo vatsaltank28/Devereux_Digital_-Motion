@@ -7,7 +7,7 @@ interface SectionLabelProps {
   className?: string;
 }
 
-/** Compact blue-dark pill — "01 / SERVICES" (DESIGN.md §4.5). */
+/** Compact blue-dark pill, "01 / SERVICES" (DESIGN.md §4.5). */
 export function SectionLabel({ index, children, className }: SectionLabelProps) {
   return (
     <span className={cn("pill", className)}>

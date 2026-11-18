@@ -64,7 +64,7 @@ function toPlainText(d: EnquiryData): string {
     `Name: ${oneLine(d.name)}`,
     `Email: ${oneLine(d.email)}`,
     `Service: ${serviceLabel(d.service)}`,
-    `Company / website: ${oneLine(d.company) || "—"}`,
+    `Company / website: ${oneLine(d.company) || ", "}`,
     ``,
     `Project summary:`,
     d.message,
@@ -74,7 +74,7 @@ function toPlainText(d: EnquiryData): string {
 /**
  * Sends the validated enquiry to whichever provider is configured (see .env.example):
  *   1. Resend (RESEND_API_KEY + ENQUIRY_FROM_EMAIL + ENQUIRY_TO_EMAIL)
- *   2. Generic webhook (ENQUIRY_WEBHOOK_URL [+ ENQUIRY_WEBHOOK_SECRET]) — Zapier, Make, n8n, CRM inbound URL
+ *   2. Generic webhook (ENQUIRY_WEBHOOK_URL [+ ENQUIRY_WEBHOOK_SECRET]), Zapier, Make, n8n, CRM inbound URL
  * Secrets stay on the server; nothing here is exposed to the client bundle ("server-only").
  */
 export async function deliverEnquiry(data: EnquiryData): Promise<DeliveryResult> {
@@ -89,7 +89,7 @@ export async function deliverEnquiry(data: EnquiryData): Promise<DeliveryResult>
           from: ENQUIRY_FROM_EMAIL,
           to: ENQUIRY_TO_EMAIL.split(",").map((s) => s.trim()).filter(Boolean),
           reply_to: data.email,
-          subject: `New enquiry: ${serviceLabel(data.service)} — ${oneLine(data.name)}`.slice(0, 200),
+          subject: `New enquiry: ${serviceLabel(data.service)}, ${oneLine(data.name)}`.slice(0, 200),
           text: toPlainText(data),
         }),
         signal: AbortSignal.timeout(10000),

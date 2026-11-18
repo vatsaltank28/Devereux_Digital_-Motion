@@ -26,10 +26,10 @@ export const enquirySchema = z.object({
   message: z
     .string()
     .trim()
-    .min(20, "Tell us a little more — at least 20 characters.")
+    .min(20, "Tell us a little more (at least 20 characters).")
     .max(4000, "Keep your summary under 4,000 characters."),
   consent: z.literal(true, { error: "Please confirm so we can reply to your enquiry." }),
-  /** Honeypot — real users never see or fill this. */
+  /** Honeypot, real users never see or fill this. */
   nickname: z.string().max(200).optional().default(""),
   /** Epoch ms when the form first rendered; submissions faster than a human can type are rejected. */
   startedAt: z.number().int().optional(),

@@ -1,4 +1,4 @@
-/* Design tokens — Devereux Digitals (see DESIGN.md §2). Single source of truth. */
+/* Design tokens, Devereux Digitals (see DESIGN.md §2). Single source of truth. */
 :root {
   color-scheme: dark;
   --color-hover: rgba(255, 255, 255, 0.05);
@@ -22,7 +22,7 @@
   --color-text-subtle: #868c97;
 
   /* Signal blue */
-  /* Cobalt (primary accent) + hot pink (sparing highlight) — client revision */
+  /* Cobalt (primary accent) + hot pink (sparing highlight), client revision */
   --color-accent: #2f5fff;
   --color-accent-bright: #7a9dff;
   --color-accent-deep: #0c1f5c;
@@ -73,18 +73,18 @@
 @media (prefers-color-scheme: light) {
   :root:not([data-theme="dark"]) {
     color-scheme: light;
-    --color-bg: #ffffff;
-    --color-surface: #f6f7fa;
-    --color-surface-2: #eef0f5;
-    --color-surface-3: #e2e6ee;
-    --color-text: #0b0d12;
-    --color-text-muted: #4a5160;
-    --color-text-subtle: #5c6474;
-    --color-accent: #1f4fd8;
-    --color-accent-bright: #1a3fb0;
-    --color-accent-deep: #e6ecff;
-    --color-pink: #d6146a;
-    --color-on-accent: #ffffff;
+    --color-bg: #f6f5f0;
+    --color-surface: #efeee8;
+    --color-surface-2: #e8e7e0;
+    --color-surface-3: #dddcd4;
+    --color-text: #0a0a0a;
+    --color-text-muted: #45453f;
+    --color-text-subtle: #5b5b54;
+    --color-accent: #c4f000;
+    --color-accent-bright: #3f6300;
+    --color-accent-deep: #eef9c4;
+    --color-pink: #8fbf00;
+    --color-on-accent: #0a0a0a;
     --color-border: rgba(11, 13, 18, 0.12);
     --color-border-strong: rgba(11, 13, 18, 0.24);
     --color-border-faint: rgba(11, 13, 18, 0.07);
@@ -94,27 +94,27 @@
     --art-ink: rgba(11, 13, 18, 0.55);
     --art-mid: rgba(11, 13, 18, 0.28);
     --art-faint: rgba(11, 13, 18, 0.12);
-    --art-panel: #ffffff;
+    --art-panel: #fbfaf6;
     --art-panel-2: #e2e6ee;
-    --art-ground: #eef2fb;
-    --art-ground-2: #f6f8fd;
+    --art-ground: #eeede6;
+    --art-ground-2: #f6f5f0;
     --art-hi: #0b0d12;
   }
 }
 :root[data-theme="light"] {
     color-scheme: light;
-    --color-bg: #ffffff;
-    --color-surface: #f6f7fa;
-    --color-surface-2: #eef0f5;
-    --color-surface-3: #e2e6ee;
-    --color-text: #0b0d12;
-    --color-text-muted: #4a5160;
-    --color-text-subtle: #5c6474;
-    --color-accent: #1f4fd8;
-    --color-accent-bright: #1a3fb0;
-    --color-accent-deep: #e6ecff;
-    --color-pink: #d6146a;
-    --color-on-accent: #ffffff;
+    --color-bg: #f6f5f0;
+    --color-surface: #efeee8;
+    --color-surface-2: #e8e7e0;
+    --color-surface-3: #dddcd4;
+    --color-text: #0a0a0a;
+    --color-text-muted: #45453f;
+    --color-text-subtle: #5b5b54;
+    --color-accent: #c4f000;
+    --color-accent-bright: #3f6300;
+    --color-accent-deep: #eef9c4;
+    --color-pink: #8fbf00;
+    --color-on-accent: #0a0a0a;
     --color-border: rgba(11, 13, 18, 0.12);
     --color-border-strong: rgba(11, 13, 18, 0.24);
     --color-border-faint: rgba(11, 13, 18, 0.07);
@@ -124,16 +124,15 @@
     --art-ink: rgba(11, 13, 18, 0.55);
     --art-mid: rgba(11, 13, 18, 0.28);
     --art-faint: rgba(11, 13, 18, 0.12);
-    --art-panel: #ffffff;
+    --art-panel: #fbfaf6;
     --art-panel-2: #e2e6ee;
-    --art-ground: #eef2fb;
-    --art-ground-2: #f6f8fd;
+    --art-ground: #eeede6;
+    --art-ground-2: #f6f5f0;
     --art-hi: #0b0d12;
   }
 
 /* The cinematic stage is always a dark scene, whatever the page theme */
 .st-stick,
-.home-hero,
 .edits-promo,
 .lightbox {
   color-scheme: dark;

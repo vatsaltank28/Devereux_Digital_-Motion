@@ -2,7 +2,7 @@
  * Global site configuration.
  *
  * Anything the client has not yet approved is read from environment variables and is
- * `null` when absent — components omit empty values instead of inventing contact details.
+ * `null` when absent, components omit empty values instead of inventing contact details.
  * See `.env.example` and the README content checklist.
  */
 
@@ -43,7 +43,7 @@ export interface NavItem {
   href: string;
 }
 
-/** Primary navigation (client reference: Home, Services, About Us, Contact — Work added per PRD §6). */
+/** Primary navigation (client reference: Home, Services, About Us, Contact, Work added per PRD §6). */
 export const primaryNav: NavItem[] = [
   { label: "Home", href: "/" },
   { label: "Services", href: "/services" },

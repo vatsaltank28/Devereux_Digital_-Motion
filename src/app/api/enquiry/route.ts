@@ -56,12 +56,12 @@ export async function POST(request: Request) {
 
   if (result.kind === "failed") {
     console.error(`[enquiry] delivery via ${result.provider} failed`);
-    return json({ ok: false, code: "delivery_failed", message: "We couldn’t send your enquiry just now. Your message is still in the form — please try again shortly." }, 502);
+    return json({ ok: false, code: "delivery_failed", message: "We couldn’t send your enquiry just now. Your message is still in the form, so please try again shortly." }, 502);
   }
 
   // No provider configured. Never pretend this succeeded.
   if (process.env.NODE_ENV !== "production") {
-    console.info("[enquiry] DEV ONLY — no delivery provider configured; enquiry was NOT sent:", {
+    console.info("[enquiry] DEV ONLY, no delivery provider configured; enquiry was NOT sent:", {
       service: data.service,
       messageLength: data.message.length,
     });

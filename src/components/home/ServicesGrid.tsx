@@ -3,7 +3,7 @@ import { SplitHeading } from "@/components/motion/SplitHeading";
 import { Reveal } from "@/components/motion/Reveal";
 import { ServiceCardGrid } from "@/components/services/ServiceCardGrid";
 
-/** H02 — Services overview: seven live services plus a direct route to a conversation. */
+/** H02, Services overview: seven live services plus a direct route to a conversation. */
 export function ServicesGrid() {
   return (
     <section id="services" aria-labelledby="services-title" className="section">

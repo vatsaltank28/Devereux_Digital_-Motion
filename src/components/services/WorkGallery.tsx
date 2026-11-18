@@ -24,7 +24,7 @@ export function WorkGallery({ images, serviceTitle }: { images: MediaImage[]; se
           {images.map((img, i) => (
             <li key={img.src} className="break-inside-avoid">
               <Reveal delay={(i % 3) * 0.06}>
-                <Lightbox image={img} label={`View full size: ${img.alt}`} caption={`${serviceTitle} — ${img.alt}`} className="work-tile group block w-full text-left">
+                <Lightbox image={img} label={`View full size: ${img.alt}`} caption={`${serviceTitle}: ${img.alt}`} className="work-tile group block w-full text-left">
                   <Image
                     src={img.src}
                     alt={img.alt}

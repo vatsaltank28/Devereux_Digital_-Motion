@@ -17,7 +17,7 @@ export const metadata: Metadata = buildMetadata({
   path: "/about",
 });
 
-/** Principles are working values, stated as commitments of method — no unverifiable claims. Client to review. */
+/** Principles are working values, stated as commitments of method, no unverifiable claims. Client to review. */
 const principles = [
   {
     title: "Clarity before cleverness",

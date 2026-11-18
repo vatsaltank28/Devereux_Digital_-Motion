@@ -1,7 +1,7 @@
 import Image from "next/image";
 import type { Service } from "@/data/types";
 import type { MediaImage } from "@/data/media";
-import { editsSite } from "@/data/included";
+import { EditsCard } from "./EditsPromo";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { SplitHeading } from "@/components/motion/SplitHeading";
@@ -9,7 +9,7 @@ import { LinkButton } from "@/components/ui/Button";
 import { ProjectArt } from "@/components/visuals/ProjectArt";
 import Magnet from "@/components/reactbits/Magnet";
 
-/** S01 — Service introduction. Same entrance grammar as the home hero, with service-specific artwork. */
+/** S01, Service introduction. Same entrance grammar as the home hero, with service-specific artwork. */
 export function ServiceHero({ service, cover }: { service: Service; cover?: MediaImage }) {
   const isEditing = service.slug === "video-content";
   return (
@@ -32,30 +32,26 @@ export function ServiceHero({ service, cover }: { service: Service; cover?: Medi
           <p className="hero-rise t-body mt-5" style={{ animationDelay: "0.5s" }}>
             {service.intro}
           </p>
-          <div className="hero-rise mt-9 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4" style={{ animationDelay: "0.62s" }}>
-            <Magnet padding={70} magnetStrength={3.5} maxOffset={12} wrapperClassName="max-sm:block max-sm:w-full">
-              <LinkButton
-                href={`/contact?service=${service.slug}`}
-                arrow
-                location={`service-hero:${service.slug}`}
-                className="max-sm:w-full"
-              >
-                Start Your Project
-              </LinkButton>
-            </Magnet>
-            {isEditing ? (
-              <a href={editsSite.url} target="_blank" rel="noopener" className="btn btn-secondary max-sm:w-full">
-                Visit Devereux Edits <span aria-hidden="true">↗</span>
-              </a>
-            ) : cover ? (
-              <LinkButton href="#work" variant="secondary" location={`service-hero-work:${service.slug}`} className="max-sm:w-full">
-                View Our Work
-              </LinkButton>
-            ) : null}
-          </div>
+          {!isEditing && (
+            <div className="hero-rise mt-9 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4" style={{ animationDelay: "0.62s" }}>
+              <Magnet padding={70} magnetStrength={3.5} maxOffset={12} wrapperClassName="max-sm:block max-sm:w-full">
+                <LinkButton href={`/contact?service=${service.slug}`} arrow location={`service-hero:${service.slug}`} className="max-sm:w-full">
+                  Start Your Project
+                </LinkButton>
+              </Magnet>
+              {cover && (
+                <LinkButton href="#work" variant="secondary" location={`service-hero-work:${service.slug}`} className="max-sm:w-full">
+                  View Our Work
+                </LinkButton>
+              )}
+            </div>
+          )}
         </div>
 
         <div className="hero-scene-in lg:col-span-5">
+          {isEditing ? (
+            <EditsCard compact />
+          ) : (
           <figure>
             <div className="overflow-hidden rounded-[var(--radius-card)] border border-line bg-surface" style={{ aspectRatio: "4 / 3" }}>
               {cover ? (
@@ -66,6 +62,7 @@ export function ServiceHero({ service, cover }: { service: Service; cover?: Medi
             </div>
             {cover && <figcaption className="t-caption mt-3">{cover.alt}</figcaption>}
           </figure>
+          )}
         </div>
       </div>
     </header>

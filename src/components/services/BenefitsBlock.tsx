@@ -3,7 +3,7 @@ import { SectionLabel } from "@/components/ui/SectionLabel";
 import { SplitHeading } from "@/components/motion/SplitHeading";
 import { Reveal } from "@/components/motion/Reveal";
 
-/** S06 — Benefits / why choose us. Each benefit ties to a method or deliverable, no empty superlatives. */
+/** S06, Benefits / why choose us. Each benefit ties to a method or deliverable, no empty superlatives. */
 export function BenefitsBlock({ items }: { items: TitledText[] }) {
   return (
     <section id="benefits" aria-labelledby="benefits-title" className="section-tight border-t border-line">

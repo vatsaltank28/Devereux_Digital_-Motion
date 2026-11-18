@@ -1,7 +1,7 @@
 import type { Project } from "./types";
 
 /**
- * PORTFOLIO — CONCEPT PROJECTS ONLY.
+ * PORTFOLIO, CONCEPT PROJECTS ONLY.
  *
  * Devereux Digitals has not yet supplied approved client work (PRD §11, §21 Q4). Until it does,
  * these are clearly labelled in-house concept studies that show the *kind* of brief each service
@@ -19,7 +19,7 @@ export const projects: Project[] = [
     serviceTags: ["web-design-development", "branding-creative-design"],
     summary: "A calm, accessible website for a small practice, centred on booking and clear service information.",
     challenge:
-      "Small clinics often have sites that bury opening hours, services and the booking route behind dense pages — especially on a phone.",
+      "Small clinics often have sites that bury opening hours, services and the booking route behind dense pages, especially on a phone.",
     approach:
       "A page structure organized around three questions: what do you treat, where are you, how do I book. Large tap targets, plain language and an accessible colour palette throughout.",
     deliverables: ["Site structure and wireframes", "Responsive visual design", "Accessible component library", "Booking call-to-action patterns"],
@@ -58,7 +58,7 @@ export const projects: Project[] = [
     summary: "A restrained visual identity system built from a single geometric construction.",
     challenge: "A craft studio needs a mark that works stamped into clay as well as on a screen or a shipping label.",
     approach:
-      "A mark constructed from overlapping circles, a two-tone palette and a type pairing chosen for legibility at small sizes — documented in a compact guideline.",
+      "A mark constructed from overlapping circles, a two-tone palette and a type pairing chosen for legibility at small sizes, documented in a compact guideline.",
     deliverables: ["Logo and construction grid", "Colour and type system", "Packaging and stationery templates", "Brand guidelines"],
     results: [],
     art: "branding",

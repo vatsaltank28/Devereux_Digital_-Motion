@@ -5,7 +5,7 @@ import { CheckIcon } from "@/components/ui/Icons";
 import { ServiceSection } from "./ServiceSection";
 
 /**
- * S08 — Pricing & packages. NEVER shows invented prices.
+ * S08, Pricing & packages. NEVER shows invented prices.
  *  • pricingMode "packages" + approved `packages[]` → tier cards (no "best value" badge unless client picks one).
  *  • otherwise (default "quote") → honest "request a tailored proposal" with the factors that shape it.
  */

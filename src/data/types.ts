@@ -1,5 +1,5 @@
 /**
- * Typed content model — mirrors PRD §13 so it can be swapped for a headless CMS
+ * Typed content model, mirrors PRD §13 so it can be swapped for a headless CMS
  * (Sanity, Contentful, Payload …) without touching presentation components.
  */
 
@@ -17,7 +17,7 @@ export interface TitledText {
 /** Approved pricing only. Leave `packages` empty until the client supplies real values. */
 export interface PricingPackage {
   name: string;
-  /** e.g. "From 1,200" — must include currency + basis once approved */
+  /** e.g. "From 1,200", must include currency + basis once approved */
   price: string;
   billing: string;
   summary: string;
@@ -82,7 +82,7 @@ export interface Testimonial {
   role: string;
   company: string;
   avatar?: string;
-  /** Must be true — publishing requires written client permission. */
+  /** Must be true, publishing requires written client permission. */
   approvedForPublication: boolean;
   serviceSlugs?: string[];
   sortOrder: number;

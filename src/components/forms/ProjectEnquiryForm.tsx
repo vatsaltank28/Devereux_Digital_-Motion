@@ -141,11 +141,11 @@ export function ProjectEnquiryForm({ defaultService }: { defaultService?: string
         setErrors(body.fieldErrors);
         focusFirstError(body.fieldErrors);
       }
-      setServerMessage(body?.message ?? "Something went wrong sending your enquiry. Your message is still here — please try again.");
+      setServerMessage(body?.message ?? "Something went wrong sending your enquiry. Your message is still here, so please try again.");
       setStatus("error");
       track("contact_form_error", { code: res.status });
     } catch {
-      setServerMessage("We couldn’t reach the server. Check your connection — your message is still here, so you can try again.");
+      setServerMessage("We couldn’t reach the server. Check your connection. Your message is still here, so you can try again.");
       setStatus("error");
       track("contact_form_error", { code: "network" });
     }
@@ -165,14 +165,14 @@ export function ProjectEnquiryForm({ defaultService }: { defaultService?: string
         </span>
         {devNotDelivered ? (
           <>
-            <h2 className="t-h3 mt-6">Form works — nothing was sent</h2>
+            <h2 className="t-h3 mt-6">Form works. Nothing was sent</h2>
             <p className="t-body mt-3">
               Development mode: no email or webhook provider is configured, so this enquiry was validated but <strong className="text-ink">not delivered</strong>. Add the variables from <code className="rounded bg-surface-3 px-1.5 py-0.5 text-[0.9em]">.env.example</code> to go live.
             </p>
           </>
         ) : (
           <>
-            <h2 className="t-h3 mt-6">Thanks — your enquiry has been sent</h2>
+            <h2 className="t-h3 mt-6">Thanks, your enquiry has been sent</h2>
             <p className="t-body mt-3">
               We’ll read it and reply to <strong className="text-ink">{values.email}</strong> to talk through what you need.
             </p>
@@ -310,7 +310,7 @@ export function ProjectEnquiryForm({ defaultService }: { defaultService?: string
           <FieldError id={id("message-error")} message={errors.message} />
         </div>
 
-        {/* Honeypot — hidden from people and assistive tech; bots tend to fill every field. */}
+        {/* Honeypot, hidden from people and assistive tech; bots tend to fill every field. */}
         <div aria-hidden="true" className="absolute -left-[9999px] h-0 w-0 overflow-hidden">
           <label htmlFor={id("nickname")}>Leave this field empty</label>
           <input id={id("nickname")} name="nickname" type="text" tabIndex={-1} autoComplete="off" value={values.nickname} onChange={onChange} />

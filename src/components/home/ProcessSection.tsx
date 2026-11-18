@@ -7,7 +7,7 @@ import { SectionLabel } from "@/components/ui/SectionLabel";
 import { SplitHeading } from "@/components/motion/SplitHeading";
 
 /**
- * 04 — How we work. GSAP ScrollTrigger owns the rail progress (scrubbed scaleY) and the step highlight.
+ * 04, How we work. GSAP ScrollTrigger owns the rail progress (scrubbed scaleY) and the step highlight.
  * No pinning and no scroll hijack: the left column is plain CSS `sticky` on large screens only.
  * Reduced motion: everything is shown fully lit, statically.
  */

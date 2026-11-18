@@ -13,7 +13,7 @@ interface LinkButtonProps {
   size?: "md" | "sm";
   arrow?: boolean;
   className?: string;
-  /** Where the CTA sits — sent with the `cta_click` event (no personal data). */
+  /** Where the CTA sits, sent with the `cta_click` event (no personal data). */
   location?: string;
   onClick?: () => void;
 }

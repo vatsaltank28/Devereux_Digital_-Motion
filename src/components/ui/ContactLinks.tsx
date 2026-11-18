@@ -58,7 +58,7 @@ export function getChannels(): Channel[] {
   return out;
 }
 
-/** Large cards with icon, label and value — for the contact page. */
+/** Large cards with icon, label and value, for the contact page. */
 export function ContactCards({ className }: { className?: string }) {
   const channels = getChannels();
   if (!channels.length) return null;
@@ -85,7 +85,7 @@ export function ContactCards({ className }: { className?: string }) {
   );
 }
 
-/** Row of round icon buttons — for the footer. */
+/** Row of round icon buttons, for the footer. */
 export function ContactIcons({ className }: { className?: string }) {
   const channels = getChannels();
   if (!channels.length) return null;

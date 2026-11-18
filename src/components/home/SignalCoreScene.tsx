@@ -1,13 +1,13 @@
 "use client";
 
 /**
- * THE SIGNAL CORE — DESIGN.md §3.2 / MASTERPROMPT §7.
+ * THE SIGNAL CORE, DESIGN.md §3.2 / MASTERPROMPT §7.
  *
- * Concept: one dark-chrome knot (the agency's craft) wrapped by three orbits carrying eight nodes —
+ * Concept: one dark-chrome knot (the agency's craft) wrapped by three orbits carrying eight nodes.
  * one per service. A single blue signal pulses at the centre. Lit by one soft key, one blue rim and
  * procedural light-formers (no downloaded HDRI), so the payload is code only.
  *
- * Ownership: React Three Fiber owns everything inside the canvas. No React state changes per frame —
+ * Ownership: React Three Fiber owns everything inside the canvas. No React state changes per frame.
  * all motion runs in `useFrame` against refs. No post-processing (bloom is faked by a bright unlit core).
  */
 import { useEffect, useMemo, useRef, useState } from "react";
@@ -61,7 +61,7 @@ function Rig({ children, pointer }: { children: React.ReactNode; pointer: boolea
     const t = state.clock.elapsedTime;
     // On wide canvases (desktop layout) sit the sculpture right of centre so it never fights the headline.
     g.position.x = THREE.MathUtils.damp(g.position.x, state.size.width > 700 ? 0.55 : 0, 4, dt);
-    // Damped, limited pointer parallax (≈ ±0.22 rad) — desktop only.
+    // Damped, limited pointer parallax (≈ ±0.22 rad), desktop only.
     g.rotation.y = THREE.MathUtils.damp(g.rotation.y, target.current.x * 0.22, 2.4, dt);
     g.rotation.x = THREE.MathUtils.damp(g.rotation.x, target.current.y * 0.14, 2.4, dt);
 

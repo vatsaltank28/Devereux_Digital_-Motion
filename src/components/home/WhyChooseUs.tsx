@@ -3,7 +3,7 @@ import { SectionLabel } from "@/components/ui/SectionLabel";
 import { SplitHeading } from "@/components/motion/SplitHeading";
 import { Reveal } from "@/components/motion/Reveal";
 
-/** H03 — Why Devereux Digitals. Approach statements only: no invented years, counts, awards or results. */
+/** H03, Why Devereux Digitals. Approach statements only: no invented years, counts, awards or results. */
 export function WhyChooseUs() {
   return (
     <section aria-labelledby="why-title" className="section border-t border-line">

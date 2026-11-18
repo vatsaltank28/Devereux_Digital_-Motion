@@ -13,7 +13,7 @@ export function SiteFooter() {
       <div className="wrap-wide pb-8 pt-16 md:pt-24">
         <div className="grid gap-14 md:grid-cols-12">
           <div className="md:col-span-5">
-            <Link href="/" className="inline-flex items-center gap-3" aria-label={`${site.name} — home`}>
+            <Link href="/" className="inline-flex items-center gap-3" aria-label={`${site.name} home`}>
               <LogoMark animateOnMount={false} size={34} />
               <span className="font-display text-xl font-semibold tracking-tight">{site.name}</span>
             </Link>
@@ -67,7 +67,7 @@ export function SiteFooter() {
         </div>
       </div>
 
-      {/* Typographic sign-off — decorative */}
+      {/* Typographic sign-off, decorative */}
       <div
         aria-hidden="true"
         data-text={site.name}

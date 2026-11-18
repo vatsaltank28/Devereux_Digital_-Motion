@@ -1,7 +1,7 @@
 import type { Testimonial } from "./types";
 
 /**
- * TESTIMONIALS — intentionally empty.
+ * TESTIMONIALS, intentionally empty.
  *
  * Publish only genuine, written-permission feedback (PRD §9 S07). Components render nothing
  * while this list has no approved entries, so no section appears with fabricated quotes.

@@ -1,5 +1,5 @@
 /**
- * "What's included" under each service — verbatim from the client document
+ * "What's included" under each service, verbatim from the client document
  * "Devereux Digitals (What's included under each service)". Shown right after the service overview.
  */
 export const included: Record<string, string[]> = {

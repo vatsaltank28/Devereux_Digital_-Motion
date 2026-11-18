@@ -6,7 +6,7 @@ import { getQualityTierCached, type QualityTier } from "@/lib/capabilities";
 import { SignalFallback } from "@/components/visuals/SignalFallback";
 import { cn } from "@/lib/cn";
 
-// The whole 3D stack (three, R3F, drei) lives behind this dynamic import — it never enters the initial bundle.
+// The whole 3D stack (three, R3F, drei) lives behind this dynamic import, it never enters the initial bundle.
 const SignalCoreScene = dynamic(() => import("./SignalCoreScene"), { ssr: false });
 
 class SceneBoundary extends Component<{ onError: () => void; children: ReactNode }, { failed: boolean }> {
@@ -25,7 +25,7 @@ class SceneBoundary extends Component<{ onError: () => void; children: ReactNode
 const subscribeNoop = () => () => {};
 
 /**
- * Hero visual host. Decides — once, on the client — between:
+ * Hero visual host. Decides, once, on the client, between:
  *   • the live 3D Signal Core (quality tier "high" | "low"), and
  *   • the static SVG composition (WebGL missing, reduced motion, data-saver, weak device, runtime failure).
  * The SVG is always rendered first as the poster, so the hero is never empty and never shifts layout.

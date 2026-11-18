@@ -3,7 +3,7 @@ import { SectionLabel } from "@/components/ui/SectionLabel";
 import { SplitHeading } from "@/components/motion/SplitHeading";
 
 /**
- * Client reviews (PRD S07). Renders NOTHING unless approved testimonials are passed in —
+ * Client reviews (PRD S07). Renders NOTHING unless approved testimonials are passed in.
  * no placeholder quotes, no star ratings, no invented identities. Static (no auto-playing carousel).
  */
 export function Testimonials({ items, heading = "Client reviews" }: { items: Testimonial[]; heading?: string }) {

@@ -24,7 +24,7 @@ const data: Record<string, { label: string; items: Omit<Review, "service">[] }> 
         name: "Verified client",
         role: "Business Owner",
         quote:
-          "I love the website and you were calm in the process — that’s an addition. I recommend your service. Thank you!",
+          "I love the website and you were calm in the process. That’s an addition. I recommend your service. Thank you!",
         chat: chatProof["web-design-development"],
       },
       r("Daniel Carter", "Founder, Carter & Co. Interiors", "I honestly love how the website turned out. I had a particular idea of what I wanted, but the team made it look even better than I imagined. Everything feels clean and professional, and the website works really well on mobile too."),
@@ -91,7 +91,7 @@ const data: Record<string, { label: string; items: Omit<Review, "service">[] }> 
       {
         name: "Verified client",
         role: "Business Owner",
-        quote: "I really love it so much. More than — we love it.",
+        quote: "I really love it so much. More than that, we love it.",
         chat: chatProof["branding-creative-design"],
       },
       r("Victoria James", "Founder, VJ Beauty House", "I absolutely love the new brand identity. Everything feels more connected now, from the logo to the colours and other designs. It finally gives the business the look I’ve been trying to achieve."),

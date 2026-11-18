@@ -13,7 +13,7 @@ interface MetaInput {
 
 /**
  * Builds consistent per-route metadata: unique title/description, canonical, Open Graph, Twitter.
- * The root layout supplies the "%s — Devereux Digitals" title template.
+ * The root layout supplies the "%s, Devereux Digitals" title template.
  */
 export function buildMetadata({ title, description, path, noindex, image }: MetaInput): Metadata {
   const url = `${site.url}${path}`;
@@ -25,7 +25,7 @@ export function buildMetadata({ title, description, path, noindex, image }: Meta
     openGraph: {
       type: "website",
       siteName: site.name,
-      title: `${title} — ${site.name}`,
+      title: `${title} | ${site.name}`,
       description,
       url,
       locale: "en_US",
@@ -33,14 +33,14 @@ export function buildMetadata({ title, description, path, noindex, image }: Meta
     },
     twitter: {
       card: "summary_large_image",
-      title: `${title} — ${site.name}`,
+      title: `${title} | ${site.name}`,
       description,
       images: image ? [image] : undefined,
     },
   };
 }
 
-/** Structured data helpers — only describe facts we actually hold (no invented address/ratings). */
+/** Structured data helpers, only describe facts we actually hold (no invented address/ratings). */
 export function organizationJsonLd() {
   return {
     "@context": "https://schema.org",

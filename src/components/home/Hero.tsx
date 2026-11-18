@@ -8,7 +8,7 @@ import Magnet from "@/components/reactbits/Magnet";
 import { HeroScene } from "./HeroScene";
 
 /**
- * H01 — Hero. Real HTML text; the 3D object sits behind/right of it and never carries copy.
+ * H01, Hero. Real HTML text; the 3D object sits behind/right of it and never carries copy.
  * Entrance: GSAP SplitText on the H1 (owner), CSS keyframes for the supporting copy + CTAs
  * (so they are visible without JS and never wait on a library to load).
  */
@@ -48,7 +48,7 @@ export function Hero() {
         </div>
       </div>
 
-      {/* 3D / fallback — in flow beneath the CTAs on phones, behind-right of the copy from lg up */}
+      {/* 3D / fallback, in flow beneath the CTAs on phones, behind-right of the copy from lg up */}
       <div className="relative z-0 mx-auto -mt-2 h-[min(94vw,440px)] w-full max-w-[560px] lg:absolute lg:inset-y-0 lg:right-0 lg:mt-0 lg:h-auto lg:w-[60%] lg:max-w-none">
         <HeroScene className="absolute inset-0 hero-scene-in" />
         <div
@@ -58,7 +58,7 @@ export function Hero() {
         />
       </div>
 
-      {/* Quick route into every service — structural information, not decoration */}
+      {/* Quick route into every service, structural information, not decoration */}
       <nav aria-label="Services" className="wrap-wide relative z-10 mt-auto border-t border-line">
         <ul className="flex flex-wrap gap-x-7 gap-y-2 py-5 text-sm">
           {publishedServices.map((s) => (

@@ -1,7 +1,7 @@
 import type { TitledText } from "./types";
 
 /**
- * Homepage copy. Everything here is editable placeholder-grade copy based on the PRD/brief —
+ * Homepage copy. Everything here is editable placeholder-grade copy based on the PRD/brief.
  * no invented years, client counts, awards or results (PRD §8 H03).
  */
 export const hero = {
@@ -53,7 +53,7 @@ export const howWeWork = {
     },
     {
       title: "Build or produce",
-      description: "Websites are developed, campaigns are set up, content is made — in stages you can follow.",
+      description: "Websites are developed, campaigns are set up, content is made, in stages you can follow.",
     },
     {
       title: "Test & refine",

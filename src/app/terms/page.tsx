@@ -13,7 +13,7 @@ const Todo = ({ children }: { children: string }) => (
   <mark className="rounded bg-accent-deep px-1.5 py-0.5 text-accent-bright">[{children}]</mark>
 );
 
-/** DRAFT shell — PRD §6 lists Terms as "if required by client". Content must come from the client's legal adviser. */
+/** DRAFT shell, PRD §6 lists Terms as "if required by client". Content must come from the client's legal adviser. */
 export default function TermsPage() {
   return (
     <>

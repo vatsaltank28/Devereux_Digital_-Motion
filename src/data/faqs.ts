@@ -1,7 +1,7 @@
 import type { Faq } from "./types";
 
 /**
- * FAQ content — DRAFT.
+ * FAQ content, DRAFT.
  *
  * PRD §9 S09: answers must reflect Devereux Digitals’ real policies. Policies were not supplied,
  * so every answer is deliberately non-committal: it describes how a good project is scoped and
@@ -24,7 +24,7 @@ export const faqs: Faq[] = [
   q(undefined, 3, "How are projects priced?",
     "Every project is scoped individually, so we share a tailored proposal rather than a fixed price list. The proposal sets out what is included, what is not, and how payment is structured."),
   q(undefined, 4, "Do you work with more than one service at a time?",
-    "Yes. Many projects combine services — for example a website with a launch campaign. We can plan them together so the work fits."),
+    "Yes. Many projects combine services, for example a website with a launch campaign. We can plan them together so the work fits."),
 
   // ── Web design & development ────────────────────────────────────────────
   q("web-design-development", 1, "How long does a website project take?",
@@ -70,7 +70,7 @@ export const faqs: Faq[] = [
 
   // ── Video & content ─────────────────────────────────────────────────────
   q("video-content", 1, "Do you handle scripting and planning?",
-    "Yes — planning is part of the process. We agree the idea, script and shot list with you before any filming happens."),
+    "Yes, planning is part of the process. We agree the idea, script and shot list with you before any filming happens."),
   q("video-content", 2, "Which formats will I receive?",
     "The delivery formats are listed in the proposal. We plan for multiple formats from the start so each channel gets a properly framed version."),
   q("video-content", 3, "How are revisions handled?",
@@ -90,7 +90,7 @@ export const faqs: Faq[] = [
 
   // ── Branding & creative design ──────────────────────────────────────────
   q("branding-creative-design", 1, "What will I receive at the end?",
-    "The deliverables depend on scope — from a logo and core identity to a full system with guidelines and templates. The proposal lists each item."),
+    "The deliverables depend on scope, from a logo and core identity to a full system with guidelines and templates. The proposal lists each item."),
   q("branding-creative-design", 2, "How many creative directions will you present?",
     "The number of concepts and revision rounds is set out in the proposal so the creative process stays focused."),
   q("branding-creative-design", 3, "Do I own the brand once it’s finished?",

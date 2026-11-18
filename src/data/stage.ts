@@ -1,6 +1,6 @@
 /**
  * Copy for the hero scroll stage (home page and /reference-motion-lab).
- * Brand content only — no figures, clients or claims until the client supplies them.
+ * Brand content only, no figures, clients or claims until the client supplies them.
  */
 export interface StageService {
   title: string;
@@ -39,6 +39,6 @@ export const homeStage: StageContent = {
   },
   about: {
     title: "Built as one thing, not many.",
-    body: "Devereux Digitals brings design, development, marketing, content and business tooling together, so your digital presence works as a whole — planned around your goals and delivered in stages you can follow.",
+    body: "Devereux Digitals brings design, development, marketing, content and business tooling together, so your digital presence works as a whole, planned around your goals and delivered in stages you can follow.",
   },
 };

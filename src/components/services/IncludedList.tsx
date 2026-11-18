@@ -1,7 +1,7 @@
 import { Reveal } from "@/components/motion/Reveal";
 import { ServiceSection } from "./ServiceSection";
 
-/** What's included — the client's sub-services for this service, listed right after the overview. */
+/** What's included, the client's sub-services for this service, listed right after the overview. */
 export function IncludedList({ items }: { items: string[] }) {
   if (items.length === 0) return null;
   return (

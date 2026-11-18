@@ -6,7 +6,7 @@ import type { Faq } from "@/data/types";
 import { PlusIcon } from "@/components/ui/Icons";
 
 /**
- * S09 — FAQ accordion (DESIGN.md §4.9). Native <button> triggers with aria-expanded/aria-controls;
+ * S09, FAQ accordion (DESIGN.md §4.9). Native <button> triggers with aria-expanded/aria-controls;
  * answers stay in the DOM (collapsed panels are inert + aria-hidden, not removed), so text remains
  * searchable. Motion owns the height/opacity of each panel and the rotation of the plus icon.
  * One panel open at a time keeps the page short; every question is reachable by Tab.
