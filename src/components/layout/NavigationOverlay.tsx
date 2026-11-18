@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState, type RefObject } from "react";
 import { AnimatePresence, m, useReducedMotion, type Variants } from "motion/react";
 import { primaryNav, site, ctaLabels } from "@/lib/site";
-import { services } from "@/data/services";
+import { publishedServices as services } from "@/data/services";
 import { LogoMark } from "@/components/visuals/LogoMark";
 import { LinkButton } from "@/components/ui/Button";
 import { ArrowRight, CloseIcon, PlusIcon } from "@/components/ui/Icons";

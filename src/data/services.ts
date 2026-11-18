@@ -85,8 +85,8 @@ export const services: Service[] = [
   {
     slug: "digital-marketing",
     number: "02",
-    title: "Digital Marketing",
-    shortTitle: "Digital Marketing",
+    title: "Digital & Sales Marketing",
+    shortTitle: "Digital & Sales",
     shortDescription:
       "Strategy, content and channel management that connect your marketing to your business goals.",
     heroHeadline: "A marketing plan you can follow — and measure.",
@@ -129,7 +129,7 @@ export const services: Service[] = [
       "Whether campaigns are included",
     ],
     packages: [],
-    seoTitle: "Digital Marketing",
+    seoTitle: "Digital & Sales Marketing",
     seoDescription:
       "Digital marketing strategy, content planning, channel management and reporting from Devereux Digitals — built around your business goals.",
     status: "published",

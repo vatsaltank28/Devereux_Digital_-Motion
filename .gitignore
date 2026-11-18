@@ -8,3 +8,6 @@ out
 next-env.d.ts
 .vercel
 qa/
+
+# Raw client material (contains third-party contact/payment details) — site uses optimised copies in public/
+Changes, Services and Reviews/

@@ -29,7 +29,7 @@ export const homeStage: StageContent = {
     title: "Seven services. One team.",
     items: [
       { title: "Web Design & Development", href: "/services/web-design-development" },
-      { title: "Digital Marketing", href: "/services/digital-marketing" },
+      { title: "Digital & Sales Marketing", href: "/services/digital-marketing" },
       { title: "Paid Advertising", href: "/services/paid-advertising" },
       { title: "E-commerce Solutions", href: "/services/ecommerce-solutions" },
       { title: "Video & Content", href: "/services/video-content" },

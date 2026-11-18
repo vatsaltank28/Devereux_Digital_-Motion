@@ -1,19 +1,21 @@
-import { ScrollStage } from "@/components/motion-lab/ScrollStage";
-import { homeStage } from "@/data/stage";
-import { OrbitIntro } from "@/components/home/OrbitIntro";
+import { HomeHero } from "@/components/home/HomeHero";
+import { FeaturedReview } from "@/components/home/FeaturedReview";
 import { ServicesGrid } from "@/components/home/ServicesGrid";
+import { WorkMarquee } from "@/components/home/WorkMarquee";
+import { CapabilityStats } from "@/components/home/CapabilityStats";
 import { FinalCTA } from "@/components/home/FinalCTA";
 
 /**
- * Short landing page: the cinematic scroll stage, a route into every service, and the closing CTA.
- * Everything else lives on its own page in the nav — track record and work on /work,
- * why us, process and testimonials on /about.
+ * Landing page (client revision): no scroll animation — it opens straight on the
+ * Design · Build · Grow hero, then the headline client review, every service, and the closing CTA.
  */
 export default function HomePage() {
   return (
     <>
-      <ScrollStage content={homeStage} />
-      <OrbitIntro />
+      <HomeHero />
+      <CapabilityStats />
+      <WorkMarquee />
+      <FeaturedReview />
       <ServicesGrid />
       <FinalCTA />
     </>

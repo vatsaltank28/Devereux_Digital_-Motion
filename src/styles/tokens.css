@@ -22,10 +22,12 @@
   --color-text-subtle: #868c97;
 
   /* Signal blue */
-  --color-accent: #398bff;
-  --color-accent-bright: #63a5ff;
-  --color-accent-deep: #0b2b54;
-  --color-on-accent: #050505; /* near-black on blue = 6.4:1; white on blue is only 3.3:1 */
+  /* Cobalt (primary accent) + hot pink (sparing highlight) — client revision */
+  --color-accent: #2f5fff;
+  --color-accent-bright: #7a9dff;
+  --color-accent-deep: #0c1f5c;
+  --color-on-accent: #ffffff;
+  --color-pink: #ff2e88;
 
   /* Lines */
   --color-border: rgba(255, 255, 255, 0.12);
@@ -78,9 +80,10 @@
     --color-text: #0b0d12;
     --color-text-muted: #4a5160;
     --color-text-subtle: #5c6474;
-    --color-accent: #1f6fe5;
-    --color-accent-bright: #1559c4;
-    --color-accent-deep: #e6efff;
+    --color-accent: #1f4fd8;
+    --color-accent-bright: #1a3fb0;
+    --color-accent-deep: #e6ecff;
+    --color-pink: #d6146a;
     --color-on-accent: #ffffff;
     --color-border: rgba(11, 13, 18, 0.12);
     --color-border-strong: rgba(11, 13, 18, 0.24);
@@ -107,9 +110,10 @@
     --color-text: #0b0d12;
     --color-text-muted: #4a5160;
     --color-text-subtle: #5c6474;
-    --color-accent: #1f6fe5;
-    --color-accent-bright: #1559c4;
-    --color-accent-deep: #e6efff;
+    --color-accent: #1f4fd8;
+    --color-accent-bright: #1a3fb0;
+    --color-accent-deep: #e6ecff;
+    --color-pink: #d6146a;
     --color-on-accent: #ffffff;
     --color-border: rgba(11, 13, 18, 0.12);
     --color-border-strong: rgba(11, 13, 18, 0.24);
@@ -128,7 +132,18 @@
   }
 
 /* The cinematic stage is always a dark scene, whatever the page theme */
-.st-stick {
+.st-stick,
+.home-hero,
+.edits-promo,
+.lightbox {
+  color-scheme: dark;
+  --color-text: #f7f8fa;
+  --color-text-muted: #a5a9b2;
+  --color-text-subtle: #868c97;
+  --color-border: rgba(255, 255, 255, 0.12);
+  --color-border-strong: rgba(255, 255, 255, 0.22);
+  --color-hover: rgba(255, 255, 255, 0.05);
+  --color-on-accent: #ffffff;
   --art-ink: rgba(255, 255, 255, 0.62);
   --art-mid: rgba(255, 255, 255, 0.34);
   --art-faint: rgba(255, 255, 255, 0.16);
@@ -137,7 +152,7 @@
   --art-ground: #050505;
   --art-ground-2: #08090c;
   --art-hi: #f7f8fa;
-  --color-accent: #398bff;
-  --color-accent-bright: #63a5ff;
-  --color-accent-deep: #0b2b54;
+  --color-accent: #2f5fff;
+  --color-accent-bright: #7a9dff;
+  --color-accent-deep: #0c1f5c;
 }

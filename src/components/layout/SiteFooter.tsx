@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ContactIcons } from "@/components/ui/ContactLinks";
 import { site, primaryNav, legalNav } from "@/lib/site";
-import { publishedServices, comingSoonServices } from "@/data/services";
+import { publishedServices } from "@/data/services";
 import { LogoMark } from "@/components/visuals/LogoMark";
 import { CurrentYear } from "./CurrentYear";
 
@@ -44,11 +44,6 @@ export function SiteFooter() {
                     <Link className="link-quiet text-[1.0625rem]" href={`/services/${s.slug}`}>
                       {s.title}
                     </Link>
-                  </li>
-                ))}
-                {comingSoonServices.map((s) => (
-                  <li key={s.slug} className="text-[1.0625rem] text-subtle">
-                    {s.title}
                   </li>
                 ))}
               </ul>

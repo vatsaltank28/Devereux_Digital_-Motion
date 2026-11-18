@@ -1,4 +1,7 @@
+import Image from "next/image";
 import type { Service } from "@/data/types";
+import type { MediaImage } from "@/data/media";
+import { editsSite } from "@/data/included";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { SplitHeading } from "@/components/motion/SplitHeading";
@@ -7,7 +10,8 @@ import { ProjectArt } from "@/components/visuals/ProjectArt";
 import Magnet from "@/components/reactbits/Magnet";
 
 /** S01 — Service introduction. Same entrance grammar as the home hero, with service-specific artwork. */
-export function ServiceHero({ service }: { service: Service }) {
+export function ServiceHero({ service, cover }: { service: Service; cover?: MediaImage }) {
+  const isEditing = service.slug === "video-content";
   return (
     <header className="relative isolate overflow-hidden pb-16 pt-[calc(var(--header-h)+2.5rem)] sm:pb-20 sm:pt-[calc(var(--header-h)+4rem)] lg:pb-28">
       <div className="hero-atmosphere absolute inset-0 -z-10 opacity-80" aria-hidden="true" />
@@ -39,18 +43,28 @@ export function ServiceHero({ service }: { service: Service }) {
                 Start Your Project
               </LinkButton>
             </Magnet>
-            <LinkButton href="#work" variant="secondary" location={`service-hero-work:${service.slug}`} className="max-sm:w-full">
-              View Our Work
-            </LinkButton>
+            {isEditing ? (
+              <a href={editsSite.url} target="_blank" rel="noopener" className="btn btn-secondary max-sm:w-full">
+                Visit Devereux Edits <span aria-hidden="true">↗</span>
+              </a>
+            ) : cover ? (
+              <LinkButton href="#work" variant="secondary" location={`service-hero-work:${service.slug}`} className="max-sm:w-full">
+                View Our Work
+              </LinkButton>
+            ) : null}
           </div>
         </div>
 
         <div className="hero-scene-in lg:col-span-5">
           <figure>
             <div className="overflow-hidden rounded-[var(--radius-card)] border border-line bg-surface" style={{ aspectRatio: "4 / 3" }}>
-              <ProjectArt variant={service.art} className="h-full w-full" />
+              {cover ? (
+                <Image src={cover.src} alt={cover.alt} width={cover.width} height={cover.height} priority sizes="(max-width: 1024px) 92vw, 40vw" className="h-full w-full object-cover object-top" />
+              ) : (
+                <ProjectArt variant={service.art} className="h-full w-full" />
+              )}
             </div>
-            <figcaption className="t-caption mt-3">Illustrative artwork — client project imagery will replace this.</figcaption>
+            {cover && <figcaption className="t-caption mt-3">{cover.alt}</figcaption>}
           </figure>
         </div>
       </div>

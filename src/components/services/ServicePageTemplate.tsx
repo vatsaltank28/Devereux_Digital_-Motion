@@ -1,18 +1,21 @@
 import Link from "next/link";
 import type { Service } from "@/data/types";
 import { getAdjacentServices } from "@/data/services";
-import { getProjectsForService } from "@/data/projects";
 import { getFaqs } from "@/data/faqs";
-import { getTestimonialsForService } from "@/data/testimonials";
+import { getReviews } from "@/data/reviews";
+import { included } from "@/data/included";
+import { serviceWork } from "@/data/media";
 import { breadcrumbJsonLd } from "@/lib/seo";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { ArrowRight } from "@/components/ui/Icons";
 import { ServiceHero } from "./ServiceHero";
 import { ProblemList } from "./ProblemList";
-import { DeliverablesGrid } from "./DeliverablesGrid";
+import { IncludedList } from "./IncludedList";
+import { WorkGallery } from "./WorkGallery";
+import { ReviewWall } from "./ReviewWall";
+import { EditsPromo } from "./EditsPromo";
 import { ProcessSteps } from "./ProcessSteps";
 import { BenefitsBlock } from "./BenefitsBlock";
-import { Testimonials } from "./Testimonials";
 import { PricingBlock } from "./PricingBlock";
 import { FAQAccordion } from "./FAQAccordion";
 import { ServiceSection } from "./ServiceSection";
@@ -23,8 +26,10 @@ import { ServiceCTA } from "./ServiceCTA";
  * sequence follows DESIGN.md §5.2. Sections without content (e.g. testimonials) are omitted, never faked.
  */
 export function ServicePageTemplate({ service }: { service: Service }) {
-  const projects = getProjectsForService(service.slug);
-  const testimonials = getTestimonialsForService(service.slug);
+  const reviews = getReviews(service.slug);
+  const work = serviceWork[service.slug] ?? [];
+  // Editing is delivered by Devereux Edits: per the client, show only what's included, reviews and the link.
+  const isEditing = service.slug === "video-content";
   const faqs = getFaqs(service.slug);
   const { prev, next } = getAdjacentServices(service.slug);
 
@@ -37,18 +42,25 @@ export function ServicePageTemplate({ service }: { service: Service }) {
           { name: service.title, path: `/services/${service.slug}` },
         ])}
       />
-      <ServiceHero service={service} />
-      <ProblemList items={service.problems} />
-      <DeliverablesGrid items={service.deliverables} />
-      <ProcessSteps steps={service.processSteps} />
-      <BenefitsBlock items={service.benefits} />
-      <Testimonials items={testimonials} />
-      <PricingBlock service={service} />
-      {faqs.length > 0 && (
-        <ServiceSection id="faqs" label="FAQs" title="Frequently asked questions">
-          <FAQAccordion faqs={faqs} />
-        </ServiceSection>
+      <ServiceHero service={service} cover={work[0]} />
+      <IncludedList items={included[service.slug] ?? []} />
+      {isEditing ? (
+        <EditsPromo />
+      ) : (
+        <>
+          <WorkGallery images={work} serviceTitle={service.title} />
+          <ProblemList items={service.problems} />
+          <ProcessSteps steps={service.processSteps} />
+          <BenefitsBlock items={service.benefits} />
+          <PricingBlock service={service} />
+          {faqs.length > 0 && (
+            <ServiceSection id="faqs" label="FAQs" title="Frequently asked questions">
+              <FAQAccordion faqs={faqs} />
+            </ServiceSection>
+          )}
+        </>
       )}
+      <ReviewWall reviews={reviews} serviceTitle={service.shortTitle} />
       <ServiceCTA service={service} />
 
       <nav aria-label="Other services" className="border-t border-line">
