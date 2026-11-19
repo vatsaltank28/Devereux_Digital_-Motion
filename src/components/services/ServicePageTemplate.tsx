@@ -9,12 +9,10 @@ import { breadcrumbJsonLd } from "@/lib/seo";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { ArrowRight } from "@/components/ui/Icons";
 import { ServiceHero } from "./ServiceHero";
-import { ProblemList } from "./ProblemList";
 import { IncludedList } from "./IncludedList";
 import { WorkGallery } from "./WorkGallery";
 import { ReviewWall } from "./ReviewWall";
 import { ProcessSteps } from "./ProcessSteps";
-import { BenefitsBlock } from "./BenefitsBlock";
 import { ServicePricing } from "./ServicePricing";
 import { getPricing } from "@/data/pricing";
 import { FAQAccordion } from "./FAQAccordion";
@@ -43,21 +41,20 @@ export function ServicePageTemplate({ service }: { service: Service }) {
           { name: service.title, path: `/services/${service.slug}` },
         ])}
       />
+      {/* Client-approved order: 1 Description, 2 Scope, 3 Work, 4 How it works, 5 Pricing, 6 FAQs & Reviews */}
       <ServiceHero service={service} cover={work[0]} />
       <IncludedList items={included[service.slug] ?? []} />
-      {price && <ServicePricing pricing={price} slug={service.slug} serviceTitle={service.shortTitle} />}
       {!isEditing && (
         <>
           <WorkGallery images={work} serviceTitle={service.title} />
-          <ProblemList items={service.problems} />
           <ProcessSteps steps={service.processSteps} />
-          <BenefitsBlock items={service.benefits} />
-          {faqs.length > 0 && (
-            <ServiceSection id="faqs" label="FAQs" title="Frequently asked questions">
-              <FAQAccordion faqs={faqs} />
-            </ServiceSection>
-          )}
         </>
+      )}
+      {price && <ServicePricing pricing={price} slug={service.slug} serviceTitle={service.shortTitle} />}
+      {!isEditing && faqs.length > 0 && (
+        <ServiceSection id="faqs" label="FAQs & Reviews" title="Questions, answered">
+          <FAQAccordion faqs={faqs} />
+        </ServiceSection>
       )}
       <ReviewWall reviews={reviews} serviceTitle={service.shortTitle} />
       <ServiceCTA service={service} />

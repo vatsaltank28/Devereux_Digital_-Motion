@@ -47,7 +47,7 @@ export function SignalLines({ className }: { className?: string }) {
 
   return (
     <svg ref={ref} viewBox="0 0 700 700" fill="none" aria-hidden="true" focusable="false" className={className}>
-      <g stroke="#398bff" strokeLinecap="round">
+      <g className="signal-arcs" stroke="#398bff" strokeLinecap="round">
         {arcs.map(({ r }, i) => (
           <path
             key={r}
@@ -58,10 +58,10 @@ export function SignalLines({ className }: { className?: string }) {
           />
         ))}
       </g>
-      <g stroke="rgba(255,255,255,0.35)">
+      <g className="signal-ticks" stroke="rgba(255,255,255,0.35)">
         <path data-arc d="M350 20V120M350 580V680M20 350H120M580 350H680" strokeLinecap="round" />
       </g>
-      <circle cx="350" cy="350" r="5" fill="#63a5ff" />
+      <circle className="signal-dot" cx="350" cy="350" r="5" fill="#63a5ff" />
     </svg>
   );
 }
