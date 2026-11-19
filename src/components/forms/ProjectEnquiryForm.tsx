@@ -30,6 +30,8 @@ interface Values {
   contactPref: string;
   message: string;
   consent: boolean;
+  pkg: string;
+  addOns: string[];
 }
 type Errors = Partial<Record<keyof Values, string>>;
 const fieldOrder: Array<keyof Values> = ["name", "email", "phone", "service", "budget", "timeline", "message", "consent"];
@@ -70,6 +72,8 @@ function buildMail(v: Values) {
     "",
     "PROJECT",
     line("Service", service),
+    line("Package", v.pkg),
+    line("Add-ons", v.addOns.join(", ")),
     line("Budget", v.budget),
     line("Timeline", v.timeline),
     "",
@@ -108,7 +112,15 @@ function Step({ n, title, children }: { n: number; title: string; children: Reac
   );
 }
 
-export function ProjectEnquiryForm({ defaultService }: { defaultService?: string }) {
+export function ProjectEnquiryForm({
+  defaultService,
+  selectedPackage,
+  selectedAddOns = [],
+}: {
+  defaultService?: string;
+  selectedPackage?: string;
+  selectedAddOns?: string[];
+}) {
   const uid = useId();
   const initialService = serviceOptions.some((o) => o.value === defaultService) ? (defaultService as string) : "";
   const [values, setValues] = useState<Values>({
@@ -123,6 +135,8 @@ export function ProjectEnquiryForm({ defaultService }: { defaultService?: string
     contactPref: "Email",
     message: "",
     consent: false,
+    pkg: selectedPackage ?? "",
+    addOns: selectedAddOns,
   });
   const [errors, setErrors] = useState<Errors>({});
   const [sent, setSent] = useState<null | ReturnType<typeof buildMail>>(null);
@@ -287,6 +301,35 @@ export function ProjectEnquiryForm({ defaultService }: { defaultService?: string
 
       <Step n={2} title="Your project">
         <div className="grid gap-6">
+          {(values.pkg || values.addOns.length > 0) && (
+            <div className="rounded-2xl border border-line-strong p-4">
+              <p className="field-label">Your selection</p>
+              {values.pkg && (
+                <p className="mt-1 flex items-center justify-between gap-3 font-semibold">
+                  {values.pkg}
+                  <button type="button" className="text-sm font-normal text-muted underline underline-offset-4" onClick={() => setValues((v) => ({ ...v, pkg: "" }))}>
+                    Remove
+                  </button>
+                </p>
+              )}
+              {values.addOns.length > 0 && (
+                <ul className="chip-group mt-3" aria-label="Selected add-ons">
+                  {values.addOns.map((a) => (
+                    <li key={a}>
+                      <button
+                        type="button"
+                        aria-label={`Remove ${a}`}
+                        onClick={() => setValues((v) => ({ ...v, addOns: v.addOns.filter((x) => x !== a) }))}
+                        className="inline-flex items-center gap-2 rounded-full border border-line-strong px-3 py-1.5 text-sm"
+                      >
+                        {a} <span aria-hidden="true">×</span>
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          )}
           <div className="field">
             <label htmlFor={id("service")} className="field-label">
               Service of interest

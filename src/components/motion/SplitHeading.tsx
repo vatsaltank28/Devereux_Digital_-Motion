@@ -1,85 +1,56 @@
 "use client";
 
-import { useRef, type CSSProperties, type ElementType, type ReactNode } from "react";
-import { gsap, SplitText, useGSAP } from "@/lib/gsap";
+import { useEffect, useRef, type CSSProperties, type ElementType, type ReactNode } from "react";
 
 interface SplitHeadingProps {
   as?: ElementType;
   className?: string;
   style?: CSSProperties;
   children: ReactNode;
-  /** "load" plays immediately (hero); "scroll" plays when the heading enters the viewport. */
+  /** "load" renders immediately (hero, usually the LCP element); "scroll" reveals when the heading enters the viewport. */
   trigger?: "load" | "scroll";
-  /** Seconds */
+  /** Seconds (scroll reveals only) */
   delay?: number;
   id?: string;
 }
 
 /**
- * GSAP owns this element's line reveal (SplitText → masked yPercent, 500 to 800 ms).
- *
- *  - Real HTML text stays in the DOM (SplitText `aria: auto` keeps a clean accessible name).
- *  - Pre-hidden only while JS boots and only when motion is allowed (see `[data-split-pending]` in globals.css),
- *    with a CSS fail-safe so the heading can never stay invisible.
- *  - Re-splits on resize / font load (`autoSplit`) and reverts on unmount.
+ * Heading reveal without an animation library: a CSS rise + fade driven by one IntersectionObserver.
+ *  - "load" headings are never hidden, so they paint with the first frame (fast LCP).
+ *  - "scroll" headings are pre-hidden only while JS runs and motion is allowed (see `.heading-reveal`
+ *    in globals.css), with a CSS fail-safe so text can never stay invisible.
  */
-export function SplitHeading({
-  as: Tag = "h2",
-  className,
-  style,
-  children,
-  trigger = "scroll",
-  delay = 0,
-  id,
-}: SplitHeadingProps) {
+export function SplitHeading({ as: Tag = "h2", className, style, children, trigger = "scroll", delay = 0, id }: SplitHeadingProps) {
   const ref = useRef<HTMLElement>(null);
+  const animate = trigger === "scroll";
 
-  useGSAP(
-    () => {
-      const el = ref.current;
-      if (!el) return;
-      const mm = gsap.matchMedia();
-
-      mm.add("(prefers-reduced-motion: no-preference)", () => {
-        const split = SplitText.create(el, {
-          type: "lines",
-          mask: "lines",
-          autoSplit: true,
-          aria: "auto",
-          onSplit(self) {
-            // Give masked lines room for descenders so glyphs are never clipped.
-            gsap.set(self.masks, { paddingBottom: "0.14em", marginBottom: "-0.14em" });
-            el.removeAttribute("data-split-pending");
-            gsap.set(el, { visibility: "visible" });
-            return gsap.from(self.lines, {
-              yPercent: 112,
-              duration: 0.8,
-              ease: "power3.out",
-              stagger: 0.09,
-              delay,
-              ...(trigger === "scroll"
-                ? { scrollTrigger: { trigger: el, start: "top 88%", once: true } }
-                : {}),
-            });
-          },
-        });
-        return () => {
-          split.revert();
-          el.removeAttribute("data-split-pending");
-          gsap.set(el, { clearProps: "visibility" });
-        };
-      });
-
-      // Reduced motion (or no matchMedia support): show the heading as plain text.
-      mm.add("(prefers-reduced-motion: reduce)", () => {
-        el.removeAttribute("data-split-pending");
-      });
-    },
-    { scope: ref, dependencies: [trigger, delay] },
-  );
+  useEffect(() => {
+    const el = ref.current;
+    if (!el || !animate) return;
+    if (typeof IntersectionObserver === "undefined") {
+      el.classList.add("is-in");
+      return;
+    }
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          el.classList.add("is-in");
+          io.disconnect();
+        }
+      },
+      { rootMargin: "0px 0px -12% 0px" },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, [animate]);
 
   return (
-    <Tag ref={ref} id={id} className={className} style={style} data-split-pending="">
+    <Tag
+      ref={ref}
+      id={id}
+      className={animate ? `heading-reveal ${className ?? ""}` : className}
+      style={animate && delay ? { ...style, transitionDelay: `${delay}s` } : style}
+    >
       {children}
     </Tag>
   );

@@ -57,7 +57,7 @@ export function HomeHero() {
           <p className="hero-rise home-eyebrow">
             <span aria-hidden="true" className="home-eyebrow-dot" /> Full-service digital agency
           </p>
-          <h1 id="hero-title" className="hero-rise mt-6 font-display text-[clamp(2.4rem,1.4rem+3vw,4.25rem)] font-semibold leading-[0.98] tracking-[-0.045em]" style={{ animationDelay: "0.08s" }}>
+          <h1 id="hero-title" className="mt-6 font-display text-[clamp(2.4rem,1.4rem+3vw,4.25rem)] font-semibold leading-[0.98] tracking-[-0.045em]">
             Digital experiences that move businesses <span className="home-accent-text">forward.</span>
           </h1>
           <p className="hero-rise mt-7 flex flex-wrap items-baseline gap-x-2 font-display text-[clamp(1.25rem,1rem+1vw,1.75rem)] font-medium" style={{ animationDelay: "0.14s" }}>

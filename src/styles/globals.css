@@ -391,13 +391,12 @@ html:not(.js) [data-reveal] {
 }
 
 /* Supporting hero copy + CTAs: CSS-owned entrance (visible without JS; fill-mode `backwards` never hides) */
+/* Transform-only so hero text paints in the first frame (opacity 0 would delay LCP on mobile) */
 @keyframes hero-rise {
   from {
-    opacity: 0;
     transform: translateY(14px);
   }
   to {
-    opacity: 1;
     transform: none;
   }
 }
@@ -1143,3 +1142,89 @@ html.js .stats-grid.is-in .stat-cell dd { opacity: 1; transform: none;
 :root:not([data-theme="dark"]) .rt-word, :root:not([data-theme="dark"]) .rt-char { color: var(--color-text) !important; }
 :root:not([data-theme="dark"]) .rt-word { box-shadow: inset 0 -.32em 0 rgba(196,240,0,.55); }
 }
+
+/* ---------- Service pricing (client pricing document) ---------- */
+:root { --price-blue: #4f7dff; --price-green: #22c55e; --price-purple: #a970ff; }
+:root[data-theme="light"] { --price-blue: #2f5fff; --price-green: #15803d; --price-purple: #7c3aed; }
+@media (prefers-color-scheme: light) { :root:not([data-theme="dark"]) { --price-blue: #2f5fff; --price-green: #15803d; --price-purple: #7c3aed; } }
+.price-icon { display: inline-grid; place-items: center; flex-shrink: 0; width: 2.75rem; height: 2.75rem; border-radius: 12px; }
+.price-icon--blue { color: var(--price-blue); background: color-mix(in srgb, var(--price-blue) 15%, transparent); }
+.price-icon--green { color: var(--price-green); background: color-mix(in srgb, var(--price-green) 15%, transparent); }
+.price-icon--purple { color: var(--price-purple); background: color-mix(in srgb, var(--price-purple) 16%, transparent); }
+.price-check { color: var(--price-green); }
+
+.price-rows { margin-top: 2rem; border-top: 1px solid var(--color-border); }
+.price-row { display: grid; gap: 1.25rem; padding-block: 2rem; border-bottom: 1px solid var(--color-border); }
+@media (min-width: 768px) { .price-row { grid-template-columns: 15rem 1fr; gap: 2.5rem; padding-block: 2.5rem; } }
+.price-row-head { display: flex; align-items: center; gap: .9rem; align-self: start; }
+.price-kicker { font-size: .78rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--color-text-muted); }
+.price-amount { display: flex; flex-wrap: wrap; align-items: baseline; gap: .1rem .6rem; margin-top: .35rem;
+  font-family: var(--font-display); font-weight: 600; letter-spacing: -.03em; line-height: 1; font-size: clamp(2.5rem, 2rem + 2vw, 3.5rem); }
+.price-plus { margin-left: -.5rem; color: var(--price-blue); }
+.price-for { font-size: 1.05rem; font-weight: 500; letter-spacing: 0; color: var(--color-text-muted); }
+.price-note { font-size: .88rem; line-height: 1.5; color: var(--color-text-muted); }
+
+.price-plans { display: grid; gap: 0; }
+@media (min-width: 1024px) { .price-plans { grid-template-columns: repeat(3, 1fr); } }
+.price-plan { display: flex; flex-direction: column; padding-block: 1.4rem; border-top: 1px solid var(--color-border); }
+.price-plan:first-child { border-top: 0; padding-top: 0; }
+@media (min-width: 1024px) {
+  .price-plan { padding: 0 1.75rem; border-top: 0; border-left: 1px solid var(--color-border); }
+  .price-plan:first-child { padding-left: 0; border-left: 0; }
+}
+.price-plan-amount { font-family: var(--font-display); font-size: 2rem; font-weight: 600; letter-spacing: -.03em; }
+.price-plan-cta { margin-top: auto; padding-top: 1.25rem; align-self: flex-start; font-weight: 600; font-size: .95rem; color: var(--color-accent-bright); }
+.price-plan-cta:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+.price-cta { display: inline-flex; align-items: center; justify-content: center; gap: .55rem; min-height: 3rem; padding: .8rem 1.5rem; border-radius: 999px;
+  font-weight: 700; color: var(--color-on-accent); background: var(--color-accent); transition: transform .25s var(--ease-out), filter .25s; }
+.price-cta:hover { transform: translateY(-1px); filter: brightness(1.08); }
+@media (max-width: 639px) { .price-cta { width: 100%; } }
+
+/* Mobile tabs: large, high-contrast, impossible to miss */
+.price-tabs { position: sticky; z-index: 5; top: calc(var(--header-h) + .5rem); display: grid; grid-template-columns: repeat(3, 1fr); gap: .35rem;
+  margin-top: 1.5rem; padding: .35rem; border-radius: 18px; border: 1px solid var(--color-border-strong);
+  background: color-mix(in srgb, var(--color-surface) 92%, transparent); backdrop-filter: blur(12px); }
+.price-tab { display: flex; flex-direction: column; align-items: center; gap: .35rem; padding: .6rem .25rem .55rem; border-radius: 14px;
+  font-weight: 700; font-size: .92rem; color: var(--color-text-muted); border: 1px solid transparent; transition: background-color .2s, color .2s, border-color .2s; }
+.price-tab .price-icon { width: 2.1rem; height: 2.1rem; border-radius: 10px; }
+.price-tab .price-icon svg { width: 18px; height: 18px; }
+.price-tab[aria-selected="true"] { color: var(--color-text); background: var(--color-surface-3); border-color: var(--color-border-strong); }
+.price-tab--blue[aria-selected="true"] { box-shadow: inset 0 -2px 0 var(--price-blue); }
+.price-tab--green[aria-selected="true"] { box-shadow: inset 0 -2px 0 var(--price-green); }
+.price-tab--purple[aria-selected="true"] { box-shadow: inset 0 -2px 0 var(--price-purple); }
+.price-tab:focus-visible { outline: 2px solid var(--color-accent-bright); outline-offset: 2px; }
+@media (max-width: 767px) { .price-rows { margin-top: 1rem; border-top: 0; } .price-row { padding-top: 1.25rem; } }
+
+/* Optional add-ons: expandable, multi-select with radio-style bullets */
+.addons { border-radius: 16px; border: 1px solid var(--color-border-strong); overflow: hidden; }
+.addons-toggle { display: flex; width: 100%; align-items: center; justify-content: space-between; gap: 1rem; min-height: 3.25rem; padding: .8rem 1.1rem;
+  font-weight: 600; text-align: left; cursor: pointer; transition: background-color .2s; }
+.addons-toggle:hover { background: var(--color-hover); }
+.addons-toggle:focus-visible { outline: 2px solid var(--color-accent-bright); outline-offset: -2px; }
+.addons-count { padding: .15rem .55rem; border-radius: 999px; font-size: .75rem; font-weight: 700; color: #fff; background: var(--price-purple); }
+.addons-list { margin: 0; padding: 0 0 .4rem; border: 0; border-top: 1px solid var(--color-border); }
+.addon { position: relative; display: flex; align-items: center; gap: .9rem; min-height: 3rem; padding: .65rem 1.1rem; cursor: pointer; transition: background-color .2s; }
+.addon + .addon { border-top: 1px solid var(--color-border); }
+.addon:hover { background: var(--color-hover); }
+.addon input { position: absolute; opacity: 0; pointer-events: none; }
+.addon-dot { display: grid; place-items: center; flex-shrink: 0; width: 1.4rem; height: 1.4rem; border-radius: 999px; border: 2px solid var(--color-border-strong);
+  transition: border-color .2s, background-color .2s; }
+.addon-dot::after { content: ""; width: .55rem; height: .55rem; border-radius: 999px; background: var(--color-bg); transform: scale(0); transition: transform .2s var(--ease-out); }
+.addon input:checked + .addon-dot { border-color: var(--color-text); background: var(--color-text); }
+.addon input:checked + .addon-dot::after { transform: scale(1); }
+.addon input:focus-visible + .addon-dot { outline: 2px solid var(--color-accent-bright); outline-offset: 2px; }
+
+/* Scroll heading reveal (replaces the GSAP line split; no animation library needed) */
+@media (prefers-reduced-motion: no-preference) {
+  .js .heading-reveal:not(.is-in) { opacity: 0; transform: translateY(18px); animation: heading-failsafe 0s linear 3s forwards; }
+  .heading-reveal { transition: opacity .7s var(--ease-out), transform .8s var(--ease-out); }
+}
+@keyframes heading-failsafe { to { opacity: 1; transform: none; } }
+
+/* Phones: hero copy renders instantly (entrance motion delays LCP on slow mobile CPUs) */
+@media (max-width: 767px) { .hero-rise { animation: none; } }
+
+@media (max-width: 767px) { .price-row-head { display: none; } }
+@media (min-width: 768px) { .price-tabs { display: none; } }
+@media (max-width: 767px) { .price-row.is-inactive { display: none; } }

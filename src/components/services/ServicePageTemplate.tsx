@@ -15,7 +15,8 @@ import { WorkGallery } from "./WorkGallery";
 import { ReviewWall } from "./ReviewWall";
 import { ProcessSteps } from "./ProcessSteps";
 import { BenefitsBlock } from "./BenefitsBlock";
-import { PricingBlock } from "./PricingBlock";
+import { ServicePricing } from "./ServicePricing";
+import { getPricing } from "@/data/pricing";
 import { FAQAccordion } from "./FAQAccordion";
 import { ServiceSection } from "./ServiceSection";
 import { ServiceCTA } from "./ServiceCTA";
@@ -30,6 +31,7 @@ export function ServicePageTemplate({ service }: { service: Service }) {
   // Editing is delivered by Devereux Edits: per the client, show only what's included, reviews and the link.
   const isEditing = service.slug === "video-content";
   const faqs = getFaqs(service.slug);
+  const price = getPricing(service.slug);
   const { prev, next } = getAdjacentServices(service.slug);
 
   return (
@@ -43,13 +45,13 @@ export function ServicePageTemplate({ service }: { service: Service }) {
       />
       <ServiceHero service={service} cover={work[0]} />
       <IncludedList items={included[service.slug] ?? []} />
+      {price && <ServicePricing pricing={price} slug={service.slug} serviceTitle={service.shortTitle} />}
       {!isEditing && (
         <>
           <WorkGallery images={work} serviceTitle={service.title} />
           <ProblemList items={service.problems} />
           <ProcessSteps steps={service.processSteps} />
           <BenefitsBlock items={service.benefits} />
-          <PricingBlock service={service} />
           {faqs.length > 0 && (
             <ServiceSection id="faqs" label="FAQs" title="Frequently asked questions">
               <FAQAccordion faqs={faqs} />

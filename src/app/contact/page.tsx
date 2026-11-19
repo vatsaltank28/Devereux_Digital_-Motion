@@ -19,9 +19,12 @@ const nextSteps = [
   { title: "Proposal", body: "A clear plan with deliverables, timeline and price, so you can decide with confidence." },
 ];
 
-export default async function ContactPage({ searchParams }: { searchParams: Promise<{ service?: string | string[] }> }) {
+export default async function ContactPage({ searchParams }: { searchParams: Promise<{ service?: string | string[]; package?: string | string[]; addons?: string | string[] }> }) {
   const params = await searchParams;
-  const service = Array.isArray(params.service) ? params.service[0] : params.service;
+  const one = (v?: string | string[]) => (Array.isArray(v) ? v[0] : v)?.slice(0, 200);
+  const service = one(params.service);
+  const pkg = one(params.package);
+  const addons = one(params.addons)?.split("|").filter(Boolean).slice(0, 12) ?? [];
 
   return (
     <div className="relative isolate overflow-hidden pb-[var(--section-y)] pt-[calc(var(--header-h)+2rem)] sm:pt-[calc(var(--header-h)+3rem)]">
@@ -62,7 +65,7 @@ export default async function ContactPage({ searchParams }: { searchParams: Prom
         </div>
 
         <div className="lg:col-span-7">
-          <ProjectEnquiryForm defaultService={service} />
+          <ProjectEnquiryForm defaultService={service} selectedPackage={pkg} selectedAddOns={addons} />
         </div>
       </div>
     </div>
