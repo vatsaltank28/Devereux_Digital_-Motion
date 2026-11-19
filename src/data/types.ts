@@ -32,6 +32,8 @@ export interface Service {
   /** Short label for compact UI (nav, footer, breadcrumbs) */
   shortTitle: string;
   shortDescription: string;
+  /** One-line "Best for" audience summary shown on cards and the service hero. */
+  bestFor?: string;
   heroHeadline: string;
   heroDescription: string;
   intro: string;

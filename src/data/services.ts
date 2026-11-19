@@ -13,6 +13,7 @@ import type { Service } from "./types";
 export const services: Service[] = [
   {
     slug: "web-design-development",
+    bestFor: "Businesses building their online presence.",
     number: "01",
     title: "Web Design & Development",
     shortTitle: "Web Design",
@@ -84,6 +85,7 @@ export const services: Service[] = [
   },
   {
     slug: "digital-marketing",
+    bestFor: "Brands seeking consistent visibility.",
     number: "02",
     title: "Digital & Sales Marketing",
     shortTitle: "Digital & Sales",
@@ -137,6 +139,7 @@ export const services: Service[] = [
   },
   {
     slug: "paid-advertising",
+    bestFor: "Businesses looking for qualified leads and sales.",
     number: "03",
     title: "Paid Advertising",
     shortTitle: "Paid Advertising",
@@ -190,6 +193,7 @@ export const services: Service[] = [
   },
   {
     slug: "ecommerce-solutions",
+    bestFor: "Brands selling products online.",
     number: "04",
     title: "E-commerce Solutions",
     shortTitle: "E-commerce",
@@ -243,6 +247,7 @@ export const services: Service[] = [
   },
   {
     slug: "video-content",
+    bestFor: "Businesses needing consistent creative content.",
     number: "05",
     title: "Video & Content",
     shortTitle: "Video & Content",
@@ -296,6 +301,7 @@ export const services: Service[] = [
   },
   {
     slug: "ai-business-solutions",
+    bestFor: "Businesses looking to automate operations.",
     number: "06",
     title: "AI & Business Solutions",
     shortTitle: "AI & Business",
@@ -349,6 +355,7 @@ export const services: Service[] = [
   },
   {
     slug: "branding-creative-design",
+    bestFor: "Businesses building or refreshing their identity.",
     number: "07",
     title: "Branding & Creative Design",
     shortTitle: "Branding",

@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { buildMetadata } from "@/lib/seo";
-import { site } from "@/lib/site";
 import { ContactCards } from "@/components/ui/ContactLinks";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { SectionLabel } from "@/components/ui/SectionLabel";
@@ -13,11 +12,11 @@ export const metadata: Metadata = buildMetadata({
   path: "/contact",
 });
 
-const helpful = [
-  "What you want the work to achieve for your business",
-  "Who it is for, and anything that has or hasn’t worked before",
-  "Any deadlines or events it needs to meet",
-  "Links to your current site, accounts or examples you admire",
+const nextSteps = [
+  { title: "Send your enquiry", body: "Fill in the form. Your email app opens with everything written, ready to send." },
+  { title: "We review it", body: "We read your goals, budget and timeline, and reply within one business day." },
+  { title: "Discovery call", body: "A short call to clarify scope and answer your questions. No obligation." },
+  { title: "Proposal", body: "A clear plan with deliverables, timeline and price, so you can decide with confidence." },
 ];
 
 export default async function ContactPage({ searchParams }: { searchParams: Promise<{ service?: string | string[] }> }) {
@@ -25,9 +24,9 @@ export default async function ContactPage({ searchParams }: { searchParams: Prom
   const service = Array.isArray(params.service) ? params.service[0] : params.service;
 
   return (
-    <div className="relative isolate overflow-hidden pb-[var(--section-y)] pt-[calc(var(--header-h)+2.5rem)] sm:pt-[calc(var(--header-h)+4rem)]">
+    <div className="relative isolate overflow-hidden pb-[var(--section-y)] pt-[calc(var(--header-h)+2rem)] sm:pt-[calc(var(--header-h)+3rem)]">
       <div className="hero-atmosphere absolute inset-0 -z-10 opacity-60" aria-hidden="true" />
-      <div className="wrap-wide grid gap-14 lg:grid-cols-12 lg:gap-16">
+      <div className="wrap-wide grid gap-10 lg:grid-cols-12 lg:gap-14">
         <div className="lg:col-span-5">
           <div className="mb-8">
             <Breadcrumbs trail={[{ name: "Home", href: "/" }, { name: "Contact" }]} />
@@ -37,23 +36,27 @@ export default async function ContactPage({ searchParams }: { searchParams: Prom
             Start a project.
           </SplitHeading>
           <p className="hero-rise t-lead mt-7" style={{ animationDelay: "0.4s" }}>
-            Tell us what you’re working on. We’ll read your enquiry and reply to talk through the scope and whether we’re the right fit.
+            Share a few details about your business and goals. We’ll review your enquiry and reply within one business day with clear next steps.
           </p>
 
-          <div className="hero-rise mt-12" style={{ animationDelay: "0.5s" }}>
-            <h2 className="t-h4">What helps us reply usefully</h2>
-            <ul className="mt-5 divide-y divide-line border-y border-line">
-              {helpful.map((h) => (
-                <li key={h} className="flex gap-4 py-3.5 text-[0.98rem] text-muted">
-                  <span aria-hidden="true" className="mt-[0.6rem] size-1.5 shrink-0 bg-accent" />
-                  {h}
+          <div className="hero-rise mt-10" style={{ animationDelay: "0.5s" }}>
+            <h2 className="t-h4">What happens next</h2>
+            <ol className="mt-5 border-y border-line">
+              {nextSteps.map((st, i) => (
+                <li key={st.title} className="grid grid-cols-[2.25rem_1fr] gap-3 border-t border-line py-4 first:border-t-0">
+                  <span className="form-step-num">{i + 1}</span>
+                  <div>
+                    <p className="font-semibold">{st.title}</p>
+                    <p className="mt-1 text-[0.95rem] text-muted">{st.body}</p>
+                  </div>
                 </li>
               ))}
-            </ul>
+            </ol>
           </div>
 
           <div className="mt-10">
             <h2 className="t-h4">Prefer to reach us directly?</h2>
+            <p className="mt-2 text-[0.95rem] text-muted">Email, call or message us on the channel that suits you.</p>
             <ContactCards className="mt-5" />
           </div>
         </div>

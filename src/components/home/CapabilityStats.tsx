@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { publishedServices } from "@/data/services";
 import { included } from "@/data/included";
 import { getReviews } from "@/data/reviews";
@@ -17,10 +18,10 @@ const ICONS = {
 };
 
 const STATS = [
-  { to: serviceCount, label: "Services under one roof", sub: "Design, build and grow", icon: ICONS.grid },
-  { to: deliverableCount, label: "Specialist deliverables", sub: "From SEO setup to AI chatbots", icon: ICONS.layers },
-  { to: 5, decimals: 1, label: "Average client rating", sub: "Across every service", icon: ICONS.star },
-  { to: reviewCount, suffix: "+", label: "Client reviews", sub: "Several with original chat proof", icon: ICONS.chat },
+  { to: serviceCount, label: "Services under one roof", sub: "Design, build and grow", icon: ICONS.grid, href: "/#services", cta: "View services" },
+  { to: deliverableCount, label: "Specialist deliverables", sub: "From SEO setup to AI chatbots", icon: ICONS.layers, href: "/services", cta: "See what's included" },
+  { to: 5, decimals: 1, label: "Average client rating", sub: "Across every service", icon: ICONS.star, href: "/#client-review", cta: "Read the review" },
+  { to: reviewCount, suffix: "+", label: "Client reviews", sub: "Several with original chat proof", icon: ICONS.chat, href: "/services/web-design-development#reviews", cta: "See client feedback" },
 ];
 
 export function CapabilityStats() {
@@ -33,6 +34,7 @@ export function CapabilityStats() {
             <span aria-hidden="true" className="stat-line" />
             <dt className="sr-only">{s.label}</dt>
             <dd>
+              <Link href={s.href} className="stat-link" aria-label={`${s.label}: ${s.cta}`}>
               <span aria-hidden="true" className="stat-icon">
                 <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" strokeLinecap="round">
                   {s.icon}
@@ -41,6 +43,8 @@ export function CapabilityStats() {
               <CountUp to={s.to} decimals={s.decimals} suffix={s.suffix} className="stat-num mt-6" />
               <span className="mt-3 block font-semibold">{s.label}</span>
               <span className="mt-1 block text-sm text-muted">{s.sub}</span>
+              <span aria-hidden="true" className="stat-cta">{s.cta} →</span>
+              </Link>
             </dd>
           </div>
         ))}

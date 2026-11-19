@@ -32,6 +32,12 @@ export function ServiceHero({ service, cover }: { service: Service; cover?: Medi
           <p className="hero-rise t-body mt-5" style={{ animationDelay: "0.5s" }}>
             {service.intro}
           </p>
+          {service.bestFor && (
+            <p className="hero-rise best-for mt-5" style={{ animationDelay: "0.56s" }}>
+              <span className="best-for-label">Best for</span>
+              <span>{service.bestFor}</span>
+            </p>
+          )}
           {!isEditing && (
             <div className="hero-rise mt-9 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4" style={{ animationDelay: "0.62s" }}>
               <Magnet padding={70} magnetStrength={3.5} maxOffset={12} wrapperClassName="max-sm:block max-sm:w-full">

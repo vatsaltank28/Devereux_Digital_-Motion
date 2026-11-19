@@ -48,6 +48,12 @@ export function ServiceCard({ service, className }: { service: Service; classNam
         </Link>
       </h3>
       <p className="mt-3 text-[0.95rem] leading-relaxed text-muted">{service.shortDescription}</p>
+      {service.bestFor && (
+        <p className="best-for mt-4">
+          <span className="best-for-label">Best for</span>
+          <span>{service.bestFor}</span>
+        </p>
+      )}
       <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold" aria-hidden="true">
         Explore service <ArrowRight size={16} />
       </span>

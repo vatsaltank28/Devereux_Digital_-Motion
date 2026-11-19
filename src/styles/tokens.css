@@ -51,7 +51,7 @@
   --gutter: clamp(1.25rem, 0.45rem + 3.4vw, 4.5rem);
   --max-wrap: 1320px;
   --header-h: 72px;
-  --section-y: clamp(4rem, 2rem + 8vw, 9.5rem);
+  --section-y: clamp(3rem, 1.75rem + 5vw, 6.5rem);
 
   /* Motion (DESIGN.md §6.2) */
   --motion-micro: 150ms;
