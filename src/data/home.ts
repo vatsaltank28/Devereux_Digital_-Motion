@@ -7,7 +7,7 @@ import type { TitledText } from "./types";
 export const hero = {
   headlineLines: ["Digital experiences", "that move businesses", "forward."],
   description:
-    "Devereux Digitals is a full-service digital agency. We design, build and promote websites, stores, campaigns, content and smart business tools for companies that want to be taken seriously online.",
+    "Devereux Digitals is a full service digital agency. We design, build and promote websites, stores, campaigns, content and smart business tools for companies that want to be taken seriously online.",
 } as const;
 
 export const whyUs = {
@@ -33,7 +33,7 @@ export const whyUs = {
     {
       title: "Clear collaboration",
       description:
-        "Defined stages, shared checkpoints and plain-language updates keep everyone aligned.",
+        "Defined stages, shared checkpoints and plain language updates keep everyone aligned.",
     },
   ] satisfies TitledText[],
 } as const;
@@ -43,32 +43,17 @@ export const howWeWork = {
   intro:
     "Every service follows the same backbone, adapted to the job. Details change; the discipline doesn’t.",
   steps: [
-    {
-      title: "Discover",
-      description: "We listen first: your goals, audience, constraints and what success should look like.",
-    },
-    {
-      title: "Plan & design",
-      description: "Structure, direction and concepts are shaped and reviewed with you before production starts.",
-    },
-    {
-      title: "Build or produce",
-      description: "Websites are developed, campaigns are set up, content is made, in stages you can follow.",
-    },
-    {
-      title: "Test & refine",
-      description: "We check the work against the brief on real devices and real data, then fix what needs fixing.",
-    },
-    {
-      title: "Launch & support",
-      description: "Go live with a proper handover, reporting and a clear view of what comes next.",
-    },
+    { title: "Discovery", description: "We understand your business, requirements, goals and challenges." },
+    { title: "Planning", description: "We recommend the right solution and prepare the project scope." },
+    { title: "Design & Development", description: "The project is created according to the agreed scope." },
+    { title: "Review & Refinement", description: "Testing, feedback and the agreed revisions." },
+    { title: "Delivery & Support", description: "Handover, launch and any agreed ongoing maintenance." },
   ] satisfies TitledText[],
 } as const;
 
 export const finalCta = {
-  headline: "Let’s build something that grows.",
+  headline: "Let’s turn your next idea into something valuable.",
   description:
-    "Tell us what you’re working on. We’ll reply to talk through the scope and whether we’re the right fit.",
+    "Whether you’re building something new, improving an existing system or looking to grow your business, let’s discuss what you need.",
 } as const;
 

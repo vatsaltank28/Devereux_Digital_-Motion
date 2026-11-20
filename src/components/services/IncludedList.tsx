@@ -6,7 +6,7 @@ export function IncludedList({ items }: { items: string[] }) {
   if (items.length === 0) return null;
   return (
     <ServiceSection id="included" label="Scope" title="What’s included">
-      <ol className="included-list grid sm:grid-cols-2">
+      <ol className="included-list grid grid-cols-2">
         {items.map((item, i) => (
           <li key={item}>
             <Reveal delay={(i % 2) * 0.05} className="included-item group">

@@ -25,7 +25,7 @@ interface SignalFallbackProps {
  * and as the poster layer while the 3D scene loads.
  *
  * It is the same concept as the 3D scene, a central knot, three orbits and eight service nodes.
- * Anime.js owns the one-time stroke draw (skipped for reduced motion, where it simply renders complete).
+ * Anime.js owns the one time stroke draw (skipped for reduced motion, where it simply renders complete).
  */
 export function SignalFallback({ className }: SignalFallbackProps) {
   const ref = useRef<SVGSVGElement>(null);

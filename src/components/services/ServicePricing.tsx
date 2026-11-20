@@ -54,7 +54,7 @@ function PlanIcon({ tab }: { tab: (typeof TABS)[number] }) {
 
 /**
  * Pricing for one service (client pricing document): starting price, three monthly packages and a
- * custom quote with selectable add-ons. Desktop: three stacked rows split by thin dividers.
+ * custom quote with selectable add ons. Desktop: three stacked rows split by thin dividers.
  * Mobile: the same rows become a clearly visible three-way tab switcher.
  */
 export function ServicePricing({ pricing, slug, serviceTitle }: { pricing: Pricing; slug: string; serviceTitle: string }) {
@@ -176,7 +176,7 @@ export function ServicePricing({ pricing, slug, serviceTitle }: { pricing: Prici
             </div>
           </div>
 
-          {/* 3. Custom quote + add-ons */}
+          {/* 3. Custom quote + add ons */}
           <div {...panel("custom")}>
             <div className="price-row-head">
               <PlanIcon tab={TABS[2]!} />
@@ -195,7 +195,7 @@ export function ServicePricing({ pricing, slug, serviceTitle }: { pricing: Prici
                   className="addons-toggle"
                 >
                   <span className="flex flex-wrap items-center gap-2">
-                    View Optional Add-ons
+                    View Optional Add ons
                     {addOns.length > 0 && <span className="addons-count">{addOns.length} selected</span>}
                   </span>
                   <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true" className={cn("shrink-0 transition-transform duration-300", open && "rotate-180")}>
@@ -204,7 +204,7 @@ export function ServicePricing({ pricing, slug, serviceTitle }: { pricing: Prici
                 </button>
                 <div id={`${uid}-addons`} hidden={!open}>
                   <fieldset className="addons-list">
-                    <legend className="price-note px-4 pt-3">Select any add-ons you’d like included in your quote.</legend>
+                    <legend className="price-note px-4 pt-3">Select any add ons you’d like included in your quote.</legend>
                     {pricing.addOns.map((a) => (
                       <label key={a} className="addon">
                         <input type="checkbox" checked={addOns.includes(a)} onChange={() => toggle(a)} />
@@ -225,7 +225,7 @@ export function ServicePricing({ pricing, slug, serviceTitle }: { pricing: Prici
           </div>
         </div>
 
-        <p className="price-note mt-6">All prices are starting estimates in USD. Final pricing depends on project scope.</p>
+        <p className="price-note mt-6">Prices shown are starting estimates in USD. Final costs depend on project requirements. Domain registration, hosting, third party subscriptions, API usage and advertising spend are charged separately where applicable.</p>
       </div>
     </section>
   );

@@ -18,7 +18,7 @@ interface SplitHeadingProps {
  * Heading reveal without an animation library: a CSS rise + fade driven by one IntersectionObserver.
  *  - "load" headings are never hidden, so they paint with the first frame (fast LCP).
  *  - "scroll" headings are pre-hidden only while JS runs and motion is allowed (see `.heading-reveal`
- *    in globals.css), with a CSS fail-safe so text can never stay invisible.
+ *    in globals.css), with a CSS fail safe so text can never stay invisible.
  */
 export function SplitHeading({ as: Tag = "h2", className, style, children, trigger = "scroll", delay = 0, id }: SplitHeadingProps) {
   const ref = useRef<HTMLElement>(null);

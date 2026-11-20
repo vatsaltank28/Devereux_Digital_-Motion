@@ -15,7 +15,7 @@ export interface ServicePricing {
   monthly: MonthlyPackage[];
   custom: string[];
   addOns: string[];
-  /** Third-party / ad-spend costs kept separate (requirement 10) */
+  /** Third party / ad spend costs kept separate (requirement 10) */
   separateCosts?: string;
 }
 
@@ -24,7 +24,7 @@ export const pricing: Record<string, ServicePricing> = {
     starting: {
       price: 199,
       label: "Landing Page",
-      description: "A professionally designed, responsive single-page website with essential sections and contact functionality.",
+      description: "A professionally designed, responsive single page website with essential sections and contact functionality.",
     },
     scopeNote: "Final pricing depends on the number of pages, custom functionality, integrations and design complexity.",
     monthly: [
@@ -33,7 +33,7 @@ export const pricing: Record<string, ServicePricing> = {
       { name: "Professional", price: 99, features: ["Everything in Growth", "Regular website improvements", "Additional content and section updates", "Dedicated technical support"] },
     ],
     custom: [
-      "Need a multi-page business website, advanced platform, booking system or custom web application?",
+      "Need a multi page business website, advanced platform, booking system or custom web application?",
       "Tell us what you're building and we'll prepare a solution around your requirements.",
     ],
     addOns: ["Extra pages", "SEO setup", "Copywriting", "Booking integration", "Live chat", "Speed optimization"],
@@ -47,11 +47,11 @@ export const pricing: Record<string, ServicePricing> = {
     scopeNote: "Final pricing depends on platforms, campaign requirements, content volume and business goals.",
     monthly: [
       { name: "Starter", price: 99, features: ["8 content posts", "Management of 1 platform", "Basic content planning", "Monthly performance summary"] },
-      { name: "Growth", price: 199, features: ["12-16 content pieces", "Management of up to 2 platforms", "Content strategy and scheduling", "Audience engagement", "Performance reporting"] },
+      { name: "Growth", price: 199, features: ["12 to 16 content pieces", "Management of up to 2 platforms", "Content strategy and scheduling", "Audience engagement", "Performance reporting"] },
       { name: "Professional", price: 349, features: ["Up to 20 content pieces", "Management of up to 3 platforms", "Advanced content strategy", "Community management", "Performance analysis and reporting"] },
     ],
     custom: [
-      "Looking for a complete marketing strategy, lead generation system or multi-platform growth campaign?",
+      "Looking for a complete marketing strategy, lead generation system or multi platform growth campaign?",
       "We'll develop a tailored marketing solution around your business objectives.",
     ],
     addOns: ["Additional platforms", "Promotional videos", "Email marketing", "Extra content", "Lead generation campaigns"],
@@ -88,7 +88,7 @@ export const pricing: Record<string, ServicePricing> = {
       { name: "Professional", price: 199, features: ["Everything in Growth", "Ongoing store improvements", "Regular product management", "Conversion optimization recommendations", "Monthly performance report"] },
     ],
     custom: [
-      "Need a large online store, marketplace, subscription platform or custom e-commerce system?",
+      "Need a large online store, marketplace, subscription platform or custom ecommerce system?",
       "We'll build a solution around your products, operations and business goals.",
     ],
     addOns: ["Additional product uploads", "Payment integration", "Shipping integration", "Email automation", "Inventory management"],
@@ -96,17 +96,17 @@ export const pricing: Record<string, ServicePricing> = {
   "video-content": {
     starting: {
       price: 15,
-      label: "Short-Form Video",
-      description: "Professional editing for one short-form video using client-provided footage.",
+      label: "Short Form Video",
+      description: "Professional editing for one short form video using client provided footage.",
     },
     scopeNote: "Final pricing depends on video duration, editing complexity, motion graphics and storytelling requirements.",
     monthly: [
-      { name: "Starter", price: 99, features: ["4 short-form videos", "Basic cuts and transitions", "Captions and subtitles", "Background music and sound effects"] },
-      { name: "Growth", price: 199, features: ["8 short-form videos", "Advanced editing", "Motion graphics", "Captions and sound design", "Priority delivery"] },
-      { name: "Professional", price: 399, features: ["12 short-form videos", "Advanced storytelling", "Premium motion graphics", "Enhanced sound design", "Priority support"] },
+      { name: "Starter", price: 99, features: ["4 short form videos", "Basic cuts and transitions", "Captions and subtitles", "Background music and sound effects"] },
+      { name: "Growth", price: 199, features: ["8 short form videos", "Advanced editing", "Motion graphics", "Captions and sound design", "Priority delivery"] },
+      { name: "Professional", price: 399, features: ["12 short form videos", "Advanced storytelling", "Premium motion graphics", "Enhanced sound design", "Priority support"] },
     ],
     custom: [
-      "Need long-form YouTube editing, documentaries, promotional videos or complete content production?",
+      "Need long form YouTube editing, documentaries, promotional videos or complete content production?",
       "We'll create a package around your content requirements.",
     ],
     addOns: ["YouTube thumbnails", "Subtitles", "Advanced motion graphics", "Color grading", "Additional videos", "Custom intros and outros"],
@@ -124,11 +124,11 @@ export const pricing: Record<string, ServicePricing> = {
       { name: "Professional", price: 199, features: ["Everything in Growth", "Advanced workflow monitoring", "Ongoing AI system optimization", "Additional workflow improvements", "Dedicated technical support"] },
     ],
     custom: [
-      "Need AI agents, intelligent assistants, advanced business automation or custom AI-powered systems?",
+      "Need AI agents, intelligent assistants, advanced business automation or custom AI powered systems?",
       "We'll design a solution around your business processes and requirements.",
     ],
     addOns: ["CRM integration", "AI chatbot customization", "Lead automation", "Email automation", "API integrations", "AI voice assistants"],
-    separateCosts: "Third-party subscriptions, API usage and hosting costs are separate.",
+    separateCosts: "Third party subscriptions, API usage and hosting costs are separate.",
   },
   "branding-creative-design": {
     starting: {
@@ -143,7 +143,7 @@ export const pricing: Record<string, ServicePricing> = {
       { name: "Professional", price: 349, features: ["25 graphic designs", "Advanced promotional creatives", "Campaign design assets", "Marketing and social media graphics", "Priority delivery"] },
     ],
     custom: [
-      "Need a complete brand identity, creative direction, large-scale campaign or specialized design project?",
+      "Need a complete brand identity, creative direction, large scale campaign or specialized design project?",
       "We'll develop a creative solution around your brand vision.",
     ],
     addOns: ["Logo variations", "Brand guidelines", "Business cards", "Social media banners", "Flyers", "Additional graphic designs"],

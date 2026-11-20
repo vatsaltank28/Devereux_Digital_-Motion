@@ -1,0 +1,169 @@
+/* Cinematic scroll stage styles, used only by the /reference-motion-lab page (moved out of globals.css for performance). */
+/* ───────────────────────── Cinematic scroll stage ───────────────────────── */
+.st-stick {
+  --ch: min(72svh, 118vw);
+  --cw: calc(var(--ch) * 0.62);
+  --ph: min(88svh, 100vw);
+  --pw: calc(var(--ph) * 1.1);
+  --hw: min(96vw, 1400px);
+  --hh: min(88svh, 780px);
+  --frame: 12px;
+}
+@media (min-width: 900px) {
+  .st-stick {
+    --frame: 20px;
+  }
+}
+@media (max-width: 767px) {
+  .st-stick {
+    --hw: 88vw;
+    --hh: min(84svh, 720px);
+    --ph: min(62svh, 112vw);
+    --pw: calc(var(--ph) * 0.76);
+  }
+}
+.st-violet {
+  background: radial-gradient(120% 85% at 50% 0%, #c7b2ff 0%, #7a45ff 34%, #3a15a8 68%, #14063d 100%);
+}
+.st-violet-deep {
+  background: linear-gradient(160deg, #1a0a45 0%, #3b1aa8 55%, #7a45ff 100%);
+}
+.st-glow {
+  background:
+    radial-gradient(70% 45% at 42% 108%, #ffc2f7 0%, rgba(190, 120, 255, 0.75) 28%, rgba(122, 69, 255, 0) 70%),
+    radial-gradient(50% 40% at 85% 10%, rgba(255, 255, 255, 0.12), transparent 70%);
+}
+.st-white,
+.st-cards {
+  perspective: 1500px;
+}
+.st-card {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: var(--cw);
+  height: var(--ch);
+  margin: calc(var(--ch) / -2) 0 0 calc(var(--cw) / -2);
+  will-change: transform;
+}
+.st-hero {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: var(--hw);
+  height: var(--hh);
+  margin: calc(var(--hh) / -2) 0 0 calc(var(--hw) / -2);
+  will-change: transform;
+}
+.st-marquee {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  width: max-content;
+  white-space: nowrap;
+  will-change: transform;
+}
+.st-marquee-row {
+  display: flex;
+  flex: none;
+}
+.st-marquee-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  padding-right: 0.5em;
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 7.4vw, 8rem);
+  font-weight: 500;
+  letter-spacing: -0.045em;
+  line-height: 1;
+  color: #0a0a0a;
+}
+.st-marquee-item i {
+  display: inline-block;
+  width: 0.14em;
+  height: 0.14em;
+  border: 2px solid #0a0a0a;
+  border-radius: 50%;
+  opacity: 0.6;
+}
+.st-gallery {
+  perspective: 1300px;
+  transform-style: preserve-3d;
+}
+.st-panel {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: var(--pw);
+  height: var(--ph);
+  margin: calc(var(--ph) / -2) 0 0 calc(var(--pw) / -2);
+  will-change: transform;
+}
+.st-bar {
+  position: absolute;
+  z-index: 6;
+  background: #fff;
+  pointer-events: none;
+}
+.st-bar-top,
+.st-bar-bottom {
+  left: 0;
+  right: 0;
+  height: var(--frame);
+}
+.st-bar-top {
+  top: 0;
+}
+.st-bar-bottom {
+  bottom: 0;
+}
+.st-bar-left,
+.st-bar-right {
+  top: 0;
+  bottom: 0;
+  width: var(--frame);
+}
+.st-bar-left {
+  left: 0;
+}
+.st-bar-right {
+  right: 0;
+}
+
+/* Animated ↔ static twin: reduced motion, no WebGL (set by JS) and no JS all show the static version */
+[data-stage-static] {
+  display: none;
+}
+html:not(.js) [data-stage-animated],
+html[data-stage="static"] [data-stage-animated] {
+  display: none;
+}
+html:not(.js) [data-stage-static],
+html[data-stage="static"] [data-stage-static] {
+  display: block;
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-stage-animated] {
+    display: none;
+  }
+  [data-stage-static] {
+    display: block;
+  }
+}
+
+/* The header sits on white during the paper phase: flip it to dark ink (written by ScrollStage) */
+html[data-stage-light="1"] header {
+  color: #0a0a0a !important;
+  background: transparent !important;
+  backdrop-filter: none !important;
+  border-color: transparent !important;
+}
+html[data-stage-light="1"] header a,
+html[data-stage-light="1"] header button {
+  border-color: rgba(0, 0, 0, 0.28) !important;
+  color: #0a0a0a !important;
+}

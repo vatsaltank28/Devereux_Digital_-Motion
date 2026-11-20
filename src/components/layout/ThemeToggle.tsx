@@ -12,7 +12,7 @@ const resolve = (): Theme => {
 };
 
 /**
- * One-tap theme switch. The icon morphs sun ⇄ moon and, where supported, the new theme
+ * One tap theme switch. The icon morphs sun ⇄ moon and, where supported, the new theme
  * spreads out from the tap point as a circle (View Transitions API). Reduced motion → instant swap.
  */
 export function ThemeToggle({ className }: { className?: string }) {

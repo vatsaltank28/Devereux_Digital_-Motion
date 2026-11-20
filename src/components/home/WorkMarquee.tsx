@@ -17,7 +17,7 @@ const rows = [items.filter((_, i) => i % 2 === 0), items.filter((_, i) => i % 2 
 export function WorkMarquee() {
   return (
     <section aria-labelledby="work-marquee-title" className="section-tight overflow-hidden border-t border-line">
-      <div className="wrap-wide mb-12 grid gap-6 lg:grid-cols-12 lg:items-end">
+      <div className="wrap-wide mb-8 grid gap-4 md:mb-12 md:gap-6 lg:grid-cols-12 lg:items-end">
         <div className="lg:col-span-7">
           <SectionLabel>Our work</SectionLabel>
           <SplitHeading id="work-marquee-title" className="t-h2 mt-5 max-w-[18ch]">
@@ -43,7 +43,11 @@ export function WorkMarquee() {
                     aria-hidden={dup ? true : undefined}
                   >
                     <Image src={it.src} alt={dup ? "" : it.alt} width={it.width} height={it.height} sizes="360px" className="wm-img" />
-                    <span className="wm-tag">{it.service}</span>
+                    <span className="wm-cap">
+                      <span className="wm-tag">{it.service}</span>
+                      <span className="wm-desc">{it.alt}</span>
+                      <span className="wm-view">View project <span aria-hidden="true">→</span></span>
+                    </span>
                   </Link>
                 )),
               )}

@@ -14,19 +14,19 @@ const clean = (value: string | undefined): string | null => {
 export const site = {
   name: "Devereux Digitals",
   /** Confirm legal entity name + brand capitalisation with the client (PRD §18). */
-  legalName: null as string | null,
-  tagline: "Full-service digital agency",
+  legalName: "Devereux Digitals" as string | null,
+  tagline: "Full service digital agency",
   description:
-    "Devereux Digitals is a full-service digital agency covering web design and development, digital marketing, paid advertising, e-commerce, video and content, AI and business solutions, and branding.",
+    "Devereux Digitals helps businesses grow through professional web design, ecommerce development, AI automation, digital marketing, branding and creative solutions.",
   url: (clean(process.env.NEXT_PUBLIC_SITE_URL) ?? "http://localhost:3000").replace(/\/$/, ""),
   locale: "en",
   contact: {
     email: clean(process.env.NEXT_PUBLIC_CONTACT_EMAIL) ?? "devereuxdigitals1@gmail.com",
-    phone: clean(process.env.NEXT_PUBLIC_CONTACT_PHONE) ?? "+1 682 793 8815",
+    phone: clean(process.env.NEXT_PUBLIC_CONTACT_PHONE) ?? "+1 716 363 9707",
     whatsapp: clean(process.env.NEXT_PUBLIC_WHATSAPP_URL) ?? "https://wa.me/16827938815",
     discord: clean(process.env.NEXT_PUBLIC_DISCORD_URL) ?? "https://discord.com/users/1323213896240205845",
     /** Only publish a postal address once the client approves one. */
-    address: null as string | null,
+    address: "347 5th Ave, Suite 1402, New York, NY 10016, USA" as string | null,
   },
   social: [
     { label: "Facebook", href: clean(process.env.NEXT_PUBLIC_FACEBOOK_URL) ?? "https://www.facebook.com/share/1M8XFMZTkR/?mibextid=wwXIfr" },
@@ -47,6 +47,7 @@ export interface NavItem {
 export const primaryNav: NavItem[] = [
   { label: "Home", href: "/" },
   { label: "Services", href: "/services" },
+  { label: "Work", href: "/work" },
   { label: "About Us", href: "/about" },
   { label: "Contact", href: "/contact" },
 ];
@@ -57,7 +58,7 @@ export const legalNav: NavItem[] = [
 ];
 
 export const ctaLabels = {
-  startProject: "Start a Project",
+  startProject: "Start Your Project",
   discuss: "Let’s Discuss Your Project",
   talk: "Let’s Talk",
   explore: "Explore Our Services",

@@ -39,7 +39,7 @@ const data: Record<string, { label: string; items: Omit<Review, "service">[] }> 
         name: "Verified client",
         role: "Business Owner",
         quote:
-          "For real, the results are crazy. Since you started running the ads and handling our social media, we’ve had way more sales. Orders doubled this month and the engagement on our page is at an all-time high.",
+          "For real, the results are crazy. Since you started running the ads and handling our social media, we’ve had way more sales. Orders doubled this month and the engagement on our page is at an all time high.",
         chat: chatProof["digital-marketing"],
       },
       r("Sophia Mitchell", "Founder, Luxe Living Store", "We were posting on social media but didn’t really have a proper direction. Devereux helped us become more consistent with our content and how we communicate with customers. It’s made a noticeable difference to our online presence."),
@@ -62,7 +62,7 @@ const data: Record<string, { label: string; items: Omit<Review, "service">[] }> 
     ],
   },
   "ecommerce-solutions": {
-    label: "E-commerce",
+    label: "Ecommerce",
     items: [
       r("Emily Parker", "Owner, Parker Fashion House", "Our new online store looks beautiful. The layout is easy to navigate, the products are presented properly and the overall experience feels much more professional. I’m happy with how everything came together."),
       r("Noah Thompson", "Founder, NT Gadgets", "I had been planning to move my business online for a while, and Devereux helped make the process much easier. They handled the store setup and important integrations without making things complicated."),
@@ -81,7 +81,7 @@ const data: Record<string, { label: string; items: Omit<Review, "service">[] }> 
     label: "AI & Business",
     items: [
       r("Samuel Cooper", "Founder, Cooper Business Services", "We had a lot of repetitive tasks that were taking up time every day. The automation solution helped us organize some of those processes and made things easier for the team to manage."),
-      r("Natalie Adams", "Operations Manager, Adams Consulting", "The CRM setup was exactly what we needed. Before, keeping track of inquiries and follow-ups was becoming difficult. Having a more organized system has made our workflow much better."),
+      r("Natalie Adams", "Operations Manager, Adams Consulting", "The CRM setup was exactly what we needed. Before, keeping track of inquiries and follow ups was becoming difficult. Having a more organized system has made our workflow much better."),
       r("David Morgan", "Owner, Morgan Trade Solutions", "I wasn’t very familiar with business automation before this project, but the team explained everything clearly. The solution was practical and suited what we actually needed rather than being unnecessarily complicated."),
     ],
   },

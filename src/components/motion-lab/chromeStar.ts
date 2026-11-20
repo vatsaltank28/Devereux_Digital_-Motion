@@ -2,7 +2,7 @@ import * as THREE from "three";
 import { toCreasedNormals } from "three/examples/jsm/utils/BufferGeometryUtils.js";
 
 /**
- * Four-point concave star ("astroid" family): |x|^(2/e) + |y|^(2/e) = 1 sampled parametrically.
+ * Four point concave star ("astroid" family): |x|^(2/e) + |y|^(2/e) = 1 sampled parametrically.
  * e = 3 is the classic astroid; slightly lower values give the fuller, rounder tips seen in the reference.
  */
 export function starShape(exponent = 2.7, samples = 240): THREE.Shape {

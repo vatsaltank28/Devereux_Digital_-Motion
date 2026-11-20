@@ -6,15 +6,12 @@ import { PageHero } from "@/components/ui/PageHero";
 
 export const metadata: Metadata = buildMetadata({
   title: "Privacy Policy",
-  description: "How Devereux Digitals collects, uses and protects the information you share with us.",
+  description: "How Devereux Digitals collects, uses, stores, shares and protects the information you share with us.",
   path: "/privacy",
   noindex: true,
 });
 
-/** Highlighted placeholder for details the client still has to confirm. */
-const Todo = ({ children }: { children: string }) => (
-  <mark className="rounded bg-accent-deep px-1.5 py-0.5 text-accent-bright">[{children}]</mark>
-);
+const EFFECTIVE_DATE = "October 17, 2026";
 
 const Section = ({ n, title, children }: { n: number; title: string; children: ReactNode }) => (
   <section className="border-t border-line pt-8">
@@ -24,6 +21,22 @@ const Section = ({ n, title, children }: { n: number; title: string; children: R
     </h2>
     <div className="mt-4 space-y-4">{children}</div>
   </section>
+);
+
+const Sub = ({ children }: { children: ReactNode }) => <h3 className="pt-2 font-medium text-ink">{children}</h3>;
+
+const List = ({ items }: { items: ReactNode[] }) => (
+  <ul className="list-disc space-y-2 pl-5">
+    {items.map((item, i) => (
+      <li key={i}>{item}</li>
+    ))}
+  </ul>
+);
+
+const phone = (
+  <a href={`tel:${(site.contact.phone ?? "").replace(/\s+/g, "")}`} className="text-ink underline underline-offset-4">
+    {site.contact.phone}
+  </a>
 );
 
 const mail = (
@@ -38,111 +51,241 @@ export default function PrivacyPage() {
       <PageHero
         label="Legal"
         title="Privacy Policy"
-        description="How Devereux Digitals collects, uses and protects the information you share with us when you visit this website or enquire about our services."
+        description="How Devereux Digitals collects, uses, stores, shares and protects your information when you visit our website, contact us or use our digital services."
         trail={[{ name: "Home", href: "/" }, { name: "Privacy Policy" }]}
       />
       <div className="pb-[var(--section-y)]">
         <div className="wrap-wide">
-          <p className="t-caption">
-            Last updated: <Todo>Effective date</Todo>
-          </p>
+          <p className="t-caption">Effective date: {EFFECTIVE_DATE}</p>
           <div className="mt-8 max-w-[46rem] space-y-10 text-[1.0625rem] leading-relaxed text-muted">
-            <Section n={1} title="Who we are">
+            <div className="space-y-4">
               <p>
-                This website is operated by {site.legalName ?? site.name} (“Devereux Digitals”, “we”, “us”), a full-service digital agency offering web design and development, digital and sales marketing, paid advertising, e-commerce solutions, video and content, AI and business solutions, and branding and creative design.
+                At Devereux Digitals, we respect your privacy and are committed to protecting the personal information you share with us. This Privacy Policy explains how we collect, use, store, disclose and protect your information when you visit our website, contact us or use our digital services.
+              </p>
+              <p>By accessing our website or engaging with our services, you acknowledge the practices described in this Privacy Policy.</p>
+            </div>
+
+            <Section n={1} title="About Devereux Digitals">
+              <p>
+                Devereux Digitals (“Devereux Digitals”, “we”, “us” or “our”) is a digital services agency based in New York, United States, providing digital solutions to individuals, businesses, brands and organizations.
               </p>
               <p>
-                Registered business details: <Todo>Legal entity name, registration number and business address</Todo>
+                Business name: Devereux Digitals
+                <br />
+                Address: {site.contact.address}
+                <br />
+                Email: {mail}
+                <br />
+                Phone: {phone}
               </p>
-              <p>For any privacy question or request, contact us at {mail}.</p>
             </Section>
 
             <Section n={2} title="Information we collect">
-              <p>We only collect information you choose to give us. This may include:</p>
-              <ul className="list-disc space-y-2 pl-5">
-                <li>Your name, email address and, if you provide them, your phone or WhatsApp number.</li>
-                <li>Your company or brand name and your current website or social media links.</li>
-                <li>Details about your project: the service you’re interested in, any package or add-ons you select, your budget range, timeline and project description.</li>
-                <li>Your preferred contact method.</li>
-                <li>Anything you send us directly by email, phone, WhatsApp, Discord, Facebook or TikTok.</li>
-              </ul>
+              <p>We may collect different types of information depending on how you interact with our website and services.</p>
+              <Sub>Personal information</Sub>
+              <List
+                items={[
+                  "Full name.",
+                  "Email address.",
+                  "Phone number.",
+                  "Business or company name.",
+                  "Other contact information you voluntarily provide.",
+                ]}
+              />
+              <Sub>Project and service information</Sub>
+              <List
+                items={[
+                  "Project descriptions and requirements.",
+                  "Business information and brand details.",
+                  "Images, videos, documents and other uploaded files.",
+                  "Website content and project assets.",
+                  "Communication and feedback relating to your project.",
+                ]}
+              />
+              <Sub>Technical information</Sub>
+              <p>When you visit our website, certain technical information may be collected automatically, including:</p>
+              <List
+                items={[
+                  "IP address.",
+                  "Browser type and version.",
+                  "Device and operating system information.",
+                  "Pages visited and time spent on our website.",
+                  "General website usage and interaction information.",
+                ]}
+              />
             </Section>
 
-            <Section n={3} title="How the enquiry form works">
+            <Section n={3} title="How we collect information">
+              <List
+                items={[
+                  "Contact and enquiry forms submitted through our website.",
+                  "Direct email communications.",
+                  "Project applications and onboarding forms.",
+                  "File uploads and project submissions.",
+                  "Client communications and feedback.",
+                  "Cookies and similar website technologies, where implemented.",
+                ]}
+              />
               <p>
-                Our project enquiry form does not store your information on this website. When you press “Send enquiry”, the form opens your own email app with your details written into a message addressed to {mail}. Nothing is sent until you choose to send that email.
+                When you submit our project enquiry form, the details you enter are sent securely to our team by email through our email delivery provider, and are not stored in a database on this website. If online delivery is unavailable, your own email app opens instead with your details prepared in a message addressed to {mail}, and nothing is sent until you choose to send it. The form includes basic spam protection and does not use your details for any purpose other than replying to your enquiry.
               </p>
+              <p>We may also receive information through third party platforms used to communicate with clients or deliver our services.</p>
             </Section>
 
             <Section n={4} title="How we use your information">
-              <ul className="list-disc space-y-2 pl-5">
-                <li>To reply to your enquiry and discuss your project.</li>
-                <li>To prepare proposals, quotes and agreements.</li>
-                <li>To deliver, support and manage the services you engage us for.</li>
-                <li>To send important information about your project, such as updates, invoices and support messages.</li>
-              </ul>
-              <p>We do not sell, rent or trade your personal information, and we do not use it for unrelated marketing without your permission.</p>
-            </Section>
-
-            <Section n={5} title="Sharing your information">
+              <p>We use collected information for legitimate business and operational purposes, including:</p>
+              <List
+                items={[
+                  "Responding to enquiries and service requests.",
+                  "Understanding project requirements.",
+                  "Preparing quotations and proposals.",
+                  "Providing and managing our digital services.",
+                  "Communicating project updates and important information.",
+                  "Processing invoices and payments through applicable payment providers.",
+                  "Improving our website, services and customer experience.",
+                  "Maintaining business records.",
+                  "Protecting against fraud, unauthorized access and misuse.",
+                  "Complying with applicable legal obligations.",
+                ]}
+              />
               <p>
-                We only share information when it is needed to deliver your project, for example with hosting, domain, payment, advertising or software platforms you ask us to set up or manage. These providers handle data under their own privacy policies. We may also disclose information where the law requires it.
+                We do not use personal information for purposes incompatible with those described in this policy without providing appropriate notice or obtaining consent where required.
               </p>
             </Section>
 
-            <Section n={6} title="Cookies and analytics">
+            <Section n={5} title="Cookies and website analytics">
               <p>
-                This website does not use advertising or tracking cookies. It stores one small preference in your browser, your light or dark theme choice, so the site looks the way you left it. You can clear this at any time through your browser settings.
+                Our website may use cookies and similar technologies to support essential functionality, understand website performance and improve user experience. These technologies may collect information about how visitors interact with our website. For example, we store your light or dark theme preference in your browser so the site displays the way you left it.
               </p>
               <p>
-                <Todo>Confirm whether any analytics tool (for example Google Analytics) will be added. If so, this section will be updated before it goes live.</Todo>
+                If we implement third party analytics services, such as Google Analytics, those providers may process certain technical and usage information according to their own privacy policies. Where required by applicable law, we will provide appropriate notice and choices regarding nonessential cookies and tracking technologies.
               </p>
+              <p>You can manage cookies through your browser settings. Disabling certain cookies may affect some website functionality.</p>
+            </Section>
+
+            <Section n={6} title="How we share information">
+              <p>
+                We do not disclose personal information indiscriminately. However, we may share relevant information with trusted third parties when reasonably necessary to operate our business and deliver our services. These may include:
+              </p>
+              <List
+                items={[
+                  "Payment processors and financial service providers.",
+                  "Website hosting and infrastructure providers.",
+                  "Cloud storage and file sharing platforms.",
+                  "Email and communication services, including the provider that delivers website enquiries to us.",
+                  "Project management and productivity tools.",
+                  "Authorized developers, designers, editors and other contractors working on assigned projects.",
+                  "Legal, regulatory or government authorities when disclosure is required by law.",
+                ]}
+              />
+              <p>Third party service providers are expected to handle information appropriately and only for authorized purposes.</p>
+              <p>We do not sell personal information for monetary consideration.</p>
             </Section>
 
             <Section n={7} title="Client reviews and work samples">
               <p>
-                Reviews and chat screenshots shown on this website are shared with our clients’ permission. Names and personal details in chat screenshots are blurred to protect their privacy. Portfolio images are shown with client approval.
+                Reviews and chat screenshots shown on this website are shared with our clients’ permission, with names and personal details blurred to protect their privacy. Portfolio work is shown with client approval.
               </p>
             </Section>
 
-            <Section n={8} title="How long we keep information">
+            <Section n={8} title="Data storage and security">
               <p>
-                We keep enquiry and project information only for as long as needed to respond to you, deliver our services and meet our legal and accounting obligations. <Todo>Retention period, for example 2 years after the last contact</Todo>
+                We take reasonable administrative, technical and organizational measures to protect personal information against unauthorized access, disclosure, alteration, loss or misuse. These measures may include:
+              </p>
+              <List
+                items={[
+                  "Restricting access to information to authorized individuals.",
+                  "Using reputable digital platforms and storage providers.",
+                  "Maintaining appropriate account and access controls.",
+                  "Limiting the collection of information to what is reasonably necessary.",
+                  "Taking reasonable precautions when handling client files and project materials.",
+                ]}
+              />
+              <p>
+                Although we take reasonable steps to protect information, no method of electronic storage or internet transmission can be guaranteed to be completely secure.
               </p>
             </Section>
 
-            <Section n={9} title="How we protect your information">
+            <Section n={9} title="Data retention">
               <p>
-                We use reputable, secure platforms for email and file sharing, and limit access to the people working on your project. No method of transmission over the internet is completely secure, but we take reasonable steps to protect your information.
+                We retain personal information only for as long as reasonably necessary to fulfill the purposes for which it was collected, subject to applicable legal, accounting and business requirements. Our general retention periods are:
+              </p>
+              <List
+                items={[
+                  <><span className="text-ink">General enquiries:</span> up to 2 years after the last meaningful interaction.</>,
+                  <><span className="text-ink">Client and project records:</span> generally up to 2 years after project completion.</>,
+                  <><span className="text-ink">Financial and transaction records:</span> for the period required by applicable laws and regulations.</>,
+                  <><span className="text-ink">Uploaded project files:</span> according to the agreed project arrangements and applicable retention requirements.</>,
+                ]}
+              />
+              <p>
+                Information may be retained for longer where necessary to resolve disputes, enforce agreements, meet legal obligations or protect our legitimate business interests. When information is no longer required, we will take reasonable steps to delete or securely dispose of it.
               </p>
             </Section>
 
-            <Section n={10} title="Your rights">
+            <Section n={10} title="Your privacy rights">
+              <p>Depending on your location and the privacy laws that apply to you, you may have certain rights regarding your personal information. These may include:</p>
+              <List
+                items={[
+                  "Requesting access to personal information we hold about you.",
+                  "Requesting correction of inaccurate or incomplete information.",
+                  "Requesting deletion of personal information, subject to applicable exceptions.",
+                  "Requesting a copy of certain personal information.",
+                  "Withdrawing consent where processing is based on consent.",
+                  "Objecting to or restricting certain processing activities where applicable.",
+                  "Opting out of certain targeted advertising or data sharing activities where required by law.",
+                ]}
+              />
               <p>
-                You can ask us to tell you what information we hold about you, correct it, or delete it, and you can withdraw permission for us to contact you at any time. To make a request, email {mail} and we will respond within a reasonable time.
+                Residents of New York, California and other states with applicable privacy laws may have additional rights. We will not discriminate against you for exercising any of these rights. In the event of a data breach affecting your personal information, we will notify you as required by applicable law, including the New York SHIELD Act.
               </p>
               <p>
-                <Todo>Country or region the business operates from, so any specific legal rights (for example GDPR or CCPA) can be listed</Todo>
+                To exercise a privacy right, contact us at {mail}. We may need to verify your identity before processing certain requests, and we will respond to valid requests within the timeframes required by applicable law.
               </p>
             </Section>
 
-            <Section n={11} title="Third-party websites">
+            <Section n={11} title="Third party websites and services">
               <p>
-                This website links to external platforms such as WhatsApp, Discord, Facebook, TikTok and Devereux Edits. Their own privacy policies apply when you use them.
+                Our website and services may contain links to external websites, platforms or third party services, including social media platforms, payment services, portfolio platforms and other external tools. Devereux Digitals does not control the privacy practices or security policies of independent third party websites, and we encourage you to review the privacy policies of any external services you access.
               </p>
             </Section>
 
-            <Section n={12} title="Changes to this policy">
-              <p>We may update this policy from time to time. The latest version will always be published on this page with its effective date.</p>
+            <Section n={12} title="Children’s privacy">
+              <p>
+                Our website and services are not directed toward children under the age of 13. We do not knowingly collect personal information from children under 13 without legally required parental consent. If we become aware that personal information has been collected from a child in circumstances where it should not have been, we will take reasonable steps to address the situation.
+              </p>
             </Section>
 
-            <Section n={13} title="Contact us">
+            <Section n={13} title="International data transfers">
               <p>
+                Devereux Digitals may work with clients, contractors and service providers located in different countries. As a result, personal information may be processed or stored outside the country where it was originally collected. Where required by applicable privacy laws, we will take appropriate steps to ensure that international transfers of personal information receive the necessary protection.
+              </p>
+            </Section>
+
+            <Section n={14} title="Changes to this Privacy Policy">
+              <p>
+                We may update this Privacy Policy from time to time to reflect changes in our business operations, technologies, services or applicable legal requirements. When changes are made, the updated policy will be published on this page with a revised effective date. We encourage you to review this page periodically.
+              </p>
+            </Section>
+
+            <Section n={15} title="Contact us">
+              <p>If you have questions, concerns or requests regarding this Privacy Policy or the personal information we handle, please contact us:</p>
+              <p>
+                <span className="text-ink">Devereux Digitals</span>
+                <br />
+                {site.contact.address}
+                <br />
                 Email: {mail}
                 <br />
-                Phone: {site.contact.phone}
+                Phone: {phone}
               </p>
+              <p>We will make reasonable efforts to review and respond to privacy related enquiries within the timeframes required by applicable law.</p>
             </Section>
+
+            <p className="t-caption border-t border-line pt-8">
+              Last updated: {EFFECTIVE_DATE}
+              <br />© 2026 Devereux Digitals. All rights reserved.
+            </p>
           </div>
         </div>
       </div>

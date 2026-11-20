@@ -7,7 +7,7 @@ import { FinalCTA } from "@/components/home/FinalCTA";
 export const metadata: Metadata = buildMetadata({
   title: "Services",
   description:
-    "Web design and development, digital marketing, paid advertising, e-commerce, video and content, AI and business solutions, and branding from Devereux Digitals.",
+    "Web design and development, digital marketing, paid advertising, ecommerce, video and content, AI and business solutions, and branding from Devereux Digitals.",
   path: "/services",
 });
 

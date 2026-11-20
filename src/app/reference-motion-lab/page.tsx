@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { ScrollStage } from "@/components/motion-lab/ScrollStage";
+import "./stage.css";
 import { homeStage } from "@/data/stage";
 
 export const metadata: Metadata = {

@@ -2,7 +2,7 @@ import type { TitledText } from "@/data/types";
 import { Reveal } from "@/components/motion/Reveal";
 import { ServiceSection } from "./ServiceSection";
 
-/** S03, What we deliver. Service-specific deliverables, never recycled between services. */
+/** S03, What we deliver. Service specific deliverables, never recycled between services. */
 export function DeliverablesGrid({ items }: { items: TitledText[] }) {
   return (
     <ServiceSection id="deliverables" label="Scope" title="What we deliver">

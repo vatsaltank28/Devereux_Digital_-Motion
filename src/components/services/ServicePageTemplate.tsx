@@ -5,7 +5,7 @@ import { getFaqs } from "@/data/faqs";
 import { getReviews } from "@/data/reviews";
 import { included } from "@/data/included";
 import { serviceWork } from "@/data/media";
-import { breadcrumbJsonLd } from "@/lib/seo";
+import { breadcrumbJsonLd, serviceJsonLd } from "@/lib/seo";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { ArrowRight } from "@/components/ui/Icons";
 import { ServiceHero } from "./ServiceHero";
@@ -13,6 +13,9 @@ import { IncludedList } from "./IncludedList";
 import { WorkGallery } from "./WorkGallery";
 import { ReviewWall } from "./ReviewWall";
 import { ProcessSteps } from "./ProcessSteps";
+import { WhatToExpect } from "./WhatToExpect";
+import { ServiceExtras } from "./ServiceExtras";
+import { projectsForService } from "@/data/portfolio";
 import { ServicePricing } from "./ServicePricing";
 import { getPricing } from "@/data/pricing";
 import { FAQAccordion } from "./FAQAccordion";
@@ -41,22 +44,22 @@ export function ServicePageTemplate({ service }: { service: Service }) {
           { name: service.title, path: `/services/${service.slug}` },
         ])}
       />
-      {/* Client-approved order: 1 Description, 2 Scope, 3 Work, 4 How it works, 5 Pricing, 6 FAQs & Reviews */}
+      {/* Master prompt §7 order: Overview, Included, Selected Work, Pricing & Add ons, How It Works,
+          Why Choose (What to expect), Reviews, FAQs, CTA. Sections without real content are omitted. */}
+      <JsonLd data={serviceJsonLd({ title: service.title, description: service.seoDescription, slug: service.slug })} />
       <ServiceHero service={service} cover={work[0]} />
       <IncludedList items={included[service.slug] ?? []} />
-      {!isEditing && (
-        <>
-          <WorkGallery images={work} serviceTitle={service.title} />
-          <ProcessSteps steps={service.processSteps} />
-        </>
-      )}
+      <ServiceExtras slug={service.slug} />
+      {!isEditing && <WorkGallery images={work} serviceTitle={service.title} projects={projectsForService(service.slug)} />}
       {price && <ServicePricing pricing={price} slug={service.slug} serviceTitle={service.shortTitle} />}
-      {!isEditing && faqs.length > 0 && (
-        <ServiceSection id="faqs" label="FAQs & Reviews" title="Questions, answered">
+      {service.processSteps.length > 0 && <ProcessSteps steps={service.processSteps} />}
+      <WhatToExpect />
+      <ReviewWall reviews={reviews} serviceTitle={service.shortTitle} />
+      {faqs.length > 0 && (
+        <ServiceSection id="faqs" label="FAQs" title="Questions, answered">
           <FAQAccordion faqs={faqs} />
         </ServiceSection>
       )}
-      <ReviewWall reviews={reviews} serviceTitle={service.shortTitle} />
       <ServiceCTA service={service} />
 
       <nav aria-label="Other services" className="border-t border-line">

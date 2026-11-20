@@ -9,15 +9,15 @@ import { LinkButton } from "@/components/ui/Button";
 import { ProjectArt } from "@/components/visuals/ProjectArt";
 import Magnet from "@/components/reactbits/Magnet";
 
-/** S01, Service introduction. Same entrance grammar as the home hero, with service-specific artwork. */
+/** S01, Service introduction. Same entrance grammar as the home hero, with service specific artwork. */
 export function ServiceHero({ service, cover }: { service: Service; cover?: MediaImage }) {
   const isEditing = service.slug === "video-content";
   return (
-    <header className="relative isolate overflow-hidden pb-16 pt-[calc(var(--header-h)+2.5rem)] sm:pb-20 sm:pt-[calc(var(--header-h)+4rem)] lg:pb-28">
+    <header className="relative isolate overflow-hidden pb-10 pt-[calc(var(--header-h)+1.5rem)] sm:pb-20 sm:pt-[calc(var(--header-h)+4rem)] lg:pb-28">
       <div className="hero-atmosphere absolute inset-0 -z-10 opacity-80" aria-hidden="true" />
-      <div className="wrap-wide grid gap-12 lg:grid-cols-12 lg:items-center lg:gap-16">
+      <div className="wrap-wide grid gap-8 lg:grid-cols-12 lg:items-center lg:gap-16">
         <div className="lg:col-span-7">
-          <div className="mb-8">
+          <div className="mb-5 md:mb-8">
             <Breadcrumbs
               trail={[{ name: "Home", href: "/" }, { name: "Services", href: "/services" }, { name: service.shortTitle }]}
             />
@@ -26,10 +26,10 @@ export function ServiceHero({ service, cover }: { service: Service; cover?: Medi
           <SplitHeading as="h1" trigger="load" delay={0.05} className="t-h1 mt-6 max-w-[15ch]">
             {service.heroHeadline}
           </SplitHeading>
-          <p className="hero-rise t-lead mt-7" style={{ animationDelay: "0.4s" }}>
+          <p className="hero-rise t-lead mt-5 md:mt-7" style={{ animationDelay: "0.4s" }}>
             {service.heroDescription}
           </p>
-          <p className="hero-rise t-body mt-5" style={{ animationDelay: "0.5s" }}>
+          <p className="hero-rise t-body mt-4 md:mt-5" style={{ animationDelay: "0.5s" }}>
             {service.intro}
           </p>
           {service.bestFor && (
@@ -39,7 +39,7 @@ export function ServiceHero({ service, cover }: { service: Service; cover?: Medi
             </p>
           )}
           {!isEditing && (
-            <div className="hero-rise mt-9 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4" style={{ animationDelay: "0.62s" }}>
+            <div className="hero-rise mt-7 flex md:mt-9 flex-col gap-3 sm:flex-row sm:items-center sm:gap-4" style={{ animationDelay: "0.62s" }}>
               <Magnet padding={70} magnetStrength={3.5} maxOffset={12} wrapperClassName="max-sm:block max-sm:w-full">
                 <LinkButton href={`/contact?service=${service.slug}`} arrow location={`service-hero:${service.slug}`} className="max-sm:w-full">
                   Start Your Project
@@ -66,7 +66,7 @@ export function ServiceHero({ service, cover }: { service: Service; cover?: Medi
                 <ProjectArt variant={service.art} className="h-full w-full" />
               )}
             </div>
-            {cover && <figcaption className="t-caption mt-3">{cover.alt}</figcaption>}
+            {cover && <figcaption className="t-caption mt-3 max-sm:hidden">{cover.alt}</figcaption>}
           </figure>
           )}
         </div>

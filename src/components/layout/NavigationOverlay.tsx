@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState, type RefObject } from "react";
-import { AnimatePresence, m, useReducedMotion, type Variants } from "motion/react";
 import { primaryNav, site, ctaLabels } from "@/lib/site";
 import { publishedServices as services } from "@/data/services";
 import { LogoMark } from "@/components/visuals/LogoMark";
@@ -22,7 +21,6 @@ export function NavigationOverlay({ open, onClose, triggerRef }: NavigationOverl
   const dialogRef = useRef<HTMLDivElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
   const [servicesOpen, setServicesOpen] = useState(true);
-  const reduce = useReducedMotion();
 
   // Focus management, scroll lock, inert background, Escape + Tab trap.
   useEffect(() => {
@@ -65,23 +63,6 @@ export function NavigationOverlay({ open, onClose, triggerRef }: NavigationOverl
       trigger?.focus({ preventScroll: true });
     };
   }, [open, onClose, triggerRef]);
-
-  const panel: Variants = reduce
-    ? { hidden: { opacity: 0 }, show: { opacity: 1, transition: { duration: 0.18 } }, exit: { opacity: 0, transition: { duration: 0.12 } } }
-    : {
-        hidden: { clipPath: "inset(0 0 100% 0)" },
-        show: { clipPath: "inset(0 0 0% 0)", transition: { duration: 0.5, ease: [0.76, 0, 0.24, 1] } },
-        exit: { clipPath: "inset(0 0 100% 0)", transition: { duration: 0.32, ease: [0.76, 0, 0.24, 1] } },
-      };
-
-  const list: Variants = {
-    hidden: {},
-    show: { transition: { staggerChildren: reduce ? 0 : 0.055, delayChildren: reduce ? 0 : 0.22 } },
-  };
-  const item: Variants = {
-    hidden: reduce ? { opacity: 0 } : { opacity: 0, y: 22 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
-  };
 
   const serviceLinks = (
     <ul className="divide-y divide-line border-y border-line">
@@ -126,19 +107,14 @@ export function NavigationOverlay({ open, onClose, triggerRef }: NavigationOverl
   );
 
   return (
-    <AnimatePresence>
-      {open && (
-        <m.div
+    open && (
+        <div
           ref={dialogRef}
           id="site-menu"
           role="dialog"
           aria-modal="true"
           aria-label="Site navigation"
-          className="fixed inset-0 z-[60] flex flex-col overflow-y-auto bg-bg"
-          variants={panel}
-          initial="hidden"
-          animate="show"
-          exit="exit"
+          className="menu-panel fixed inset-0 z-[60] flex flex-col overflow-y-auto bg-bg"
         >
           {/* Overlay top bar, mirrors the header so the logo and close control never move */}
           <div className="wrap-wide flex h-[var(--header-h)] shrink-0 items-center justify-between">
@@ -159,12 +135,12 @@ export function NavigationOverlay({ open, onClose, triggerRef }: NavigationOverl
 
           <div className="wrap-wide grid flex-1 gap-10 pb-10 pt-6 lg:grid-cols-12 lg:gap-16 lg:pt-12">
             {/* Primary links */}
-            <m.nav aria-label="Primary" className="lg:col-span-6" variants={list} initial="hidden" animate="show">
+            <nav aria-label="Primary" className="lg:col-span-6">
               <ul>
-                {primaryNav.map((link) => {
+                {primaryNav.map((link, i) => {
                   const isServices = link.label === "Services";
                   return (
-                    <m.li key={link.href} variants={item} className="border-b border-line-faint">
+                    <li key={link.href} className="menu-item border-b border-line-faint" style={{ "--i": i } as React.CSSProperties}>
                       <div className="flex items-center justify-between gap-4">
                         <Link
                           href={link.href}
@@ -191,24 +167,21 @@ export function NavigationOverlay({ open, onClose, triggerRef }: NavigationOverl
                           {serviceLinks}
                         </div>
                       )}
-                    </m.li>
+                    </li>
                   );
                 })}
               </ul>
-            </m.nav>
+            </nav>
 
             {/* Desktop: services shown alongside, as in the client reference */}
-            <m.div
+            <div
               id="menu-services-aside"
-              className="hidden lg:col-span-5 lg:col-start-8 lg:block"
-              variants={item}
-              initial="hidden"
-              animate="show"
-              transition={{ delay: reduce ? 0 : 0.3 }}
+              className="menu-item hidden lg:col-span-5 lg:col-start-8 lg:block"
+              style={{ "--i": 2 } as React.CSSProperties}
             >
               <p className="mb-4 text-sm font-medium text-subtle">Services</p>
               {serviceLinks}
-            </m.div>
+            </div>
           </div>
 
           <div className="wrap-wide safe-bottom flex flex-col gap-6 border-t border-line pt-6 sm:flex-row sm:items-center sm:justify-between">
@@ -228,8 +201,7 @@ export function NavigationOverlay({ open, onClose, triggerRef }: NavigationOverl
               ))}
             </div>
           </div>
-        </m.div>
-      )}
-    </AnimatePresence>
+        </div>
+      )
   );
 }

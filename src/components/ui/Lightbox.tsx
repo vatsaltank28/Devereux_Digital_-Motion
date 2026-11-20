@@ -15,7 +15,7 @@ interface LightboxProps {
 }
 
 /**
- * Accessible full-screen image viewer on the native <dialog>: focus-trapped, Esc closes,
+ * Accessible full screen image viewer on the native <dialog>: focus-trapped, Esc closes,
  * clicking the backdrop closes. The image fills the screen; tapping it toggles a zoomed,
  * scrollable view so long screenshots stay readable on phones.
  */

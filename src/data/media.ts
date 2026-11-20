@@ -3,11 +3,11 @@ export interface MediaImage { src: string; alt: string; width: number; height: n
 
 export const serviceWork: Record<string, MediaImage[]> = {
   "web-design-development": [
-    { src: "/work/web-design-development/01.jpg", alt: "Website performance results", width: 516, height: 387 },
-    { src: "/work/web-design-development/02.jpg", alt: "Search traffic growth after rebuild", width: 678, height: 452 },
-    { src: "/work/web-design-development/03.jpg", alt: "Search Console clicks and impressions", width: 900, height: 467 },
-    { src: "/work/web-design-development/04.jpg", alt: "Organic traffic recovery report", width: 589, height: 503 },
-    { src: "/work/web-design-development/05.jpg", alt: "Site speed and Core Web Vitals report", width: 924, height: 635 },
+    { src: "/work/web-design-development/01.jpg", alt: "Recruitment website redesign, before and after", width: 1032, height: 774 },
+    { src: "/work/web-design-development/02.jpg", alt: "HosPortal website redesign, before and after", width: 1356, height: 904 },
+    { src: "/work/web-design-development/03.jpg", alt: "Search Console clicks and impressions", width: 1800, height: 934 },
+    { src: "/work/web-design-development/04.jpg", alt: "Organic traffic recovery report", width: 1178, height: 1006 },
+    { src: "/work/web-design-development/05.jpg", alt: "Site speed and Core Web Vitals report", width: 1848, height: 1270 },
   ],
   "digital-marketing": [
     { src: "/work/digital-marketing/01.jpg", alt: "Revenue performance dashboard", width: 1800, height: 1350 },
@@ -37,7 +37,7 @@ export const serviceWork: Record<string, MediaImage[]> = {
   "ai-business-solutions": [
     { src: "/work/ai-business-solutions/01.jpg", alt: "BlockRouter AI payments landing page", width: 1535, height: 928 },
     { src: "/work/ai-business-solutions/02.jpg", alt: "Paperclip agent orchestration platform", width: 1122, height: 1402 },
-    { src: "/work/ai-business-solutions/03.jpg", alt: "Telegram CRM follow-up automation bot", width: 831, height: 1800 },
+    { src: "/work/ai-business-solutions/03.jpg", alt: "Telegram CRM follow up automation bot", width: 831, height: 1800 },
     { src: "/work/ai-business-solutions/04.jpg", alt: "Custom CRM customer dashboard", width: 871, height: 653 },
   ],
   "branding-creative-design": [

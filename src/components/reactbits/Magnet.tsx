@@ -4,7 +4,7 @@
  * Magnet, adapted from React Bits (https://www.reactbits.dev/ · github.com/DavidHDev/react-bits, MIT + Commons Clause).
  *
  * Changes from upstream (kept intentionally small):
- *  - Condensed to a single self-contained spring loop per instance (no cross-instance registry).
+ *  - Condensed to a single self contained spring loop per instance (no cross-instance registry).
  *  - Only engages for fine pointers that can hover, and never under prefers-reduced-motion (DESIGN.md §6.3, §7.3).
  *  - Owns the `transform` of its inner wrapper only; nothing else in the app animates that node.
  */

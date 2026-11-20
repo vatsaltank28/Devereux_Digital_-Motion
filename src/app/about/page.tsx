@@ -29,9 +29,16 @@ const founder = {
 const approach = [
   { title: "Understanding", body: "We take the time to understand your business, objectives and challenges before recommending solutions." },
   { title: "Strategic Thinking", body: "We develop clear strategies that align with your goals and provide direction for every project." },
-  { title: "Innovation", body: "We combine creative thinking with modern technology to develop effective and forward-thinking solutions." },
+  { title: "Innovation", body: "We combine creative thinking with modern technology to develop effective and forward thinking solutions." },
   { title: "Quality Execution", body: "We prioritise professionalism, precision and attention to detail in everything we deliver." },
   { title: "Meaningful Results", body: "We focus on creating practical digital solutions that deliver value and support sustainable business growth." },
+];
+
+const chooseReasons = [
+  { title: "Multiple capabilities, one agency", body: "Design, build and growth services working together instead of separate freelancers." },
+  { title: "Built around real needs", body: "Solutions based on your actual business requirements, not a fixed template." },
+  { title: "Clear scope and pricing", body: "Agreed scope, transparent pricing and regular communication throughout." },
+  { title: "Support beyond delivery", body: "Handover, training and optional monthly support after launch." },
 ];
 
 const P = (d: string) => <path d={d} />;
@@ -52,13 +59,13 @@ const commitments = [
     icon: P("M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7l8-4Z"),
   },
   {
-    title: "Client-Centred Support",
+    title: "Client Centred Support",
     body: "We value every client relationship and aim to provide dependable guidance and support throughout and beyond project completion, within agreed service arrangements.",
     icon: P("M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.5-7 10-7 10Z"),
   },
   {
     title: "Continuous Innovation",
-    body: "We remain committed to learning, adapting and embracing evolving technologies to ensure our solutions remain relevant in an ever-changing digital environment.",
+    body: "We remain committed to learning, adapting and embracing evolving technologies to ensure our solutions remain relevant in an ever changing digital environment.",
     icon: P("M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"),
   },
 ];
@@ -208,6 +215,33 @@ export default function AboutPage() {
               Your vision. Our expertise. <span className="text-accent-bright">Shared progress.</span>
             </p>
           </Reveal>
+        </div>
+      </section>
+
+      {/* E. Why businesses choose us + delivery model (master prompt §16) */}
+      <section aria-labelledby="choose-title" className="section-tight border-t border-line">
+        <div className="wrap-wide grid gap-8 lg:grid-cols-12 lg:gap-12">
+          <div className="lg:col-span-5">
+            <SectionLabel>Why businesses choose us</SectionLabel>
+            <SplitHeading id="choose-title" className="t-h2 mt-5 max-w-[16ch]">
+              One agency, the right specialists.
+            </SplitHeading>
+            <Reveal>
+              <p className="t-body mt-5">
+                Each project is handled by the specialists it needs, such as designers, developers, automation specialists, marketers
+                and editors, and coordinated under one agency with one point of contact and one standard of quality.
+              </p>
+            </Reveal>
+          </div>
+          <ol className="grid gap-3 sm:grid-cols-2 lg:col-span-7">
+            {chooseReasons.map((r, i) => (
+              <li key={r.title} className="rounded-2xl border border-line bg-surface p-5">
+                <span className="font-display text-sm tabular-nums text-accent-bright">{String(i + 1).padStart(2, "0")}</span>
+                <h3 className="t-h4 mt-2">{r.title}</h3>
+                <p className="mt-1.5 text-[0.95rem] leading-relaxed text-muted">{r.body}</p>
+              </li>
+            ))}
+          </ol>
         </div>
       </section>
 

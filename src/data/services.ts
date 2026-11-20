@@ -21,7 +21,7 @@ export const services: Service[] = [
       "Fast, responsive websites that look credible and make it easy for visitors to get in touch.",
     heroHeadline: "Websites built to earn trust and start conversations.",
     heroDescription:
-      "We design and develop responsive websites for businesses that need a professional online presence, from a focused landing page to a full multi-page build.",
+      "We design and develop responsive websites for businesses that need a professional online presence, from a focused landing page to a full multi page build.",
     intro:
       "A website is often the first place a potential customer decides whether to trust you. We design for clarity first: what you do, who it is for and what to do next. Then we build it to load quickly and work properly on every screen size.",
     ctaHeading: "Ready to build your website?",
@@ -38,7 +38,7 @@ export const services: Service[] = [
           "Many visitors browse on phones. Layouts, tap targets and type are designed for small screens from the start, not squeezed down later.",
       },
       {
-        title: "Slow-loading pages",
+        title: "Slow loading pages",
         description:
           "Heavy images and bloated code cost you visitors. We treat speed as part of the design brief.",
       },
@@ -49,24 +49,24 @@ export const services: Service[] = [
       },
     ],
     deliverables: [
-      { title: "Business website development", description: "Multi-page sites that explain your services and make contact simple." },
-      { title: "E-commerce websites", description: "Online stores built around how your customers browse and buy." },
-      { title: "Landing pages", description: "Single-purpose pages for a campaign, launch or specific offer." },
+      { title: "Business website development", description: "Multi page sites that explain your services and make contact simple." },
+      { title: "Ecommerce websites", description: "Online stores built around how your customers browse and buy." },
+      { title: "Landing pages", description: "Single purpose pages for a campaign, launch or specific offer." },
       { title: "Website redesign", description: "A fresh structure, design and codebase for a site that has outgrown itself." },
-      { title: "Mobile-responsive design", description: "Layouts composed for phone, tablet and desktop, each intentionally." },
-      { title: "Website optimization", description: "Performance, accessibility and on-page improvements for an existing site." },
+      { title: "Mobile responsive design", description: "Layouts composed for phone, tablet and desktop, each intentionally." },
+      { title: "Website optimization", description: "Performance, accessibility and on page improvements for an existing site." },
     ],
     processSteps: [
       { title: "Discovery & requirements", description: "We learn your goals, audience and constraints, and agree what the site needs to do." },
       { title: "Planning & design", description: "Site structure, wireframes and visual design, reviewed with you before build." },
       { title: "Development", description: "Clean, maintainable code with the approved design brought to life across devices." },
-      { title: "Testing & optimization", description: "Cross-device checks, speed and accessibility review, and fixes before launch." },
-      { title: "Launch & handover", description: "Go-live support, plus the access and documentation you need to run the site." },
+      { title: "Testing & optimization", description: "Cross device checks, speed and accessibility review, and fixes before launch." },
+      { title: "Launch & handover", description: "Go live support, plus the access and documentation you need to run the site." },
     ],
     benefits: [
       { title: "Clear first impression", description: "Structured messaging and navigation so visitors understand your offer quickly." },
       { title: "Built to perform", description: "Speed, responsive layouts and accessibility are checked as part of testing, not added afterwards." },
-      { title: "Ready to grow", description: "Component-based builds and handover documentation make later changes straightforward." },
+      { title: "Ready to grow", description: "Component based builds and handover documentation make later changes straightforward." },
     ],
     pricingMode: "quote",
     pricingFactors: [
@@ -79,7 +79,7 @@ export const services: Service[] = [
     packages: [],
     seoTitle: "Web Design & Development",
     seoDescription:
-      "Responsive business websites, landing pages, redesigns and e-commerce builds from Devereux Digitals, designed for clarity and built for speed.",
+      "Responsive business websites, landing pages, redesigns and ecommerce builds from Devereux Digitals, designed for clarity and built for speed.",
     status: "published",
     sortOrder: 1,
   },
@@ -99,15 +99,15 @@ export const services: Service[] = [
     art: "marketing",
     problems: [
       { title: "Activity without a strategy", description: "Posting and promoting without a clear goal makes it hard to know what is working." },
-      { title: "Content with no plan behind it", description: "Ideas arrive in bursts, then stall. A content calendar keeps output steady and on-message." },
+      { title: "Content with no plan behind it", description: "Ideas arrive in bursts, then stall. A content calendar keeps output steady and on message." },
       { title: "Visibility without the right audience", description: "Being seen is not the same as being found by people who might hire you." },
       { title: "Reports that don’t answer the real question", description: "Dashboards full of metrics that never link back to enquiries or business goals." },
     ],
     deliverables: [
       { title: "Marketing strategy", description: "Goals, audiences, positioning and channel priorities in one working document." },
       { title: "Content planning", description: "Themes, formats and a calendar that keeps your message consistent." },
-      { title: "Channel management", description: "Day-to-day publishing and community management on the channels we agree." },
-      { title: "Search visibility groundwork", description: "On-page and technical foundations so the right people can find you." },
+      { title: "Channel management", description: "Day to day publishing and community management on the channels we agree." },
+      { title: "Search visibility groundwork", description: "On page and technical foundations so the right people can find you." },
       { title: "Campaign planning", description: "Launch and seasonal campaigns planned with clear objectives and checkpoints." },
       { title: "Performance reporting", description: "Regular summaries in plain language, tied to your stated goals." },
     ],
@@ -120,7 +120,7 @@ export const services: Service[] = [
     ],
     benefits: [
       { title: "Purpose behind every piece", description: "Each activity maps back to a goal set during the audit." },
-      { title: "Consistent presence", description: "A content plan keeps your brand visible without last-minute scrambling." },
+      { title: "Consistent presence", description: "A content plan keeps your brand visible without last minute scrambling." },
       { title: "Reporting you can read", description: "Summaries explain what happened and what we recommend next." },
     ],
     pricingMode: "quote",
@@ -195,8 +195,8 @@ export const services: Service[] = [
     slug: "ecommerce-solutions",
     bestFor: "Brands selling products online.",
     number: "04",
-    title: "E-commerce Solutions",
-    shortTitle: "E-commerce",
+    title: "Ecommerce Solutions",
+    shortTitle: "Ecommerce",
     shortDescription:
       "Online stores designed around how customers browse, choose and check out.",
     heroHeadline: "Online stores that make buying feel straightforward.",
@@ -216,14 +216,14 @@ export const services: Service[] = [
       { title: "Product page design", description: "Layouts that present imagery, details and options clearly." },
       { title: "Catalogue structure", description: "Categories, collections and navigation organized around customer intent." },
       { title: "Integrations", description: "Connect payments, shipping, inventory and other tools you use." },
-      { title: "Conversion improvements", description: "Checkout and product-page refinements for an existing store." },
-      { title: "Launch support", description: "Testing orders end to end and guiding your team through day-one operations." },
+      { title: "Conversion improvements", description: "Checkout and product page refinements for an existing store." },
+      { title: "Launch support", description: "Testing orders end to end and guiding your team through day one operations." },
     ],
     processSteps: [
       { title: "Requirements & catalogue review", description: "Understand your products, customers and the tools your team uses." },
       { title: "UX & store design", description: "Plan the shopping journey and design key templates for review." },
       { title: "Build & integrate", description: "Build the store and connect payments, shipping and other systems." },
-      { title: "Test checkout & operations", description: "Run test orders, check emails and confirm the back-office flow works." },
+      { title: "Test checkout & operations", description: "Run test orders, check emails and confirm the back office flow works." },
       { title: "Launch & improve", description: "Go live, then review how customers use the store and refine it." },
     ],
     benefits: [
@@ -239,9 +239,9 @@ export const services: Service[] = [
       "Data migration from an existing store",
     ],
     packages: [],
-    seoTitle: "E-commerce Solutions",
+    seoTitle: "Ecommerce Solutions",
     seoDescription:
-      "E-commerce store design and build from Devereux Digitals: catalogue structure, product pages, checkout experience and integrations.",
+      "Ecommerce store design and build from Devereux Digitals: catalogue structure, product pages, checkout experience and integrations.",
     status: "published",
     sortOrder: 4,
   },
@@ -252,7 +252,7 @@ export const services: Service[] = [
     title: "Video & Content",
     shortTitle: "Video & Content",
     shortDescription:
-      "Video, short-form clips and creative assets that tell your story consistently across channels.",
+      "Video, short form clips and creative assets that tell your story consistently across channels.",
     heroHeadline: "Video and content that tell your story consistently.",
     heroDescription:
       "We plan, produce and edit video and creative content that fits your brand and the platforms where your audience spends time.",
@@ -261,17 +261,17 @@ export const services: Service[] = [
     art: "video",
     problems: [
       { title: "A brand story told inconsistently", description: "Different tones and visuals across channels make a business harder to remember." },
-      { title: "No time to produce content", description: "Content slips down the priority list when day-to-day work takes over." },
-      { title: "One format forced onto every platform", description: "A video that suits your website rarely works unchanged in a short-form feed." },
+      { title: "No time to produce content", description: "Content slips down the priority list when day to day work takes over." },
+      { title: "One format forced onto every platform", description: "A video that suits your website rarely works unchanged in a short form feed." },
       { title: "Production quality that undercuts the brand", description: "Poor audio, lighting or editing can weaken an otherwise strong message." },
     ],
     deliverables: [
       { title: "Video production", description: "Concept, planning and filming for brand, product or explainer videos." },
-      { title: "Editing & post-production", description: "Cutting, colour, sound and graphics to a consistent finish." },
-      { title: "Short-form social video", description: "Vertical and square cut-downs designed for feeds." },
+      { title: "Editing & post production", description: "Cutting, colour, sound and graphics to a consistent finish." },
+      { title: "Short form social video", description: "Vertical and square cut downs designed for feeds." },
       { title: "Content planning & scripting", description: "Ideas, scripts and shot lists agreed before cameras roll." },
       { title: "Creative assets", description: "Thumbnails, titles and supporting graphics for each piece." },
-      { title: "Multi-format delivery", description: "Exports sized for the channels you publish on." },
+      { title: "Multi format delivery", description: "Exports sized for the channels you publish on." },
     ],
     processSteps: [
       { title: "Brief & concept", description: "Agree the audience, goal and creative direction." },
@@ -289,13 +289,13 @@ export const services: Service[] = [
     pricingFactors: [
       "Length and number of videos",
       "Shoot days, locations and crew",
-      "Motion graphics and post-production needs",
+      "Motion graphics and post production needs",
       "Number of delivery formats",
     ],
     packages: [],
     seoTitle: "Video & Content",
     seoDescription:
-      "Video production, editing, short-form content and creative assets from Devereux Digitals, planned for your brand and your channels.",
+      "Video production, editing, short form content and creative assets from Devereux Digitals, planned for your brand and your channels.",
     status: "published",
     sortOrder: 5,
   },
@@ -311,11 +311,11 @@ export const services: Service[] = [
     heroDescription:
       "We look at how work really flows through your business, then build small, useful tools and automations where they genuinely help.",
     intro:
-      "Not every problem needs AI, and the useful applications are usually specific. We start by mapping a real workflow, identify where automation or an AI-assisted step would save effort, and prototype it before anything is rolled out to your team.",
+      "Not every problem needs AI, and the useful applications are usually specific. We start by mapping a real workflow, identify where automation or an AI assisted step would save effort, and prototype it before anything is rolled out to your team.",
     art: "ai",
     problems: [
       { title: "Repetitive manual work", description: "Copying data between tools, sorting enquiries or preparing routine documents eats into the day." },
-      { title: "Tools that don’t talk to each other", description: "Information lives in separate systems and gets re-entered by hand." },
+      { title: "Tools that don’t talk to each other", description: "Information lives in separate systems and gets reentered by hand." },
       { title: "Unclear where AI actually helps", description: "It is hard to separate genuine opportunities from hype without looking at a real process." },
       { title: "Prototypes that never reach daily use", description: "Experiments stall when they aren’t connected to how the team works." },
     ],

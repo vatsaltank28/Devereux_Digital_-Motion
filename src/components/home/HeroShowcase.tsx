@@ -11,7 +11,7 @@ import { serviceWork } from "@/data/media";
  * Everything is static for reduced motion.
  */
 const CARDS = [
-  { img: serviceWork["ecommerce-solutions"]![0]!, label: "E-commerce", cls: "hs-card--a" },
+  { img: serviceWork["ecommerce-solutions"]![0]!, label: "Ecommerce", cls: "hs-card--a" },
   { img: serviceWork["branding-creative-design"]![0]!, label: "Branding", cls: "hs-card--b" },
   { img: serviceWork["ai-business-solutions"]![0]!, label: "AI & Automation", cls: "hs-card--c" },
 ];

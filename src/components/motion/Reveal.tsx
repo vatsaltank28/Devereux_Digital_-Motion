@@ -1,7 +1,4 @@
-"use client";
-
-import type { ReactNode } from "react";
-import { m } from "motion/react";
+import type { CSSProperties, ReactNode } from "react";
 
 interface RevealProps {
   children: ReactNode;
@@ -13,20 +10,16 @@ interface RevealProps {
 }
 
 /**
- * Restrained in-view reveal: opacity + small y translate, once. (Motion owns these properties on this node.)
- * Content is visible with JavaScript disabled, see `html:not(.js) [data-reveal]` in globals.css.
+ * Restrained in-view reveal: opacity + small y translate as the block scrolls in.
+ * Pure CSS scroll-driven animation (`animation-timeline: view()`): no animation library, no JavaScript,
+ * no hydration cost, and nothing for React to mismatch. Browsers without support, and reduced motion,
+ * simply show the content (see `[data-reveal]` in globals.css). Works in server components.
  */
 export function Reveal({ children, className, delay = 0, y = 14 }: RevealProps) {
+  const style = { "--reveal-delay": `${delay}s`, "--reveal-y": `${y}px` } as CSSProperties;
   return (
-    <m.div
-      data-reveal
-      className={className}
-      initial={{ opacity: 0, y }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "0px 0px -8% 0px" }}
-      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay }}
-    >
+    <div data-reveal className={className} style={style}>
       {children}
-    </m.div>
+    </div>
   );
 }

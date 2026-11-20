@@ -33,12 +33,12 @@ export function ServiceCard({ service, className }: { service: Service; classNam
   }
 
   return (
-    <SpotlightCard className={cn("group flex h-full min-h-[17rem] flex-col p-6 md:p-7", className)}>
-      <div className="flex items-start justify-between">
+    <SpotlightCard className={cn("group flex h-full flex-col p-5 sm:min-h-[17rem] sm:p-6 md:p-7", className)}>
+      <div className="flex items-start justify-between max-sm:absolute max-sm:right-5 max-sm:top-5">
         <span />
         <ServiceGlyph slug={service.slug} className="text-muted transition-colors duration-300 group-hover:text-ink" />
       </div>
-      <h3 className="t-h4 mt-auto pt-10">
+      <h3 className="t-h4 mt-auto pr-12 sm:pr-0 sm:pt-10">
         <Link
           href={`/services/${service.slug}`}
           className="after:absolute after:inset-0 after:content-[''] focus-visible:outline-none"
@@ -47,14 +47,14 @@ export function ServiceCard({ service, className }: { service: Service; classNam
           {service.title}
         </Link>
       </h3>
-      <p className="mt-3 text-[0.95rem] leading-relaxed text-muted">{service.shortDescription}</p>
+      <p className="mt-2 text-[0.95rem] leading-relaxed text-muted sm:mt-3">{service.shortDescription}</p>
       {service.bestFor && (
-        <p className="best-for mt-4">
+        <p className="best-for mt-3 sm:mt-4">
           <span className="best-for-label">Best for</span>
           <span>{service.bestFor}</span>
         </p>
       )}
-      <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold" aria-hidden="true">
+      <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold sm:mt-6" aria-hidden="true">
         Explore service <ArrowRight size={16} />
       </span>
     </SpotlightCard>

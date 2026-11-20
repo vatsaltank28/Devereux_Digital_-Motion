@@ -1,7 +1,7 @@
 import type { Service } from "@/data/types";
 import { FinalCTA } from "@/components/home/FinalCTA";
 
-/** S10, Service-specific closing CTA; links to the enquiry form with this service pre-selected. */
+/** S10, Service specific closing CTA; links to the enquiry form with this service pre selected. */
 export function ServiceCTA({ service }: { service: Service }) {
   return (
     <FinalCTA

@@ -21,7 +21,7 @@ export interface StageContent {
 export const homeStage: StageContent = {
   hero: {
     title: "Digital experiences that move businesses forward.",
-    body: "A full-service digital agency. We design, build and promote websites, stores, campaigns, content and smart business tools.",
+    body: "We design, build and grow digital experiences for ambitious businesses. From high performing websites and ecommerce stores to AI automation, marketing and creative solutions, we bring everything together to help your business move forward.",
     primary: { label: "Explore Our Services", href: "#services" },
     secondary: { label: "Let’s Talk", href: "/contact" },
   },
@@ -31,7 +31,7 @@ export const homeStage: StageContent = {
       { title: "Web Design & Development", href: "/services/web-design-development" },
       { title: "Digital & Sales Marketing", href: "/services/digital-marketing" },
       { title: "Paid Advertising", href: "/services/paid-advertising" },
-      { title: "E-commerce Solutions", href: "/services/ecommerce-solutions" },
+      { title: "Ecommerce Solutions", href: "/services/ecommerce-solutions" },
       { title: "Video & Content", href: "/services/video-content" },
       { title: "AI & Business Solutions", href: "/services/ai-business-solutions" },
       { title: "Branding & Creative Design", href: "/services/branding-creative-design" },

@@ -5,7 +5,7 @@ import { Reveal } from "@/components/motion/Reveal";
 import { Stars } from "@/components/services/ReviewWall";
 
 /**
- * The client's headline review, in the client-approved testimonial card layout:
+ * The client's headline review, in the client approved testimonial card layout:
  * title + score, stars, quote, client line. The original chat opens from a prominent
  * "See Chat" proof button directly beneath the card.
  */

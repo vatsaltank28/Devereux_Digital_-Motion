@@ -42,12 +42,12 @@ export const included: Record<string, string[]> = {
   ],
   "video-content": [
     "Professional Video Editing",
-    "Short-Form Video Creation",
+    "Short Form Video Creation",
     "YouTube Video Editing",
     "Motion Graphics & Animation",
-    "AI-Generated Video Content",
+    "AI Generated Video Content",
     "Content Strategy & Scriptwriting",
-    "Subtitles, Captions & Post-Production",
+    "Subtitles, Captions & Post Production",
   ],
   "ai-business-solutions": [
     "Business Process Automation",
@@ -55,7 +55,7 @@ export const included: Record<string, string[]> = {
     "AI Chatbot Development",
     "CRM Automation",
     "Lead Capture & Management",
-    "Third-Party Integrations",
+    "Third Party Integrations",
     "Workflow Optimization & Support",
   ],
   "branding-creative-design": [

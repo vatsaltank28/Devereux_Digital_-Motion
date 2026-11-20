@@ -30,7 +30,7 @@ export function FinalCTA({
       <SignalLines className="pointer-events-none absolute -right-[18%] top-1/2 -z-10 h-[150%] max-h-[900px] -translate-y-1/2 opacity-70 md:-right-[6%] md:opacity-100" />
 
       <div className="wrap-wide">
-        <SplitHeading id="cta-title" className="t-h1 max-w-[13ch]">
+        <SplitHeading id="cta-title" className="t-h1 max-w-[17ch]">
           {heading}
         </SplitHeading>
         <Reveal>

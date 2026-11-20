@@ -29,7 +29,7 @@ const PILLARS = [
     line: "What your customers use.",
     services: [
       { title: "Websites & Development", href: "/services/web-design-development" },
-      { title: "E-commerce Solutions", href: "/services/ecommerce-solutions" },
+      { title: "Ecommerce Solutions", href: "/services/ecommerce-solutions" },
       { title: "AI & Business Solutions", href: "/services/ai-business-solutions" },
     ],
   },
@@ -55,7 +55,7 @@ export function HomeHero() {
       <div className="wrap-wide grid items-start gap-12 pb-16 pt-[calc(var(--header-h)+3rem)] lg:grid-cols-12 lg:gap-8 lg:pb-24 lg:pt-[calc(var(--header-h)+4.5rem)]">
         <div className="lg:col-span-6">
           <p className="hero-rise home-eyebrow">
-            <span aria-hidden="true" className="home-eyebrow-dot" /> Full-service digital agency
+            <span aria-hidden="true" className="home-eyebrow-dot" /> Full service digital agency
           </p>
           <h1 id="hero-title" className="mt-6 font-display text-[clamp(2.4rem,1.4rem+3vw,4.25rem)] font-semibold leading-[0.98] tracking-[-0.045em]">
             Digital experiences that move businesses <span className="home-accent-text">forward.</span>
@@ -64,16 +64,16 @@ export function HomeHero() {
             <span className="text-muted">We build</span>
             <RotatingText
               className="home-rotator"
-              words={["high-converting websites", "Shopify stores", "Meta & Google ad campaigns", "brand identities", "AI automations", "scroll-stopping content"]}
+              words={["high converting websites", "Shopify stores", "Meta & Google ad campaigns", "brand identities", "AI automations", "scroll stopping content"]}
             />
           </p>
           <p className="hero-rise t-lead mt-5 max-w-[34rem]" style={{ animationDelay: "0.2s" }}>
             {hero.body}
           </p>
 
-          <ul className="hero-rise mt-10 divide-y divide-line border-y border-line" style={{ animationDelay: "0.28s" }}>
+          <ul className="hero-rise mt-7 divide-y divide-line border-y border-line sm:mt-10" style={{ animationDelay: "0.28s" }}>
             {PILLARS.map((p) => (
-              <li key={p.name} className="grid gap-3 py-5 sm:grid-cols-[8.5rem_1fr] sm:gap-6">
+              <li key={p.name} className="grid gap-2.5 py-3.5 sm:grid-cols-[8.5rem_1fr] sm:gap-6 sm:py-5">
                 <div>
                   <p className="flex items-center gap-2.5 font-display text-xl font-semibold">
                     <span aria-hidden="true" className="size-2.5 rounded-full" style={{ background: p.color, boxShadow: `0 0 12px ${p.color}` }} />
@@ -94,7 +94,7 @@ export function HomeHero() {
             ))}
           </ul>
 
-          <div className="hero-rise mt-10 flex flex-col gap-3 sm:flex-row sm:items-center" style={{ animationDelay: "0.38s" }}>
+          <div className="hero-rise mt-7 flex flex-col gap-3 sm:mt-10 sm:flex-row sm:items-center" style={{ animationDelay: "0.38s" }}>
             <Link href={hero.primary.href} className="btn btn-primary">
               <span>{hero.primary.label}</span>
               <ArrowRight />

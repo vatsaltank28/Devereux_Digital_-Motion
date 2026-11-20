@@ -4,7 +4,7 @@ import type { Faq } from "./types";
  * FAQ content, DRAFT.
  *
  * PRD §9 S09: answers must reflect Devereux Digitals’ real policies. Policies were not supplied,
- * so every answer is deliberately non-committal: it describes how a good project is scoped and
+ * so every answer is deliberately non committal: it describes how a good project is scoped and
  * states that specifics (timelines, revision rounds, payment terms) are confirmed in the written
  * proposal. The client must review and replace these before launch (see README content checklist).
  */
@@ -28,7 +28,7 @@ export const faqs: Faq[] = [
 
   // ── Web design & development ────────────────────────────────────────────
   q("web-design-development", 1, "How long does a website project take?",
-    "A focused landing page and a multi-page business site are very different jobs. We confirm a schedule in the proposal once we understand page count, content readiness and integrations."),
+    "A focused landing page and a multi page business site are very different jobs. We confirm a schedule in the proposal once we understand page count, content readiness and integrations."),
   q("web-design-development", 2, "How many rounds of revisions are included?",
     "The number of review rounds is set out in the proposal for each project. Defined rounds at design and build stages keep feedback focused and the project moving."),
   q("web-design-development", 3, "What do I need to provide?",
@@ -36,7 +36,7 @@ export const faqs: Faq[] = [
   q("web-design-development", 4, "Will I own the website and have access to it?",
     "Ownership and access arrangements are stated in the proposal. We hand over the access and documentation you need to manage the site after launch."),
   q("web-design-development", 5, "Do you provide support after launch?",
-    "Post-launch support and maintenance can be agreed as an option in the proposal, depending on how much help you want."),
+    "Post launch support and maintenance can be agreed as an option in the proposal, depending on how much help you want."),
 
   // ── Digital marketing ───────────────────────────────────────────────────
   q("digital-marketing", 1, "Which channels will you manage?",
@@ -52,15 +52,15 @@ export const faqs: Faq[] = [
   q("paid-advertising", 1, "Who controls the ad budget?",
     "You do. Ad spend is paid to the platforms and set by you; our fees are separate and set out in the proposal."),
   q("paid-advertising", 2, "Can you promise a specific return?",
-    "No. Results depend on your offer, market and budget. We structure campaigns so performance is measurable and decisions are evidence-based."),
+    "No. Results depend on your offer, market and budget. We structure campaigns so performance is measurable and decisions are evidence based."),
   q("paid-advertising", 3, "Who owns the advertising accounts?",
     "We recommend that ads accounts are owned by your business, with us given access to manage them. Arrangements are confirmed in the proposal."),
   q("paid-advertising", 4, "How quickly will I see results?",
     "Campaigns usually need an initial testing period before patterns are clear. We share early signals as they appear and explain what they do and don’t tell us."),
 
-  // ── E-commerce ──────────────────────────────────────────────────────────
-  q("ecommerce-solutions", 1, "Which e-commerce platform do you build on?",
-    "We recommend a platform based on your catalogue, team and budget during the requirements stage. The choice and its trade-offs are explained in the proposal."),
+  // ── Ecommerce ──────────────────────────────────────────────────────────
+  q("ecommerce-solutions", 1, "Which ecommerce platform do you build on?",
+    "We recommend a platform based on your catalogue, team and budget during the requirements stage. The choice and its tradeoffs are explained in the proposal."),
   q("ecommerce-solutions", 2, "Can you migrate my existing store?",
     "Migration of products, customers and content can be scoped when we understand the volume and the current platform."),
   q("ecommerce-solutions", 3, "Who sets up payments and shipping?",

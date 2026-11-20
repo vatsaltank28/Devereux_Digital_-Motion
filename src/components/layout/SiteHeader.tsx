@@ -13,7 +13,7 @@ import { ThemeToggle } from "./ThemeToggle";
 /**
  * Fixed header: transparent over the hero, opaque + blurred after scroll (DESIGN.md §4.1).
  * The menu "belongs" to the path it was opened on, so any navigation (links, browser back/forward)
- * closes it without an effect-driven state update.
+ * closes it without an effect driven state update.
  */
 export function SiteHeader() {
   const pathname = usePathname();

@@ -23,6 +23,15 @@ export const enquirySchema = z.object({
     .pipe(z.email("Enter a valid email address, like name@company.com.")),
   service: z.enum(serviceValues, { error: "Choose the service you’re interested in." }),
   company: z.string().trim().max(200, "Keep this under 200 characters.").optional().default(""),
+  phone: z.string().trim().max(40).optional().default(""),
+  website: z.string().trim().max(300).optional().default(""),
+  budget: z.string().trim().max(60).optional().default(""),
+  timeline: z.string().trim().max(60).optional().default(""),
+  contactPref: z.string().trim().max(40).optional().default(""),
+  /** Answer to the service specific question (e.g. "New website" / "Redesign"). */
+  serviceDetail: z.string().trim().max(500).optional().default(""),
+  pkg: z.string().trim().max(120).optional().default(""),
+  addOns: z.array(z.string().trim().max(80)).max(20).optional().default([]),
   message: z
     .string()
     .trim()

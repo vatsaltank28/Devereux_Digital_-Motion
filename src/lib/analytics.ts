@@ -12,7 +12,15 @@ export type AnalyticsEvent =
   | "cta_click"
   | "contact_form_submit"
   | "contact_form_error"
-  | "case_study_open";
+  | "case_study_open"
+  | "portfolio_filter"
+  | "project_click"
+  | "live_project_click"
+  | "pricing_interaction"
+  | "contact_form_start"
+  | "email_click"
+  | "phone_click"
+  | "whatsapp_click";
 
 type Props = Record<string, string | number | boolean | undefined>;
 

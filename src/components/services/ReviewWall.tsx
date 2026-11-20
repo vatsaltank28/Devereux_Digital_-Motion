@@ -82,7 +82,7 @@ export function ReviewWall({ reviews, serviceTitle }: { reviews: Review[]; servi
     <section id="reviews" aria-labelledby="reviews-title" className="section-tight relative isolate overflow-hidden border-t border-line">
       <div aria-hidden="true" className="review-wall-glow" />
       <div className="wrap-wide">
-        <div className="mb-12 grid gap-6 lg:grid-cols-12 lg:items-end">
+        <div className="mb-7 grid gap-4 md:mb-12 md:gap-6 lg:grid-cols-12 lg:items-end">
           <div className="lg:col-span-7">
             <SectionLabel>Reviews</SectionLabel>
             <SplitHeading id="reviews-title" className="t-h2 mt-5 max-w-[18ch]">
@@ -90,7 +90,7 @@ export function ReviewWall({ reviews, serviceTitle }: { reviews: Review[]; servi
             </SplitHeading>
           </div>
           <div className="flex items-center gap-4 lg:col-span-5 lg:justify-end">
-            <span className="font-display text-5xl font-semibold tracking-tight">5.0</span>
+            <span className="font-display text-4xl font-semibold tracking-tight md:text-5xl">5.0</span>
             <span>
               <Stars />
               <span className="mt-1 block text-sm text-muted">
@@ -99,9 +99,9 @@ export function ReviewWall({ reviews, serviceTitle }: { reviews: Review[]; servi
             </span>
           </div>
         </div>
-        <ul className={cn("grid gap-5 md:grid-cols-2", ordered.length % 3 === 0 ? "lg:grid-cols-3" : "lg:grid-cols-2")}>
+        <ul className={cn("review-rail flex gap-4 pt-3 md:grid md:gap-5 md:grid-cols-2", ordered.length % 3 === 0 ? "lg:grid-cols-3" : "lg:grid-cols-2")}>
           {ordered.map((r, i) => (
-            <li key={r.name + i} className="flex">
+            <li key={r.name + i} className="flex max-md:w-[86%] max-md:shrink-0 max-md:snap-start">
               <Reveal delay={(i % 3) * 0.07} className="flex w-full">
                 <ReviewCard review={r} />
               </Reveal>

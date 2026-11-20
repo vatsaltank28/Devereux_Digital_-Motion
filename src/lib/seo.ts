@@ -40,6 +40,21 @@ export function buildMetadata({ title, description, path, noindex, image }: Meta
   };
 }
 
+export function websiteJsonLd() {
+  return { "@context": "https://schema.org", "@type": "WebSite", name: site.name, url: site.url };
+}
+
+export function serviceJsonLd(s: { title: string; description: string; slug: string }) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: s.title,
+    description: s.description,
+    url: `${site.url}/services/${s.slug}`,
+    provider: { "@type": "ProfessionalService", name: site.name, url: site.url },
+  };
+}
+
 /** Structured data helpers, only describe facts we actually hold (no invented address/ratings). */
 export function organizationJsonLd() {
   return {

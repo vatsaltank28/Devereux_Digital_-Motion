@@ -22,17 +22,18 @@ export function ServiceCardGrid() {
       <li className="flex">
         <Reveal className="flex w-full" delay={0.18}>
           <Link
-            href="/contact"
-            className="group flex min-h-[17rem] w-full flex-col justify-between rounded-[var(--radius-card)] bg-accent p-6 text-[var(--color-on-accent)] transition-colors hover:bg-accent-bright md:p-7"
+            href="/contact?service=not-sure#enquiry"
+            className="group flex min-h-[11rem] w-full flex-col justify-between sm:min-h-[17rem] rounded-[var(--radius-card)] bg-accent p-6 text-[var(--color-on-accent)] transition-colors hover:bg-accent-bright md:p-7"
           >
             <span className="grid size-10 place-items-center self-end rounded-full border border-current/30 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5">
               <ArrowUpRight size={16} />
             </span>
             <span>
-              <span className="t-h4 block">Not sure where to start?</span>
+              <span className="t-h4 block">Not sure which solution your business needs?</span>
               <span className="mt-3 block text-[0.95rem] leading-relaxed opacity-80">
-                Tell us the goal. We’ll recommend the right mix of services and a sensible first step.
+                Tell us what you’re trying to achieve. We’ll help you identify the right starting point.
               </span>
+              <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold">Find the Right Solution →</span>
             </span>
           </Link>
         </Reveal>
