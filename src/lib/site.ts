@@ -15,9 +15,9 @@ export const site = {
   name: "Devereux Digitals",
   /** Confirm legal entity name + brand capitalisation with the client (PRD §18). */
   legalName: "Devereux Digitals" as string | null,
-  tagline: "Full service digital agency",
+  tagline: "A Digital Solutions Agency for Businesses, Brands & Creators.",
   description:
-    "Devereux Digitals helps businesses grow through professional web design, ecommerce development, AI automation, digital marketing, branding and creative solutions.",
+    "Devereux Digitals delivers web design, digital marketing, AI automation, branding and video production for businesses, brands, entrepreneurs and creators.",
   url: (clean(process.env.NEXT_PUBLIC_SITE_URL) ?? "http://localhost:3000").replace(/\/$/, ""),
   locale: "en",
   contact: {
@@ -50,6 +50,7 @@ export const primaryNav: NavItem[] = [
   { label: "Work", href: "/work" },
   { label: "Insights & Guides", href: "/insights" },
   { label: "About Us", href: "/about" },
+  { label: "Meet the team", href: "/team" },
   { label: "Talk to us", href: "/contact" },
 ];
 

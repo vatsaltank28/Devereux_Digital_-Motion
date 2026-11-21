@@ -22,6 +22,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     entry("/insights", 0.8),
     ...articles.map((a) => entry(`/insights/${a.slug}`, 0.6)),
     entry("/about", 0.7),
+    entry("/team", 0.6),
     entry("/contact", 0.9),
   ];
 }

@@ -5,7 +5,7 @@ import type { TitledText } from "./types";
  * no invented years, client counts, awards or results (PRD §8 H03).
  */
 export const hero = {
-  headlineLines: ["Digital experiences", "that move businesses", "forward."],
+  headlineLines: ["Digital experiences", "that move ideas", "forward."],
   description:
     "Devereux Digitals is a full service digital agency. We design, build and promote websites, stores, campaigns, content and smart business tools for companies that want to be taken seriously online.",
 } as const;

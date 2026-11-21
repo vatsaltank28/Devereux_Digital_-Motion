@@ -21,7 +21,7 @@ export interface StageContent {
 export const homeStage: StageContent = {
   hero: {
     title: "Digital experiences that move businesses forward.",
-    body: "We design, build and grow digital experiences for ambitious businesses. From high performing websites and ecommerce stores to AI automation, marketing and creative solutions, we bring everything together to help your business move forward.",
+    body: "We help businesses, brands and creators build, grow and stand out through web development, digital marketing, AI automation, branding and creative solutions.",
     primary: { label: "Explore Our Services", href: "#services" },
     secondary: { label: "Let’s Talk", href: "/contact" },
   },

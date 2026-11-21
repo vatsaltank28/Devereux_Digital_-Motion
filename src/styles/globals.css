@@ -1,6 +1,10 @@
 @import "tailwindcss";
 @import "./tokens.css";
 @import "./features.css";
+@import "./team.css";
+@import "./footer.css";
+@import "./home-updates.css";
+@import "./ezcater.css";
 
 /* Expose tokens to Tailwind utilities (bg-surface-2, text-muted, border-line …) */
 @theme inline {

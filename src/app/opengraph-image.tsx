@@ -53,7 +53,7 @@ export default function OpengraphImage() {
           <div style={{ fontSize: 92, fontWeight: 700, lineHeight: 1, letterSpacing: -3, maxWidth: 820, display: "flex" }}>
             Digital experiences that move businesses forward.
           </div>
-          <div style={{ fontSize: 30, color: "#a5a9b2", display: "flex" }}>Full service digital agency</div>
+          <div style={{ fontSize: 30, color: "#a5a9b2", display: "flex" }}>A Digital Solutions Agency for Businesses, Brands &amp; Creators.</div>
         </div>
       </div>
     ),

@@ -11,7 +11,7 @@ import { Stars } from "@/components/services/ReviewWall";
  */
 export function FeaturedReview() {
   return (
-    <section id="client-review" aria-labelledby="featured-review-title" className="featured-review relative isolate overflow-hidden border-t border-line">
+    <section id="reviews" aria-labelledby="featured-review-title" className="featured-review relative isolate overflow-hidden border-t border-line">
       <div aria-hidden="true" className="featured-review-glow" />
       <div className="wrap-wide flex flex-col items-center">
         <h2 id="featured-review-title" className="sr-only">

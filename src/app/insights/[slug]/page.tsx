@@ -59,7 +59,7 @@ export default async function ArticlePage({ params }: { params: Promise<Params> 
           description: a.description,
           image: `${site.url}${articleCover(a)}`,
           mainEntityOfPage: url,
-          author: { "@type": "Organization", name: site.name, url: site.url },
+          author: { "@type": "Person", name: "Lorenzo Devereux", url: `${site.url}/team` },
           publisher: { "@type": "Organization", name: site.name, url: site.url },
           keywords: [a.primaryKeyword, ...a.keywords].join(", "),
         }}
@@ -82,8 +82,8 @@ export default async function ArticlePage({ params }: { params: Promise<Params> 
             <h1 className="art-title mt-3">{a.title}</h1>
             <p className="t-body mt-4 max-w-[62ch]">{a.description}</p>
             <p className="mt-5 flex items-center gap-3 text-sm text-muted">
-              <span aria-hidden="true" className="art-avatar">DD</span>
-              <span><span className="block font-semibold text-ink">{site.name} team</span>Digital strategy & development</span>
+              <span aria-hidden="true" className="art-avatar">LD</span>
+              <span><span className="block font-semibold text-ink">Lorenzo Devereux</span>Founder & CEO, {site.name}</span>
             </p>
           </div>
         </header>

@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useRef } from "react";
 import { animate, stagger } from "animejs";
 import { serviceWork } from "@/data/media";
@@ -17,9 +18,9 @@ const CARDS = [
 ];
 
 const CHIPS = [
-  { text: "Orders doubled this month", tone: "pink", cls: "hs-chip--1" },
-  { text: "5.0 ★ client rating", tone: "white", cls: "hs-chip--2" },
-  { text: "$20K deal closed from ads", tone: "cobalt", cls: "hs-chip--3" },
+  { text: "Orders doubled this month", tone: "pink", cls: "hs-chip--1", href: "/work", label: "Orders doubled this month: see our work" },
+  { text: "5.0 ★ client rating", tone: "white", cls: "hs-chip--2", href: "/#reviews", label: "5.0 star client rating: read client reviews" },
+  { text: "$20K deal closed from ads", tone: "cobalt", cls: "hs-chip--3", href: "/work", label: "$20K deal closed from ads: see our work" },
 ];
 
 export function HeroShowcase() {
@@ -70,10 +71,10 @@ export function HeroShowcase() {
           </figure>
         ))}
         {CHIPS.map((c) => (
-          <p key={c.text} className={`hs-chip hs-chip--${c.tone} ${c.cls}`}>
+          <Link key={c.text} href={c.href} aria-label={c.label} className={`hs-chip hs-chip-link hs-chip--${c.tone} ${c.cls}`}>
             <span aria-hidden="true" className="hs-chip-dot" />
             {c.text}
-          </p>
+          </Link>
         ))}
       </div>
     </div>

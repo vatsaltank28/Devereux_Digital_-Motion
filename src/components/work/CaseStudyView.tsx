@@ -134,9 +134,9 @@ export function CaseStudyView({ p, cs, prev, next }: { p: PortfolioProject; cs: 
                 <ShotButton dir={dir} s={s} caption className="cs-shot group" sizes="(max-width: 640px) 80vw, (max-width: 1024px) 45vw, 26vw" imgClass="aspect-[16/10] h-auto w-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]" />
               </li>
             ))}
-            <li className="cs-gallery-phone">
+            {cs.mobileShot && <li className="cs-gallery-phone">
               <ShotButton dir={dir} s={cs.mobileShot} className="cs-phone" sizes="(max-width: 640px) 40vw, 14vw" imgClass="h-full w-full object-cover object-top" />
-            </li>
+            </li>}
           </ul>
         </div>
       </section>
@@ -176,15 +176,15 @@ export function CaseStudyView({ p, cs, prev, next }: { p: PortfolioProject; cs: 
             <div className="lg:col-span-5">
               <Label>The result</Label>
               <h2 id="result-title" className="t-h2 mt-3">{cs.resultTitle}</h2>
-              <dl className="cs-stats mt-6">
+              {cs.stats.length > 0 && <dl className="cs-stats mt-6">
                 {cs.stats.map((s) => (
                   <div key={s.label} className="flex flex-col-reverse">
                     <dt className="cs-stat-label">{s.label}</dt>
                     <dd className="cs-stat-num">{s.value}</dd>
                   </div>
                 ))}
-              </dl>
-              <p className="t-caption mt-3">{cs.statsSource}.</p>
+              </dl>}
+              {cs.statsSource && <p className="t-caption mt-3">{cs.statsSource}.</p>}
             </div>
             <ul className="space-y-3 lg:col-span-6 lg:col-start-7 lg:self-center">
               {cs.results.map((r) => (

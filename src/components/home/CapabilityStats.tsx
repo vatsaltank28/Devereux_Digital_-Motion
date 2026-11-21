@@ -20,7 +20,7 @@ const ICONS = {
 const STATS: { to: number; decimals?: number; suffix?: string; label: string; sub: string; icon: React.ReactNode; href: string; cta: string }[] = [
   { to: serviceCount, label: "Services under one roof", sub: "Design, build and grow", icon: ICONS.grid, href: "/#services", cta: "View services" },
   { to: deliverableCount, label: "Specialist deliverables", sub: "From SEO setup to AI chatbots", icon: ICONS.layers, href: "/services", cta: "See what's included" },
-  { to: 5, decimals: 1, label: "Average client rating", sub: "Across every service", icon: ICONS.star, href: "/#client-review", cta: "Read the review" },
+  { to: 5, decimals: 1, label: "Average client rating", sub: "Across every service", icon: ICONS.star, href: "/#reviews", cta: "Read the review" },
   { to: reviewCount, label: "Client reviews", sub: "Several with original chat proof", icon: ICONS.chat, href: "/services/web-design-development#reviews", cta: "See client feedback" },
 ];
 

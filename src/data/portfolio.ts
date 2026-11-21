@@ -82,6 +82,17 @@ export const portfolio: PortfolioProject[] = [
     featured: true,
   },
   {
+    slug: "ezcater",
+    title: "ezCater",
+    category: "web",
+    kind: "project",
+    summary: "Search first website for a workplace food platform, pairing restaurant ordering with organisation wide spend control.",
+    liveUrl: caseStudies["ezcater"]!.liveUrl,
+    caseStudy: caseStudies["ezcater"],
+    media: [{ type: "image", src: `/work/case-studies/ezcater/still-1.jpg`, alt: "ezCater website", width: 1920, height: 1200 }],
+    featured: true,
+  },
+  {
     slug: "apparelnbags",
     title: "ApparelnBags",
     category: "ecommerce",

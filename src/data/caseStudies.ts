@@ -28,12 +28,13 @@ export interface CaseStudy {
   stack: ToolKey[];
   resultTitle: string;
   results: string[];
-  /** Published figures shown as stat tiles. */
+  /** Published figures shown as stat tiles. Empty when the brand publishes none we can verify. */
   stats: { value: string; label: string }[];
   statsSource: string;
   /** Asset folder under /public/work/case-studies/<slug>/ */
   shots: { file: string; alt: string; w: number; h: number }[];
-  mobileShot: { file: string; alt: string; w: number; h: number };
+  /** Omitted when no genuine phone screenshot is available (never faked). */
+  mobileShot?: { file: string; alt: string; w: number; h: number };
   video: { file: string; poster: string; label: string };
 }
 
@@ -448,5 +449,61 @@ export const caseStudies: Record<string, CaseStudy> = {
     shots: shots(["Clip hero: Break through with Clip", "What is clipping? explainer", "A better way to reach the internet", "How it works in three steps"]),
     mobileShot: { file: "mobile.jpg", alt: "Clip on a phone", ...M },
     video: media("clip", "Walkthrough of the Clip website"),
+  },
+  ezcater: {
+    badge: "Website",
+    tags: ["Marketplace", "Search", "Cloudflare"],
+    liveUrl: "https://www.ezcater.com/",
+    domain: "ezcater.com",
+    facts: [
+      { label: "Service", value: "Website design & development" },
+      { label: "Industry", value: "Workplace food & catering" },
+      { label: "Platform", value: "Web marketplace behind Cloudflare" },
+      { label: "Audience", value: "Workplaces & restaurants" },
+    ],
+    client:
+      "ezCater is a workplace food platform. Teams search and order from restaurants for meetings and events anywhere, while companies manage food budgets, users and invoicing in one place. Restaurants use it to reach business customers.",
+    challenges: [
+      "Serve three audiences at once: people ordering food, companies managing spend, and restaurants.",
+      "Make finding the right restaurant fast, wherever the office is.",
+      "Show finance and operations teams that food spend can be controlled.",
+      "Build trust with large organisations on first visit.",
+    ],
+    edge: {
+      title: "Food ordering and spend control in one place",
+      body: "Most catering sites stop at the order. ezCater pairs a search first ordering experience with organisation wide spend management: budgets and users across teams, spend limits by team or location, and centralised invoicing. The page sells to the person ordering lunch and the person approving the bill.",
+      image: 3,
+    },
+    delivered: [
+      "Search first hero: restaurants or cuisines plus location",
+      "One tap quick filters: breakfast, Mexican, sandwiches, individual packaging, gluten free",
+      "Separate journeys for workplaces and restaurants in the navigation",
+      "Spend management section for budgets, limits and invoicing",
+      "Trusted by strip with recognisable client logos",
+      "Live chat and phone support always in reach",
+      "Organisation wide meal program section: restaurants nationwide to feed any location",
+      "ezCater Enterprise feature grid: spend management, detailed reporting, integrations, flexible payment",
+      "Customer case study cards and an enterprise lead form with a Get a call action",
+    ],
+    stack: ["cloudflare"],
+    resultTitle: "What changed for ezCater.",
+    results: [
+      "Ordering starts in the hero, with no hunting through menus",
+      "Common needs such as dietary and packaging filters one tap away",
+      "Finance teams see budget control, not just a menu",
+      "Enterprise trust signals placed before the first scroll ends",
+    ],
+    stats: [],
+    statsSource: "",
+    shots: [
+      { file: "still-1.jpg", alt: "ezCater hero: Great food for workplaces. Anywhere. Anytime. with restaurant search and quick filters", w: 1600, h: 786 },
+      { file: "still-2.jpg", alt: "Your organization-wide meal program, shown over shelves of packed orders", w: 1600, h: 634 },
+      { file: "still-3.jpg", alt: "ezCater Enterprise: spend management, detailed reporting, integrations and payment options", w: 1240, h: 560 },
+      { file: "still-4.jpg", alt: "See and control food spend, all in one place", w: 1600, h: 496 },
+      { file: "still-5.jpg", alt: "Trusted by logos and customer case studies from Care.com, SF Giants, Thales and Rice University", w: 1250, h: 610 },
+      { file: "still-6.jpg", alt: "Enterprise page: Need food for multiple locations? Easy. with a Get a call form", w: 1600, h: 796 },
+      { file: "still-7.jpg", alt: "About ezCater: connecting workplaces to restaurants across the U.S.", w: 1060, h: 830 },
+    ],
+    video: media("ezcater","Walkthrough of the ezCater website"),
   },
 };

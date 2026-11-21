@@ -3,6 +3,7 @@ import { homeStage } from "@/data/stage";
 import { ArrowRight } from "@/components/ui/Icons";
 import { HeroShowcase } from "./HeroShowcase";
 import { RotatingText } from "@/components/reactbits/RotatingText";
+import { site } from "@/lib/site";
 
 /**
  * Landing hero (replaces the cinematic scroll stage, per client feedback).
@@ -55,10 +56,10 @@ export function HomeHero() {
       <div className="wrap-wide grid items-start gap-12 pb-16 pt-[calc(var(--header-h)+3rem)] lg:grid-cols-12 lg:gap-8 lg:pb-24 lg:pt-[calc(var(--header-h)+4.5rem)]">
         <div className="lg:col-span-6">
           <p className="hero-rise home-eyebrow">
-            <span aria-hidden="true" className="home-eyebrow-dot" /> Full service digital agency
+            <span aria-hidden="true" className="home-eyebrow-dot" /> {site.tagline}
           </p>
           <h1 id="hero-title" className="mt-6 font-display text-[clamp(2.4rem,1.4rem+3vw,4.25rem)] font-semibold leading-[0.98] tracking-[-0.045em]">
-            Digital experiences that move businesses <span className="home-accent-text">forward.</span>
+            Digital experiences that move ideas <span className="home-accent-text">forward.</span>
           </h1>
           <p className="hero-rise mt-7 flex flex-wrap items-baseline gap-x-2 font-display text-[clamp(1.25rem,1rem+1vw,1.75rem)] font-medium" style={{ animationDelay: "0.14s" }}>
             <span className="text-muted">We build</span>

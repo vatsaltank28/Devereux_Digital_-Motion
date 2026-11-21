@@ -1,0 +1,7 @@
+/* home-updates styles */
+
+/* Hero proof chips are links (deals/orders -> /work, rating -> /#reviews) */
+.hs-chip-link { text-decoration: none; cursor: pointer; transition: border-color .2s ease, background-color .2s ease, transform .2s ease; }
+.hs-chip-link:hover { border-color: rgba(255,255,255,.5); background: rgba(10,10,14,.92); text-decoration: underline; text-underline-offset: 3px; }
+.hs-chip-link:focus-visible { outline: 2px solid #2f6bff; outline-offset: 3px; }
+#reviews { scroll-margin-top: calc(var(--header-h) + 1rem); }
