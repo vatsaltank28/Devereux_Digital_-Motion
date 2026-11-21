@@ -345,3 +345,36 @@
 .art-cta-title { margin-top: .6rem; font-family: var(--font-display); font-size: clamp(1.35rem, 1.1rem + 1vw, 1.8rem); font-weight: 600; letter-spacing: -.02em; color: var(--color-text); }
 .art-cta-text { margin-top: .5rem; font-size: 1rem; }
 @media (min-width: 1024px) { .cs-gallery:not(:has(.cs-gallery-phone)) { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* About: beliefs, standards, team */
+.about-beliefs { display: grid; gap: clamp(.5rem, .3rem + .8vw, 1rem); padding-block: clamp(1rem, .5rem + 2vw, 2.5rem); font-family: var(--font-display); font-size: clamp(1.7rem, 1.1rem + 2.7vw, 3.75rem); font-weight: 600; line-height: 1.12; letter-spacing: -.025em; text-wrap: balance; }
+.about-standards { background: var(--color-surface); }
+.about-standards-list > div { display: grid; gap: .25rem; padding-block: 1.35rem; border-top: 1px solid var(--color-border); }
+.about-standards-list > div:last-child { border-bottom: 1px solid var(--color-border); }
+.about-standards-list dt { font-family: var(--font-display); font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2.25rem); font-weight: 600; line-height: 1.15; letter-spacing: -.02em; color: var(--color-text); }
+.about-standards-list dd { color: var(--color-text-muted); }
+@media (min-width: 768px) { .about-standards-list > div { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); align-items: baseline; gap: 2rem; } }
+.about-person { display: flex; align-items: center; gap: 1rem; padding-block: 1rem; border-block: 1px solid var(--color-border); }
+.about-person-img { flex: none; width: 5rem; height: 5rem; border-radius: 999px; object-fit: cover; object-position: 50% 30%; }
+
+/* Insights: scannable guide index */
+.guide-index { border-top: 1px solid var(--color-border); }
+.guide-index > li { border-bottom: 1px solid var(--color-border); }
+.guide-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: .3rem 1.25rem; padding-block: 1.15rem; transition: color .2s; }
+.guide-row:focus-visible { outline: 2px solid var(--color-accent-bright); outline-offset: 2px; }
+.guide-row-title { font-family: var(--font-display); font-size: clamp(1.1rem, 1rem + .45vw, 1.4rem); font-weight: 600; line-height: 1.25; letter-spacing: -.012em; color: var(--color-text); transition: color .2s; text-wrap: balance; }
+.guide-row-for { grid-row: 2; font-size: .9rem; color: var(--color-text-muted); }
+.guide-row-time { grid-column: 2; grid-row: 1; padding-top: .2rem; font-size: .8rem; font-variant-numeric: tabular-nums; color: var(--color-text-muted); white-space: nowrap; }
+@media (hover: hover) { .guide-row:hover .guide-row-title { color: var(--color-accent-bright); } }
+
+/* Article reading refinements */
+@media (min-width: 1024px) { .art-layout { grid-template-columns: 3.5rem minmax(0, 42rem) minmax(0, 1fr); gap: 3rem; } }
+.art-section { margin-top: clamp(2.75rem, 2.3rem + 1.5vw, 3.75rem); }
+.art-body p + p { margin-top: 1.25rem; }
+.art-cta { margin-top: 3.5rem; padding: clamp(1.5rem, 1.2rem + 1.2vw, 2.25rem); border-color: var(--color-border-strong); background: var(--color-surface); }
+.art-cta-title { margin-top: 0; }
+.art-cta .btn { max-width: 100%; white-space: normal; text-align: center; }
+.review-chat-link { min-height: 1.5rem; }
+
+/* Home hero: keep the rotating phrase on its own line so changing words never shift the layout. */
+@media (max-width: 1279px) { .home-rotator { flex-basis: 100%; white-space: nowrap; } }

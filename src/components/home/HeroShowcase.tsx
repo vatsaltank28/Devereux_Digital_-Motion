@@ -19,7 +19,7 @@ const CARDS = [
 
 const CHIPS = [
   { text: "Orders doubled this month", tone: "pink", cls: "hs-chip--1", href: "/work", label: "Orders doubled this month: see our work" },
-  { text: "5.0 ★ client rating", tone: "white", cls: "hs-chip--2", href: "/#reviews", label: "5.0 star client rating: read client reviews" },
+  { text: "5.0 ★ client rating", tone: "white", cls: "hs-chip--2", href: "/#reviews", label: "5.0 ★ client rating: read client reviews" },
   { text: "$20K deal closed from ads", tone: "cobalt", cls: "hs-chip--3", href: "/work", label: "$20K deal closed from ads: see our work" },
 ];
 

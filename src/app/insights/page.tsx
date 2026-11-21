@@ -5,13 +5,12 @@ import { articles, articleCover, categoryOf, insightCategories, readMinutes } fr
 import { buildMetadata, breadcrumbJsonLd } from "@/lib/seo";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { PageHero } from "@/components/ui/PageHero";
-import { InsightCard } from "@/components/insights/InsightCard";
 import { FinalCTA } from "@/components/home/FinalCTA";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Insights & Guides: Websites, E-commerce, AI Automation & Software",
+  title: "Insights & Guides: Websites, Ecommerce, AI Automation & Software",
   description:
-    "Practical guides for business owners on websites that generate leads, e-commerce stores that convert, AI automation and custom software. Written by the Devereux Digitals team.",
+    "Practical guides for business owners, each solving one specific problem with a website, online store, automation or custom software.",
   path: "/insights",
   image: articleCover(articles[0]!),
 });
@@ -24,8 +23,8 @@ export default function InsightsPage() {
       <JsonLd data={breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Insights & Guides", path: "/insights" }])} />
       <PageHero
         label="Insights & Guides"
-        title="Practical guides for growing businesses."
-        description="Clear, no fluff advice on websites, online stores, AI automation and custom software. Real problems, practical fixes and the tools to use."
+        title="Specific answers to digital problems."
+        description="Practical guides for businesses on websites, online stores, automation and software. One problem per guide."
         trail={[{ name: "Home", href: "/" }, { name: "Insights & Guides" }]}
       />
 
@@ -41,6 +40,7 @@ export default function InsightsPage() {
                 <Link href={`/insights/${featured.slug}`} className="after:absolute after:inset-0 after:content-[''] focus-visible:outline-none">{featured.title}</Link>
               </h2>
               <p className="t-body mt-3">{featured.excerpt}</p>
+              {featured.forWho && <p className="mt-3 text-sm text-muted">For: {featured.forWho}</p>}
               <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-accent-bright" aria-hidden="true">Read the guide <span className="transition-transform group-hover:translate-x-0.5">→</span></span>
             </div>
           </article>
@@ -59,19 +59,22 @@ export default function InsightsPage() {
         const list = articles.filter((a) => a.category === c.id);
         return (
           <section key={c.id} id={c.id} aria-labelledby={`${c.id}-title`} className="section-tight border-t border-line scroll-mt-[calc(var(--header-h)+1rem)]">
-            <div className="wrap-wide">
-              <div className="mb-5 flex flex-wrap items-end justify-between gap-3 md:mb-7">
-                <div>
-                  <p className="cs-label">{c.short}</p>
-                  <h2 id={`${c.id}-title`} className="t-h2 mt-3">{c.label}</h2>
-                  <p className="t-body mt-2 max-w-[52ch]">{c.blurb}</p>
+            <div className="wrap-wide grid gap-6 lg:grid-cols-12 lg:gap-12">
+              <div className="lg:col-span-4">
+                <div className="lg:sticky lg:top-[calc(var(--header-h)+2rem)]">
+                  <h2 id={`${c.id}-title`} className="t-h3">{c.short}</h2>
+                  <p className="t-body mt-2 max-w-[34ch]">{c.blurb}</p>
+                  <Link href={`/services/${c.service}`} className="link-arrow mt-2 inline-flex min-h-11 items-center text-sm" aria-label={`Related service for ${c.short}`}>Related service</Link>
                 </div>
-                <Link href={`/services/${c.service}`} className="link-arrow inline-flex min-h-11 items-center text-sm">Related service</Link>
               </div>
-              <ul className="svc-cs">
+              <ul className="guide-index lg:col-span-8">
                 {list.map((a) => (
-                  <li key={a.slug} className="flex">
-                    <InsightCard article={a} className="w-full" />
+                  <li key={a.slug}>
+                    <Link href={`/insights/${a.slug}`} className="guide-row">
+                      <span className="guide-row-title">{a.title}</span>
+                      <span className="guide-row-for">{a.forWho}</span>
+                      <span className="guide-row-time">{readMinutes(a)} min</span>
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -80,7 +83,12 @@ export default function InsightsPage() {
         );
       })}
 
-      <FinalCTA location="insights-final-cta" />
+      <FinalCTA
+        heading="Don't see your problem here?"
+        description="Tell us what you're working through."
+        primaryLabel="Ask us directly"
+        location="insights-final-cta"
+      />
     </>
   );
 }

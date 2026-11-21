@@ -64,7 +64,7 @@ export function ReviewCard({ review }: { review: Review }) {
       <div className="mt-4 flex min-h-6 items-center justify-between text-sm">
         <span className="text-subtle">{review.chat ? "Verified with chat" : "Client review"}</span>
         {review.chat && (
-          <Lightbox image={review.chat} label={`See the original chat from ${review.name}`} caption="Original client chat" className="review-chat-link">
+          <Lightbox image={review.chat} label={`See Chat from ${review.name}`} caption="Original client chat" className="review-chat-link">
             See Chat <span aria-hidden="true">→</span>
           </Lightbox>
         )}

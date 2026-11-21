@@ -47,7 +47,7 @@ export function FeaturedReview() {
               </span>
               <Lightbox
                 image={featuredReviewImage}
-                label={`See the original chat from ${featuredReview.name}`}
+                label={`See Chat from ${featuredReview.name}`}
                 caption="Original client chat (names blurred for privacy)"
                 className="chat-pill"
               >

@@ -294,7 +294,7 @@ export const caseStudies: Record<string, CaseStudy> = {
       { value: "1.4B+", label: "verified business emails" },
     ],
     statsSource: "Figures as published on seamless.ai",
-    shots: shots(["Seamless.AI hero: The World’s Best Go-To-Market Data", "Products across the Seamless platform", "Engagement Hub for multi channel outreach", "100% credit back protection"]),
+    shots: shots(["Seamless.AI hero: The World’s Best Go To Market Data", "Products across the Seamless platform", "Engagement Hub for multi channel outreach", "100% credit back protection"]),
     mobileShot: { file: "mobile.jpg", alt: "Seamless.AI on a phone", ...M },
     video: media("seamless-ai", "Walkthrough of the Seamless.AI website"),
   },
@@ -497,7 +497,7 @@ export const caseStudies: Record<string, CaseStudy> = {
     statsSource: "",
     shots: [
       { file: "still-1.jpg", alt: "ezCater hero: Great food for workplaces. Anywhere. Anytime. with restaurant search and quick filters", w: 1600, h: 786 },
-      { file: "still-2.jpg", alt: "Your organization-wide meal program, shown over shelves of packed orders", w: 1600, h: 634 },
+      { file: "still-2.jpg", alt: "Your organization wide meal program, shown over shelves of packed orders", w: 1600, h: 634 },
       { file: "still-3.jpg", alt: "ezCater Enterprise: spend management, detailed reporting, integrations and payment options", w: 1240, h: 560 },
       { file: "still-4.jpg", alt: "See and control food spend, all in one place", w: 1600, h: 496 },
       { file: "still-5.jpg", alt: "Trusted by logos and customer case studies from Care.com, SF Giants, Thales and Rice University", w: 1250, h: 610 },

@@ -871,13 +871,6 @@ html[data-over-stage="1"] header button { color: #fff !important; border-color: 
   background: radial-gradient(120% 80% at 30% 10%, color-mix(in srgb, var(--color-accent) 30%, transparent), transparent 60%), var(--color-surface); }
 .founder-mono { position: absolute; inset: 0; display: grid; place-items: center; font-family: var(--font-display); font-weight: 600;
   font-size: clamp(5rem, 3rem + 8vw, 9rem); letter-spacing: -.05em; color: color-mix(in srgb, var(--color-text) 85%, transparent); }
-.founder-tag { position: absolute; left: 1rem; right: 1rem; bottom: 1rem; padding: .9rem 1rem; border-radius: 16px;
-  background: color-mix(in srgb, var(--color-bg) 70%, transparent); backdrop-filter: blur(10px); border: 1px solid var(--color-border); }
-.commit-card { height: 100%; padding: 1.5rem; border-radius: 20px; border: 1px solid var(--color-border); background: var(--color-surface);
-  transition: transform .4s var(--ease-out), border-color .4s; }
-.commit-card:hover { transform: translateY(-3px); border-color: color-mix(in srgb, var(--color-accent) 50%, transparent); }
-.commit-icon { display: inline-grid; place-items: center; width: 2.5rem; height: 2.5rem; border-radius: 12px; color: var(--color-accent-bright);
-  background: color-mix(in srgb, var(--color-accent) 12%, transparent); }
 
 /* Contact enquiry form */
 .form-step { display: flex; align-items: center; gap: .75rem; margin-bottom: 1.25rem; }

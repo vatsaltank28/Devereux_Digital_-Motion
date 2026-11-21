@@ -81,6 +81,7 @@ export default async function ArticlePage({ params }: { params: Promise<Params> 
             <p className="insight-meta mt-5"><span>{cat.label}</span><span aria-hidden="true">·</span><span>{readMinutes(a)} min read</span></p>
             <h1 className="art-title mt-3">{a.title}</h1>
             <p className="t-body mt-4 max-w-[62ch]">{a.description}</p>
+            {a.forWho && <p className="mt-3 text-sm font-medium text-ink">For: {a.forWho}</p>}
             <p className="mt-5 flex items-center gap-3 text-sm text-muted">
               <span aria-hidden="true" className="art-avatar">LD</span>
               <span><span className="block font-semibold text-ink">Lorenzo Devereux</span>Founder & CEO, {site.name}</span>
@@ -139,18 +140,25 @@ export default async function ArticlePage({ params }: { params: Promise<Params> 
             </section>
 
             <aside className="art-cta" aria-labelledby="art-cta-title">
-              <p className="cs-label">{service ? service.title : "Work with us"}</p>
-              <p id="art-cta-title" className="art-cta-title">Ready to put this into practice?</p>
-              <p className="art-cta-text">Tell us where you are today and we will show you the most valuable next step for your business.</p>
-              <div className="mt-5 flex flex-wrap gap-3">
-                <LinkButton href="/contact" location={`insight-cta:${a.slug}`} arrow>Talk to us</LinkButton>
+              <p id="art-cta-title" className="art-cta-title">{a.cta?.title ?? "Want to put this into practice?"}</p>
+              <p className="art-cta-text">{a.cta?.text ?? "Tell us where things stand today."}</p>
+              <div className="mt-5 flex flex-wrap items-center gap-x-6 gap-y-3">
+                <LinkButton href={service ? `/contact?service=${service.slug}` : "/contact"} location={`insight-cta:${a.slug}`} arrow>
+                  {a.cta?.label ?? "Start a conversation"}
+                </LinkButton>
                 {service && (
-                  <LinkButton href={`/services/${service.slug}`} variant="secondary" location={`insight-service:${a.slug}`}>
-                    Explore {service.shortTitle}
-                  </LinkButton>
+                  <Link href={`/services/${service.slug}`} className="link-quiet inline-flex min-h-11 items-center text-sm">
+                    See our {service.shortTitle} service
+                  </Link>
                 )}
               </div>
             </aside>
+
+            <p className="mt-8">
+              <Link href={`/insights#${cat.id}`} className="link-quiet inline-flex min-h-11 items-center text-sm">
+                Back to {cat.short} guides
+              </Link>
+            </p>
           </div>
 
           <nav className="art-toc" aria-label="On this page">

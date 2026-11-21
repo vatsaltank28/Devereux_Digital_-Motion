@@ -9,9 +9,9 @@
 export type InsightCategory = "web" | "ecommerce" | "automation" | "software";
 
 export const insightCategories: { id: InsightCategory; label: string; short: string; service: string; blurb: string }[] = [
-  { id: "web", label: "Website Design & Development", short: "Websites", service: "web-design-development", blurb: "Turn your website into your best salesperson." },
-  { id: "ecommerce", label: "E-commerce Development", short: "E-commerce", service: "ecommerce-solutions", blurb: "Stores that convert, fulfil and bring buyers back." },
-  { id: "automation", label: "AI Automation & Business Systems", short: "AI & Automation", service: "ai-business-solutions", blurb: "Systems that follow up, qualify and run themselves." },
+  { id: "web", label: "Website Design & Development", short: "Websites", service: "web-design-development", blurb: "For when the site is live but the enquiries are not." },
+  { id: "ecommerce", label: "Ecommerce Development", short: "Ecommerce", service: "ecommerce-solutions", blurb: "From the first product view to the second order." },
+  { id: "automation", label: "AI Automation & Business Systems", short: "AI & Automation", service: "ai-business-solutions", blurb: "Where automation earns its place, and where it doesn't." },
   { id: "software", label: "Web Applications & Custom Software", short: "Custom Software", service: "ai-business-solutions", blurb: "When spreadsheets and off the shelf tools run out." },
 ];
 
@@ -37,6 +37,10 @@ export interface Article {
   keywords: string[];
   /** Short card summary. */
   excerpt: string;
+  /** Specific reader and problem (from strategy.ts). */
+  forWho?: string;
+  /** Topic-specific closing call to action (from strategy.ts). */
+  cta?: { title: string; text: string; label: string };
   intro: string[];
   takeaways: string[];
   sections: { id: string; title: string; blocks: Block[] }[];

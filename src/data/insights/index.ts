@@ -3,33 +3,17 @@ import { webArticles } from "./web";
 import { ecommerceArticles } from "./ecommerce";
 import { automationArticles } from "./automation";
 import { softwareArticles } from "./software";
-import { extras } from "./extras";
-import { extras2, extraFaq } from "./extras2";
+import { strategy } from "./strategy";
 
 export * from "./types";
 
-/** Append the worked example, common mistakes and checklist sections (see extras.ts). */
-const withExtras = (a: Article): Article => {
-  const x = extras[a.slug];
-  const y = extras2[a.slug];
-  if (!x) return a;
-  const f = extraFaq[a.slug];
-  return {
-    ...a,
-    faqs: f && a.faqs.length < 4 ? [...a.faqs, f] : a.faqs,
-    sections: [
-      ...a.sections,
-      { id: "example", title: x.example.title, blocks: x.example.paras.map((text) => ({ t: "p" as const, text })) },
-      { id: "mistakes", title: "Common mistakes to avoid", blocks: [{ t: "ul" as const, items: x.mistakes }] },
-      ...(y ? [{ id: "measure", title: "How to measure success", blocks: y.measure.map((text) => ({ t: "p" as const, text })) }] : []),
-      { id: "checklist", title: "Your action checklist", blocks: [{ t: "ol" as const, items: x.checklist }] },
-      ...(y ? [{ id: "questions", title: "Questions to ask before you start", blocks: [{ t: "ul" as const, items: y.questions }] }] : []),
-    ],
-  };
+/** All 21 articles in content plan order. */
+const withStrategy = (a: Article): Article => {
+  const s = strategy[a.slug];
+  return s ? { ...a, title: s.headline, excerpt: s.excerpt, forWho: s.forWho, cta: s.cta } : a;
 };
 
-/** All 21 articles in content plan order. */
-export const articles: Article[] = [...webArticles, ...ecommerceArticles, ...automationArticles, ...softwareArticles].map(withExtras);
+export const articles: Article[] = [...webArticles, ...ecommerceArticles, ...automationArticles, ...softwareArticles].map(withStrategy);
 
 const blockText = (b: Block): string => {
   switch (b.t) {
