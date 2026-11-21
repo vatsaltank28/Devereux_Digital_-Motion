@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
+import Script from "next/script";
 import { site } from "@/lib/site";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/seo";
 import { SiteHeader } from "@/components/layout/SiteHeader";
@@ -9,13 +10,13 @@ import "@/styles/globals.css";
 const display = Space_Grotesk({
   subsets: ["latin"],
   variable: "--font-space-grotesk",
-  display: "swap",
+  display: "optional",
 });
 
 const body = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
-  display: "swap",
+  display: "optional",
 });
 
 export const metadata: Metadata = {
@@ -48,6 +49,8 @@ export const viewport: Viewport = {
 };
 
 import { JsFlag } from "@/components/layout/JsFlag";
+import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
+import { DeferredUI } from "@/components/layout/DeferredUI";
 
 /** Marks the document as JS-enabled before first paint so motion pre-states only apply when JS can resolve them. */
 const jsFlag = `document.documentElement.classList.add('js');try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t}catch(e){}`;
@@ -56,7 +59,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang={site.locale} className={`${display.variable} ${body.variable}`} suppressHydrationWarning>
       <head>
-        <script dangerouslySetInnerHTML={{ __html: jsFlag }} />
+        <Script id="js-flag" strategy="beforeInteractive" dangerouslySetInnerHTML={{ __html: jsFlag }} />
       </head>
       <body suppressHydrationWarning>
         <JsFlag />
@@ -70,6 +73,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </main>
             <SiteFooter />
           </div>
+        <WhatsAppButton />
+        <DeferredUI />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify([organizationJsonLd(), websiteJsonLd()]) }}

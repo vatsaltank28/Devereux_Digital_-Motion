@@ -38,7 +38,7 @@ export function WorkGrid({ initial = "all" }: { initial?: PortfolioCategory | "a
       <ul className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-5">
         {list.map((p, i) => (
           <li key={p.slug} className="work-grid-item flex" style={{ animationDelay: `${Math.min(i, 8) * 40}ms` }}>
-            <ProjectCard project={p} className="w-full" priority={i < 3} />
+            <ProjectCard project={p} className="w-full" priority={i < 3} headingLevel={2} />
           </li>
         ))}
       </ul>

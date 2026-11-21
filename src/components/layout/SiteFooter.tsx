@@ -4,6 +4,7 @@ import { site, primaryNav, legalNav } from "@/lib/site";
 import { publishedServices } from "@/data/services";
 import { LogoMark } from "@/components/visuals/LogoMark";
 import { CurrentYear } from "./CurrentYear";
+import { CookieSettingsLink } from "./CookieSettingsLink";
 
 /** Complete footer (PRD §7.3). Contact details and socials render only when approved + configured. */
 export function SiteFooter() {
@@ -63,6 +64,9 @@ export function SiteFooter() {
                 </Link>
               </li>
             ))}
+            <li>
+              <CookieSettingsLink />
+            </li>
           </ul>
         </div>
       </div>

@@ -1,4 +1,5 @@
 import { serviceWork, type MediaImage } from "./media";
+import { caseStudies, type CaseStudy } from "./caseStudies";
 
 /**
  * PORTFOLIO, built only from work supplied in the client's Services folder (public/work).
@@ -47,6 +48,8 @@ export interface PortfolioProject {
   liveUrl?: string;
   media: PortfolioMedia[];
   featured?: boolean;
+  /** Full case study write up (see caseStudies.ts). */
+  caseStudy?: CaseStudy;
 }
 
 const img = (service: string, n: number, alt?: string): PortfolioMedia => {
@@ -57,13 +60,89 @@ const img = (service: string, n: number, alt?: string): PortfolioMedia => {
 
 export const portfolio: PortfolioProject[] = [
   {
+    slug: "reloop",
+    title: "Reloop",
+    category: "web",
+    kind: "project",
+    summary: "Website for an AI Chief Marketing Officer that plans, creates and schedules a brand’s marketing.",
+    liveUrl: caseStudies["reloop"]!.liveUrl,
+    caseStudy: caseStudies["reloop"],
+    media: [{ type: "image", src: `/work/case-studies/reloop/still-1.jpg`, alt: "Reloop website", width: 1920, height: 1200 }],
+    featured: true,
+  },
+  {
+    slug: "apparelnbags",
+    title: "ApparelnBags",
+    category: "ecommerce",
+    kind: "project",
+    summary: "Fast Next.js storefront for a 15,000+ product promotional and wholesale apparel catalogue.",
+    liveUrl: caseStudies["apparelnbags"]!.liveUrl,
+    caseStudy: caseStudies["apparelnbags"],
+    media: [{ type: "image", src: `/work/case-studies/apparelnbags/still-1.jpg`, alt: "ApparelnBags website", width: 1920, height: 1200 }],
+    featured: true,
+  },
+  {
+    slug: "anhem",
+    title: "Anhem",
+    category: "ecommerce",
+    kind: "project",
+    summary: "Conversion focused Shopify store for premium, PFA free Apple Watch bands.",
+    liveUrl: caseStudies["anhem"]!.liveUrl,
+    caseStudy: caseStudies["anhem"],
+    media: [{ type: "image", src: `/work/case-studies/anhem/still-1.jpg`, alt: "Anhem website", width: 1920, height: 1200 }],
+    featured: true,
+  },
+  {
+    slug: "zinff",
+    title: "Zinff Optical",
+    category: "ecommerce",
+    kind: "project",
+    summary: "Price led eyewear store selling prescription glasses online from $9.",
+    liveUrl: caseStudies["zinff"]!.liveUrl,
+    caseStudy: caseStudies["zinff"],
+    media: [{ type: "image", src: `/work/case-studies/zinff/still-1.jpg`, alt: "Zinff Optical website", width: 1920, height: 1200 }],
+    featured: true,
+  },
+  {
+    slug: "seamless-ai",
+    title: "Seamless.AI",
+    category: "ai",
+    kind: "project",
+    summary: "Webflow site for an AI lead generation platform with sales agents and verified data.",
+    liveUrl: caseStudies["seamless-ai"]!.liveUrl,
+    caseStudy: caseStudies["seamless-ai"],
+    media: [{ type: "image", src: `/work/case-studies/seamless-ai/still-1.jpg`, alt: "Seamless.AI website", width: 1920, height: 1200 }],
+    featured: true,
+  },
+  {
+    slug: "fin-ai",
+    title: "Fin",
+    category: "ai",
+    kind: "project",
+    summary: "Product site for an AI customer service agent with a 76% average resolution rate.",
+    liveUrl: caseStudies["fin-ai"]!.liveUrl,
+    caseStudy: caseStudies["fin-ai"],
+    media: [{ type: "image", src: `/work/case-studies/fin-ai/still-1.jpg`, alt: "Fin website", width: 1920, height: 1200 }],
+    featured: true,
+  },
+  {
+    slug: "systemaops",
+    title: "SystemaOps",
+    category: "ai",
+    kind: "project",
+    summary: "Website for an AI automation and Odoo ERP agency, built problem first.",
+    liveUrl: caseStudies["systemaops"]!.liveUrl,
+    caseStudy: caseStudies["systemaops"],
+    media: [{ type: "image", src: `/work/case-studies/systemaops/still-1.jpg`, alt: "SystemaOps website", width: 1920, height: 1200 }],
+    featured: true,
+  },
+  {
     slug: "hosportal-website-redesign",
     title: "HosPortal website redesign",
     category: "web",
     kind: "project",
     summary: "A before and after redesign of the HosPortal healthcare rostering website, with a clearer hero, product visuals and feature layout.",
     media: [img("web-design-development", 2)],
-    featured: true,
   },
   {
     slug: "recruitment-website-redesign",
@@ -88,7 +167,6 @@ export const portfolio: PortfolioProject[] = [
     kind: "project",
     summary: "Product page design for a fashion store, shown on desktop and mobile, with size selection, reviews and a clear add to bag flow.",
     media: [img("ecommerce-solutions", 3, "Aven Row product page on desktop"), img("ecommerce-solutions", 1, "Aven Row product pages on mobile")],
-    featured: true,
   },
   {
     slug: "caspara-product-page-redesign",
@@ -113,7 +191,6 @@ export const portfolio: PortfolioProject[] = [
     kind: "project",
     summary: "A Telegram bot that posts scheduled follow up reminders for CRM leads, with lead details, priority and status in each message.",
     media: [img("ai-business-solutions", 3)],
-    featured: true,
   },
   {
     slug: "custom-crm-dashboard",
@@ -200,7 +277,7 @@ export const portfolio: PortfolioProject[] = [
 
 /** Thumbnail for any media item (videos use their poster). */
 export const coverImage = (m: PortfolioMedia | undefined): MediaImage => {
-  if (!m) return { src: "/work/web-design-development/02.jpg", alt: "", width: 1356, height: 904 };
+  if (!m) return { src: "/work/web-design-development/hosportal-redesign.jpg", alt: "", width: 1280, height: 854 };
   return m.type === "video" ? m.poster : m;
 };
 

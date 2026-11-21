@@ -3,8 +3,8 @@ export interface MediaImage { src: string; alt: string; width: number; height: n
 
 export const serviceWork: Record<string, MediaImage[]> = {
   "web-design-development": [
-    { src: "/work/web-design-development/01.jpg", alt: "Recruitment website redesign, before and after", width: 1032, height: 774 },
-    { src: "/work/web-design-development/02.jpg", alt: "HosPortal website redesign, before and after", width: 1356, height: 904 },
+    { src: "/work/web-design-development/recruitment-redesign.jpg", alt: "Recruitment website redesign, before and after", width: 1280, height: 960 },
+    { src: "/work/web-design-development/hosportal-redesign.jpg", alt: "HosPortal website redesign, before and after", width: 1280, height: 854 },
     { src: "/work/web-design-development/03.jpg", alt: "Search Console clicks and impressions", width: 1800, height: 934 },
     { src: "/work/web-design-development/04.jpg", alt: "Organic traffic recovery report", width: 1178, height: 1006 },
     { src: "/work/web-design-development/05.jpg", alt: "Site speed and Core Web Vitals report", width: 1848, height: 1270 },

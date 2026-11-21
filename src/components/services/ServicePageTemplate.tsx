@@ -15,6 +15,7 @@ import { ReviewWall } from "./ReviewWall";
 import { ProcessSteps } from "./ProcessSteps";
 import { WhatToExpect } from "./WhatToExpect";
 import { ServiceExtras } from "./ServiceExtras";
+import { ToolLogos } from "./ToolLogos";
 import { projectsForService } from "@/data/portfolio";
 import { ServicePricing } from "./ServicePricing";
 import { getPricing } from "@/data/pricing";
@@ -50,6 +51,7 @@ export function ServicePageTemplate({ service }: { service: Service }) {
       <ServiceHero service={service} cover={work[0]} />
       <IncludedList items={included[service.slug] ?? []} />
       <ServiceExtras slug={service.slug} />
+      <ToolLogos slug={service.slug} />
       {!isEditing && <WorkGallery images={work} serviceTitle={service.title} projects={projectsForService(service.slug)} />}
       {price && <ServicePricing pricing={price} slug={service.slug} serviceTitle={service.shortTitle} />}
       {service.processSteps.length > 0 && <ProcessSteps steps={service.processSteps} />}

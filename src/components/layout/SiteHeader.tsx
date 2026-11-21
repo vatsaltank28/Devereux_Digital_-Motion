@@ -7,8 +7,12 @@ import { site, ctaLabels } from "@/lib/site";
 import { cn } from "@/lib/cn";
 import { LogoMark } from "@/components/visuals/LogoMark";
 import { LinkButton } from "@/components/ui/Button";
-import { NavigationOverlay } from "./NavigationOverlay";
+import dynamic from "next/dynamic";
 import { ThemeToggle } from "./ThemeToggle";
+import { DesktopNav } from "./DesktopNav";
+
+// The full screen menu is only needed after "Menu" is tapped: keep it out of the initial bundle.
+const NavigationOverlay = dynamic(() => import("./NavigationOverlay").then((m) => m.NavigationOverlay), { ssr: false });
 
 /**
  * Fixed header: transparent over the hero, opaque + blurred after scroll (DESIGN.md §4.1).
@@ -57,6 +61,8 @@ export function SiteHeader() {
             <span className="whitespace-nowrap font-display text-[1.02rem] font-semibold tracking-tight sm:text-[1.15rem]">{site.name}</span>
           </Link>
 
+          <DesktopNav />
+
           <div className="flex items-center gap-2 sm:gap-3">
             <ThemeToggle />
             <LinkButton href="/contact" variant="secondary" size="sm" className="hidden md:inline-flex" location="header">
@@ -69,7 +75,7 @@ export function SiteHeader() {
               aria-expanded={open}
               aria-controls="site-menu"
               onClick={() => setOpenedOn(pathname)}
-              className="flex min-h-11 min-w-11 items-center justify-center gap-3 rounded-full border border-line-strong px-4 text-sm font-semibold transition-colors hover:border-[var(--color-text)]"
+              className="flex min-h-11 min-w-11 items-center justify-center gap-3 rounded-full border lg:hidden border-line-strong px-4 text-sm font-semibold transition-colors hover:border-[var(--color-text)]"
             >
               <span>Menu</span>
               <span aria-hidden="true" className="flex flex-col gap-[5px]">
@@ -80,7 +86,7 @@ export function SiteHeader() {
           </div>
         </div>
       </header>
-      <NavigationOverlay open={open} onClose={close} triggerRef={triggerRef} />
+      {open && <NavigationOverlay open={open} onClose={close} triggerRef={triggerRef} />}
     </>
   );
 }

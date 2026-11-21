@@ -6,8 +6,16 @@ import { primaryNav, site, ctaLabels } from "@/lib/site";
 import { publishedServices as services } from "@/data/services";
 import { LogoMark } from "@/components/visuals/LogoMark";
 import { LinkButton } from "@/components/ui/Button";
-import { ArrowRight, CloseIcon, PlusIcon } from "@/components/ui/Icons";
+import { ArrowRight, CloseIcon } from "@/components/ui/Icons";
 import { cn } from "@/lib/cn";
+
+function ChevronDown({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 20 20" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className={className}>
+      <path d="M5 7.5l5 5 5-5" />
+    </svg>
+  );
+}
 
 interface NavigationOverlayProps {
   open: boolean;
@@ -20,7 +28,7 @@ const FOCUSABLE = 'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1
 export function NavigationOverlay({ open, onClose, triggerRef }: NavigationOverlayProps) {
   const dialogRef = useRef<HTMLDivElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
-  const [servicesOpen, setServicesOpen] = useState(true);
+  const [servicesOpen, setServicesOpen] = useState(false);
 
   // Focus management, scroll lock, inert background, Escape + Tab trap.
   useEffect(() => {
@@ -116,56 +124,67 @@ export function NavigationOverlay({ open, onClose, triggerRef }: NavigationOverl
           aria-label="Site navigation"
           className="menu-panel fixed inset-0 z-[60] flex flex-col overflow-y-auto bg-bg"
         >
-          {/* Overlay top bar, mirrors the header so the logo and close control never move */}
-          <div className="wrap-wide flex h-[var(--header-h)] shrink-0 items-center justify-between">
-            <Link href="/" onClick={onClose} className="flex min-h-11 items-center gap-3" aria-label={`${site.name} home`}>
-              <LogoMark animateOnMount={false} />
-              <span className="font-display text-[1.15rem] font-semibold tracking-tight">{site.name}</span>
-            </Link>
-            <button
-              ref={closeRef}
-              type="button"
-              onClick={onClose}
-              className="flex min-h-11 items-center gap-2 rounded-full border border-line-strong px-4 text-sm font-semibold transition-colors hover:border-white/55"
-            >
-              <span>Close</span>
-              <CloseIcon size={18} />
-            </button>
+          {/* Overlay top bar: logo, primary CTA and a square close control */}
+          <div className="border-b border-line">
+            <div className="wrap-wide flex h-[var(--header-h)] shrink-0 items-center justify-between gap-3">
+              <Link href="/" onClick={onClose} className="flex min-h-11 items-center gap-3" aria-label={`${site.name} home`}>
+                <LogoMark animateOnMount={false} />
+                <span className="hidden font-display text-[1.15rem] font-semibold tracking-tight min-[400px]:inline">{site.name}</span>
+              </Link>
+              <div className="flex items-center gap-2.5">
+                <LinkButton href="/contact" onClick={onClose} location="menu-top" size="sm">
+                  {ctaLabels.startProject}
+                </LinkButton>
+                <button
+                  ref={closeRef}
+                  type="button"
+                  onClick={onClose}
+                  aria-label="Close menu"
+                  className="grid size-11 place-items-center rounded-xl border border-line-strong transition-colors hover:border-white/55"
+                >
+                  <CloseIcon size={20} />
+                </button>
+              </div>
+            </div>
           </div>
 
-          <div className="wrap-wide grid flex-1 gap-10 pb-10 pt-6 lg:grid-cols-12 lg:gap-16 lg:pt-12">
+          <div className="wrap-wide grid flex-1 gap-10 pb-8 pt-2 lg:grid-cols-12 lg:gap-16 lg:pt-12">
             {/* Primary links */}
             <nav aria-label="Primary" className="lg:col-span-6">
               <ul>
                 {primaryNav.map((link, i) => {
                   const isServices = link.label === "Services";
                   return (
-                    <li key={link.href} className="menu-item border-b border-line-faint" style={{ "--i": i } as React.CSSProperties}>
-                      <div className="flex items-center justify-between gap-4">
-                        <Link
-                          href={link.href}
-                          onClick={onClose}
-                          className="block py-3 font-display text-[clamp(2.1rem,1.4rem+3.2vw,4.25rem)] font-semibold leading-[1.05] tracking-[-0.035em] transition-colors hover:text-accent-bright"
-                        >
-                          {link.label}
-                        </Link>
-                        {isServices && (
+                    <li key={link.href} className="menu-item border-b border-line" style={{ "--i": i } as React.CSSProperties}>
+                      {isServices ? (
+                        <>
                           <button
                             type="button"
                             aria-expanded={servicesOpen}
-                            aria-controls="menu-services-inline menu-services-aside"
-                            aria-label={servicesOpen ? "Collapse services list" : "Expand services list"}
+                            aria-controls="menu-services-inline"
                             onClick={() => setServicesOpen((v) => !v)}
-                            className="grid size-11 shrink-0 place-items-center rounded-full border border-line-strong transition-colors hover:border-white/55 lg:hidden"
+                            className="menu-row menu-mobile-only w-full"
                           >
-                            <PlusIcon className={cn("transition-transform duration-200", servicesOpen && "rotate-45")} />
+                            <span>{link.label}</span>
+                            <ChevronDown className={cn("text-subtle transition-transform duration-200", servicesOpen && "rotate-180")} />
                           </button>
-                        )}
-                      </div>
-                      {isServices && servicesOpen && (
-                        <div id="menu-services-inline" className="pb-5 lg:hidden">
-                          {serviceLinks}
-                        </div>
+                          <Link href={link.href} onClick={onClose} className="menu-row menu-row-desktop">
+                            {link.label}
+                          </Link>
+                          <div
+                            id="menu-services-inline"
+                            className={cn("faq-panel menu-mobile-only", servicesOpen && "is-open")}
+                            inert={!servicesOpen}
+                          >
+                            <div className="overflow-hidden">
+                              <div className="pb-4">{serviceLinks}</div>
+                            </div>
+                          </div>
+                        </>
+                      ) : (
+                        <Link href={link.href} onClick={onClose} className="menu-row">
+                          {link.label}
+                        </Link>
                       )}
                     </li>
                   );

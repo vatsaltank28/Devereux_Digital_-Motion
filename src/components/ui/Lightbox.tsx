@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useRef, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import type { MediaImage } from "@/data/media";
 import { cn } from "@/lib/cn";
 
@@ -22,6 +22,13 @@ interface LightboxProps {
 export function Lightbox({ image, children, label, caption, className }: LightboxProps) {
   const ref = useRef<HTMLDialogElement>(null);
   const [zoomed, setZoomed] = useState(false);
+  // The viewer body is only rendered while open: a page with many thumbnails hydrates one small
+  // button per image instead of a hidden full size viewer each.
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    if (open && ref.current && !ref.current.open) ref.current.showModal();
+  }, [open]);
 
   return (
     <>
@@ -30,7 +37,7 @@ export function Lightbox({ image, children, label, caption, className }: Lightbo
         aria-label={label}
         onClick={() => {
           setZoomed(false);
-          ref.current?.showModal();
+          setOpen(true);
         }}
         className={cn("cursor-zoom-in", className)}
       >
@@ -40,11 +47,14 @@ export function Lightbox({ image, children, label, caption, className }: Lightbo
         ref={ref}
         aria-label={caption ?? image.alt}
         className="lightbox"
+        onClose={() => setOpen(false)}
         onClick={(e) => {
           const t = e.target as HTMLElement;
           if (t === e.currentTarget || t.classList.contains("lightbox-stage")) ref.current?.close();
         }}
       >
+        {open && (
+          <>
         <figure className={cn("lightbox-inner", zoomed && "is-zoomed")}>
           <div className="lightbox-stage">
             <Image
@@ -67,6 +77,8 @@ export function Lightbox({ image, children, label, caption, className }: Lightbo
             <path d="M6 6l12 12M18 6L6 18" />
           </svg>
         </button>
+          </>
+        )}
       </dialog>
     </>
   );

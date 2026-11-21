@@ -11,6 +11,7 @@ import { LinkButton } from "@/components/ui/Button";
 import { MediaGallery } from "@/components/work/MediaGallery";
 import { ProjectCard } from "@/components/work/ProjectCard";
 import { FinalCTA } from "@/components/home/FinalCTA";
+import { CaseStudyView } from "@/components/work/CaseStudyView";
 
 type Params = { slug: string };
 export const dynamicParams = false;
@@ -25,7 +26,7 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
   if (!p) return {};
   const cover = p.media[0];
   const img = coverImage(cover);
-  return buildMetadata({ title: `${p.title} | ${categoryLabel(p.category)}`, description: p.summary, path: `/work/${p.slug}`, image: img.src });
+  return buildMetadata({ title: p.caseStudy ? `${p.title} Case Study | ${categoryLabel(p.category)}` : `${p.title} | ${categoryLabel(p.category)}`, description: p.summary, path: `/work/${p.slug}`, image: img.src });
 }
 
 /** Reusable case study template. Every section after the gallery renders only when real data exists. */
@@ -42,6 +43,26 @@ export default async function ProjectPage({ params }: { params: Promise<Params> 
     { title: "The challenge", body: p.challenge },
     { title: "Our solution", body: p.solution },
   ].filter((s) => s.body);
+
+  if (p.caseStudy) {
+    const studies = portfolio.filter((x) => x.caseStudy);
+    const i = studies.findIndex((x) => x.slug === p.slug);
+    const prev = studies[(i - 1 + studies.length) % studies.length];
+    const next = studies[(i + 1) % studies.length];
+    return (
+      <>
+        <JsonLd
+          data={breadcrumbJsonLd([
+            { name: "Home", path: "/" },
+            { name: "Work", path: "/work" },
+            { name: p.title, path: `/work/${p.slug}` },
+          ])}
+        />
+        <CaseStudyView p={p} cs={p.caseStudy} prev={prev} next={next} />
+        <FinalCTA service={serviceSlug || undefined} location={`project-cta:${p.slug}`} />
+      </>
+    );
+  }
 
   return (
     <>

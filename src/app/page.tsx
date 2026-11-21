@@ -5,6 +5,7 @@ import { FeaturedWork } from "@/components/home/FeaturedWork";
 import { ProcessSteps } from "@/components/services/ProcessSteps";
 import { howWeWork } from "@/data/home";
 import { CapabilityStats } from "@/components/home/CapabilityStats";
+import { ClientMarquee } from "@/components/home/ClientMarquee";
 import { FinalCTA } from "@/components/home/FinalCTA";
 import { WhyDevereux } from "@/components/home/WhyDevereux";
 
@@ -17,6 +18,7 @@ export default function HomePage() {
     <>
       <HomeHero />
       <CapabilityStats />
+      <ClientMarquee />
       <FeaturedWork />
       <FeaturedReview />
       <ServicesGrid />
