@@ -16,6 +16,7 @@ import { ProcessSteps } from "./ProcessSteps";
 import { WhatToExpect } from "./WhatToExpect";
 import { ServiceExtras } from "./ServiceExtras";
 import { ToolLogos } from "./ToolLogos";
+import { ServiceCaseStudies } from "./ServiceCaseStudies";
 import { projectsForService } from "@/data/portfolio";
 import { ServicePricing } from "./ServicePricing";
 import { getPricing } from "@/data/pricing";
@@ -49,6 +50,7 @@ export function ServicePageTemplate({ service }: { service: Service }) {
           Why Choose (What to expect), Reviews, FAQs, CTA. Sections without real content are omitted. */}
       <JsonLd data={serviceJsonLd({ title: service.title, description: service.seoDescription, slug: service.slug })} />
       <ServiceHero service={service} cover={work[0]} />
+      <ServiceCaseStudies slug={service.slug} serviceTitle={service.shortTitle} />
       <IncludedList items={included[service.slug] ?? []} />
       <ServiceExtras slug={service.slug} />
       <ToolLogos slug={service.slug} />

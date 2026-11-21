@@ -1,33 +1,27 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useMemo } from "react";
 import { activeCategories, portfolio, type PortfolioCategory } from "@/data/portfolio";
 import { track } from "@/lib/analytics";
 import { ProjectCard } from "./ProjectCard";
 
-/** Filterable portfolio grid. Only categories that contain work are offered (no empty filters). */
-export function WorkGrid({ initial = "all" }: { initial?: PortfolioCategory | "all" }) {
-  const [filter, setFilter] = useState<PortfolioCategory | "all">(initial);
-  const list = useMemo(() => (filter === "all" ? portfolio : portfolio.filter((p) => p.category === filter)), [filter]);
-  const tabs: { id: PortfolioCategory | "all"; label: string; count: number }[] = [
-    { id: "all", label: "All Projects", count: portfolio.length },
-    ...activeCategories.map((c) => ({ id: c.id, label: c.label, count: portfolio.filter((p) => p.category === c.id).length })),
-  ];
+type Filter = PortfolioCategory | "all";
 
+const tabs: { id: Filter; label: string; count: number }[] = [
+  { id: "all", label: "All Projects", count: portfolio.length },
+  ...activeCategories.map((c) => ({ id: c.id, label: c.label, count: portfolio.filter((p) => p.category === c.id).length })),
+];
+const isFilter = (v: string | null): v is Filter => !!v && tabs.some((t) => t.id === v);
+
+/** Pure grid + filter tabs. */
+export function WorkGridView({ filter, onSelect }: { filter: Filter; onSelect?: (f: Filter) => void }) {
+  const list = useMemo(() => (filter === "all" ? portfolio : portfolio.filter((p) => p.category === filter)), [filter]);
   return (
     <>
       <div role="toolbar" aria-label="Filter projects by category" className="work-filters">
         {tabs.map((t) => (
-          <button
-            key={t.id}
-            type="button"
-            aria-pressed={filter === t.id}
-            onClick={() => {
-              setFilter(t.id);
-              track("portfolio_filter", { category: t.id });
-            }}
-            className="work-filter"
-          >
+          <button key={t.id} type="button" aria-pressed={filter === t.id} onClick={() => onSelect?.(t.id)} className="work-filter">
             {t.label} <span className="work-filter-count">{t.count}</span>
           </button>
         ))}
@@ -43,5 +37,26 @@ export function WorkGrid({ initial = "all" }: { initial?: PortfolioCategory | "a
         ))}
       </ul>
     </>
+  );
+}
+
+/**
+ * Filterable portfolio grid. The active filter lives in the URL (`/work?category=ecommerce`), so the
+ * Work menu in the header can deep link to a category and the choice survives refresh and sharing.
+ */
+export function WorkGrid() {
+  const params = useSearchParams();
+  const router = useRouter();
+  const pathname = usePathname();
+  const raw = params.get("category");
+  const filter: Filter = isFilter(raw) ? raw : "all";
+  return (
+    <WorkGridView
+      filter={filter}
+      onSelect={(f) => {
+        track("portfolio_filter", { category: f });
+        router.replace(f === "all" ? pathname : `${pathname}?category=${f}`, { scroll: false });
+      }}
+    />
   );
 }

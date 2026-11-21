@@ -65,7 +65,7 @@ export function SiteHeader() {
 
           <div className="flex items-center gap-2 sm:gap-3">
             <ThemeToggle />
-            <LinkButton href="/contact" variant="secondary" size="sm" className="hidden md:inline-flex" location="header">
+            <LinkButton href="/contact" variant="secondary" size="sm" className="hidden md:inline-flex lg:hidden xl:inline-flex" location="header">
               {ctaLabels.startProject}
             </LinkButton>
             <button

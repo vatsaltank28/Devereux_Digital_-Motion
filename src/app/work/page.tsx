@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { buildMetadata, breadcrumbJsonLd } from "@/lib/seo";
 import { PageHero } from "@/components/ui/PageHero";
 import { JsonLd } from "@/components/ui/JsonLd";
-import { WorkGrid } from "@/components/work/WorkGrid";
+import { Suspense } from "react";
+import { WorkGrid, WorkGridView } from "@/components/work/WorkGrid";
 import { FinalCTA } from "@/components/home/FinalCTA";
 
 export const metadata: Metadata = buildMetadata({
@@ -24,7 +25,10 @@ export default function WorkPage() {
       />
       <section aria-label="Projects" className="pb-[var(--section-y)]">
         <div className="wrap-wide">
-          <WorkGrid />
+          {/* Static "all" grid is prerendered; the URL filter applies on the client. */}
+          <Suspense fallback={<WorkGridView filter="all" />}>
+            <WorkGrid />
+          </Suspense>
         </div>
       </section>
       <FinalCTA location="work-final-cta" />

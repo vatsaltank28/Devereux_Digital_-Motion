@@ -3,8 +3,10 @@
 import Link from "next/link";
 import { useEffect, useRef, useState, type RefObject } from "react";
 import { primaryNav, site, ctaLabels } from "@/lib/site";
-import { publishedServices as services } from "@/data/services";
+import { getService } from "@/data/services";
+import { serviceGroups, workLinks } from "@/data/nav";
 import { LogoMark } from "@/components/visuals/LogoMark";
+import { NavItem } from "./NavItem";
 import { LinkButton } from "@/components/ui/Button";
 import { ArrowRight, CloseIcon } from "@/components/ui/Icons";
 import { cn } from "@/lib/cn";
@@ -28,7 +30,8 @@ const FOCUSABLE = 'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1
 export function NavigationOverlay({ open, onClose, triggerRef }: NavigationOverlayProps) {
   const dialogRef = useRef<HTMLDivElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
-  const [servicesOpen, setServicesOpen] = useState(false);
+  // Which accordion is expanded (one at a time keeps the menu short on phones).
+  const [expanded, setExpanded] = useState<"Services" | "Work" | null>(null);
 
   // Focus management, scroll lock, inert background, Escape + Tab trap.
   useEffect(() => {
@@ -72,47 +75,41 @@ export function NavigationOverlay({ open, onClose, triggerRef }: NavigationOverl
     };
   }, [open, onClose, triggerRef]);
 
-  const serviceLinks = (
-    <ul className="divide-y divide-line border-y border-line">
-      <li>
-        <Link
-          href="/services"
-          onClick={onClose}
-          className="arrow-host group flex min-h-14 items-center justify-between gap-4 py-3 text-muted transition-colors hover:text-ink"
-        >
-          <span className="text-[0.95rem]">All services</span>
-          <ArrowRight className="text-subtle group-hover:text-accent-bright" />
-        </Link>
-      </li>
-      {services.map((s) =>
-        s.status === "published" ? (
-          <li key={s.slug}>
-            <Link
-              href={`/services/${s.slug}`}
-              onClick={onClose}
-              className="arrow-host group flex min-h-14 items-center justify-between gap-4 py-3 transition-colors hover:text-accent-bright"
-            >
-              <span className="flex items-baseline gap-4">
-                <span className="w-6 font-display text-sm tabular-nums text-subtle">{s.number}</span>
-                <span className="font-display text-[1.2rem] tracking-tight">{s.title}</span>
-              </span>
-              <ArrowRight className="text-subtle group-hover:text-accent-bright" />
-            </Link>
-          </li>
-        ) : (
-          <li key={s.slug}>
-            <div className="flex min-h-14 items-center justify-between gap-4 py-3 text-subtle" aria-disabled="true">
-              <span className="flex items-baseline gap-4">
-                <span className="w-6 font-display text-sm tabular-nums">{s.number}</span>
-                <span className="font-display text-[1.2rem] tracking-tight">{s.title}</span>
-              </span>
-              <span className="pill pill-outline shrink-0 whitespace-nowrap">Soon</span>
-            </div>
-          </li>
-        ),
-      )}
-    </ul>
+  const serviceContent = (
+    <div className="menu-groups">
+      {serviceGroups.map((g) => (
+        <div key={g.title}>
+          <p className="mega-group">{g.title}</p>
+          <ul className="mt-1.5">
+            {g.slugs.map((slug) => {
+              const sv = getService(slug);
+              if (!sv) return null;
+              return (
+                <li key={slug}>
+                  <NavItem href={`/services/${slug}`} onClick={onClose} title={sv.title} desc={sv.bestFor ?? sv.shortDescription} glyph={slug} />
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      ))}
+      <Link href="/services" onClick={onClose} className="menu-all">Explore everything we do <ArrowRight /></Link>
+    </div>
   );
+
+  const workContent = (
+    <div className="menu-groups">
+      <ul>
+        {workLinks.map((w) => (
+          <li key={w.id}>
+            <NavItem href={w.href} onClick={onClose} title={w.label} desc={w.desc} glyph={w.glyph} count={w.count} />
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+
+  const panels: Record<string, React.ReactNode> = { Services: serviceContent, Work: workContent };
 
   return (
     open && (
@@ -140,7 +137,7 @@ export function NavigationOverlay({ open, onClose, triggerRef }: NavigationOverl
                   type="button"
                   onClick={onClose}
                   aria-label="Close menu"
-                  className="grid size-11 place-items-center rounded-xl border border-line-strong transition-colors hover:border-white/55"
+                  className="grid size-11 place-items-center rounded-xl border border-line-strong transition-colors hover:border-[var(--color-text)]"
                 >
                   <CloseIcon size={20} />
                 </button>
@@ -148,36 +145,30 @@ export function NavigationOverlay({ open, onClose, triggerRef }: NavigationOverl
             </div>
           </div>
 
-          <div className="wrap-wide grid flex-1 gap-10 pb-8 pt-2 lg:grid-cols-12 lg:gap-16 lg:pt-12">
-            {/* Primary links */}
-            <nav aria-label="Primary" className="lg:col-span-6">
+          <div className="wrap-wide flex-1 pb-8 pt-2">
+            <nav aria-label="Primary">
               <ul>
                 {primaryNav.map((link, i) => {
-                  const isServices = link.label === "Services";
+                  const panel = panels[link.label];
+                  const isOpen = expanded === link.label;
+                  const id = `menu-panel-${link.label.toLowerCase()}`;
                   return (
                     <li key={link.href} className="menu-item border-b border-line" style={{ "--i": i } as React.CSSProperties}>
-                      {isServices ? (
+                      {panel ? (
                         <>
                           <button
                             type="button"
-                            aria-expanded={servicesOpen}
-                            aria-controls="menu-services-inline"
-                            onClick={() => setServicesOpen((v) => !v)}
-                            className="menu-row menu-mobile-only w-full"
+                            aria-expanded={isOpen}
+                            aria-controls={id}
+                            onClick={() => setExpanded(isOpen ? null : (link.label as "Services" | "Work"))}
+                            className="menu-row w-full"
                           >
                             <span>{link.label}</span>
-                            <ChevronDown className={cn("text-subtle transition-transform duration-200", servicesOpen && "rotate-180")} />
+                            <ChevronDown className={cn("text-subtle transition-transform duration-200", isOpen && "rotate-180")} />
                           </button>
-                          <Link href={link.href} onClick={onClose} className="menu-row menu-row-desktop">
-                            {link.label}
-                          </Link>
-                          <div
-                            id="menu-services-inline"
-                            className={cn("faq-panel menu-mobile-only", servicesOpen && "is-open")}
-                            inert={!servicesOpen}
-                          >
+                          <div id={id} className={cn("faq-panel", isOpen && "is-open")} inert={!isOpen}>
                             <div className="overflow-hidden">
-                              <div className="pb-4">{serviceLinks}</div>
+                              <div className="pb-5">{panel}</div>
                             </div>
                           </div>
                         </>
@@ -191,16 +182,6 @@ export function NavigationOverlay({ open, onClose, triggerRef }: NavigationOverl
                 })}
               </ul>
             </nav>
-
-            {/* Desktop: services shown alongside, as in the client reference */}
-            <div
-              id="menu-services-aside"
-              className="menu-item hidden lg:col-span-5 lg:col-start-8 lg:block"
-              style={{ "--i": 2 } as React.CSSProperties}
-            >
-              <p className="mb-4 text-sm font-medium text-subtle">Services</p>
-              {serviceLinks}
-            </div>
           </div>
 
           <div className="wrap-wide safe-bottom flex flex-col gap-6 border-t border-line pt-6 sm:flex-row sm:items-center sm:justify-between">

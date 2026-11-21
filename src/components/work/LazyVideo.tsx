@@ -19,18 +19,49 @@ export function LazyVideo({ src, poster, label }: { src: string; poster: string;
   useEffect(() => {
     const el = box.current;
     if (!el || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    // The frame is usually on screen at load, so never start the MP4 during page start up: wait for
+    // the load event, then an idle slot (+ a short settle delay). The poster covers that gap, and
+    // video download/decode no longer competes with hydration or the first interaction.
+    let inView = false;
+    let settled = false;
+    let idleId: number | undefined;
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    const start = () => {
+      if (inView && settled) {
+        setLoad(true);
+        vid.current?.play().catch(() => {});
+      }
+    };
+    const w = window as Window & { requestIdleCallback?: (cb: () => void, o?: { timeout: number }) => number; cancelIdleCallback?: (id: number) => void };
+    const afterLoad = () => {
+      timer = setTimeout(() => {
+        const go = () => {
+          settled = true;
+          start();
+        };
+        if (w.requestIdleCallback) idleId = w.requestIdleCallback(go, { timeout: 3000 });
+        else go();
+      }, 1500);
+    };
+    if (document.readyState === "complete") afterLoad();
+    else window.addEventListener("load", afterLoad, { once: true });
+
     const io = new IntersectionObserver(
       ([e]) => {
         if (!e) return;
-        if (e.isIntersecting) {
-          setLoad(true);
-          vid.current?.play().catch(() => {});
-        } else vid.current?.pause();
+        inView = e.isIntersecting;
+        if (inView) start();
+        else vid.current?.pause();
       },
       { rootMargin: "200px 0px", threshold: 0.15 },
     );
     io.observe(el);
-    return () => io.disconnect();
+    return () => {
+      io.disconnect();
+      window.removeEventListener("load", afterLoad);
+      if (timer) clearTimeout(timer);
+      if (idleId !== undefined) w.cancelIdleCallback?.(idleId);
+    };
   }, []);
 
   return (

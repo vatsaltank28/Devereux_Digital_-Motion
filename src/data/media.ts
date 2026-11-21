@@ -37,7 +37,6 @@ export const serviceWork: Record<string, MediaImage[]> = {
   "ai-business-solutions": [
     { src: "/work/ai-business-solutions/01.jpg", alt: "BlockRouter AI payments landing page", width: 1535, height: 928 },
     { src: "/work/ai-business-solutions/02.jpg", alt: "Paperclip agent orchestration platform", width: 1122, height: 1402 },
-    { src: "/work/ai-business-solutions/03.jpg", alt: "Telegram CRM follow up automation bot", width: 831, height: 1800 },
     { src: "/work/ai-business-solutions/04.jpg", alt: "Custom CRM customer dashboard", width: 871, height: 653 },
   ],
   "branding-creative-design": [

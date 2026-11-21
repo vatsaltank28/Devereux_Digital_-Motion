@@ -34,7 +34,7 @@ export default async function ContactPage({ searchParams }: { searchParams: Prom
           <div className="mb-8">
             <Breadcrumbs trail={[{ name: "Home", href: "/" }, { name: "Contact" }]} />
           </div>
-          <SectionLabel>Contact</SectionLabel>
+          <SectionLabel>Talk to us</SectionLabel>
           <SplitHeading as="h1" trigger="load" delay={0.05} className="t-h1 mt-6 max-w-[10ch]">
             Start a project.
           </SplitHeading>
