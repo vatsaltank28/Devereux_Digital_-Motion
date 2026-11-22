@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { buildMetadata } from "@/lib/seo";
 import { PageHero } from "@/components/ui/PageHero";
@@ -7,12 +6,13 @@ import { SectionLabel } from "@/components/ui/SectionLabel";
 import { SplitHeading } from "@/components/motion/SplitHeading";
 import { Reveal } from "@/components/motion/Reveal";
 import { FinalCTA } from "@/components/home/FinalCTA";
-import { team } from "@/data/team";
+import { publishedServices } from "@/data/services";
+import { serviceGroups } from "@/data/nav";
 
 export const metadata: Metadata = buildMetadata({
   title: "About Us",
   description:
-    "Devereux Digitals is a digital agency founded by Lorenzo Devereux. What we believe, the standards we hold and the people behind the work.",
+    "Devereux Digitals is a digital agency founded by Lorenzo Devereux. What we believe, the standards we hold and the services we deliver.",
   path: "/about",
 });
 
@@ -38,9 +38,12 @@ const standards = [
   { title: "Progress", body: "Keep learning as the tools and the industry change." },
 ];
 
-export default function AboutPage() {
-  const colleagues = team.filter((m) => m.name !== founder.name);
+const capabilities = serviceGroups.map((g) => ({
+  title: g.title,
+  items: g.slugs.flatMap((slug) => publishedServices.filter((s) => s.slug === slug)),
+}));
 
+export default function AboutPage() {
   return (
     <>
       <PageHero
@@ -110,32 +113,34 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section aria-labelledby="team-title" className="section-tight border-t border-line">
-        <div className="wrap-wide grid gap-8 lg:grid-cols-12 lg:items-center lg:gap-16">
-          <div className="lg:col-span-6">
-            <SectionLabel>The team</SectionLabel>
-            <SplitHeading id="team-title" className="t-h2 mt-5 max-w-[16ch]">
-              The right specialists. One point of contact.
+      <section aria-labelledby="services-title" className="section-tight border-t border-line">
+        <div className="wrap-wide grid gap-8 lg:grid-cols-12 lg:gap-16">
+          <div className="lg:col-span-4">
+            <SectionLabel>What we do</SectionLabel>
+            <SplitHeading id="services-title" className="t-h2 mt-5 max-w-[14ch]">
+              Everything in one place.
             </SplitHeading>
-            <Link href="/team" className="link-arrow mt-6 inline-flex min-h-11 items-center text-sm">
-              Meet the team
+            <Link href="/services" className="link-arrow mt-6 inline-flex min-h-11 items-center text-sm">
+              View all services
             </Link>
           </div>
-          <ul className="grid gap-4 lg:col-span-5 lg:col-start-8">
-            {colleagues.map((m) => (
-              <li key={m.name} className="about-person">
-                {m.photo ? (
-                  <Image src={m.photo.src} alt={`Portrait of ${m.name}`} width={160} height={160} sizes="80px" className="about-person-img" />
-                ) : (
-                  <span aria-hidden="true" className="about-person-img art-avatar">{m.monogram}</span>
-                )}
-                <span>
-                  <span className="block font-display text-lg font-semibold">{m.name}</span>
-                  <span className="block text-sm text-muted">{m.role}</span>
-                </span>
-              </li>
+          <div className="about-services lg:col-span-8">
+            {capabilities.map((g) => (
+              <div key={g.title}>
+                <h3>{g.title}</h3>
+                <ul>
+                  {g.items.map((s) => (
+                    <li key={s.slug}>
+                      <Link href={`/services/${s.slug}`}>
+                        {s.title}
+                        <span aria-hidden="true">→</span>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             ))}
-          </ul>
+          </div>
         </div>
       </section>
 

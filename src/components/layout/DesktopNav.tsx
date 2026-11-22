@@ -177,7 +177,6 @@ export function DesktopNav() {
         {[
           { label: "Insights & Guides", href: "/insights" },
           { label: "About Us", href: "/about" },
-          { label: "Meet the team", href: "/team" },
           { label: "Talk to us", href: "/contact" },
         ].map((l) => (
           <li key={l.href}>

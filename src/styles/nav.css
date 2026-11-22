@@ -1,0 +1,6 @@
+/* Header: nav tabs + toggle (+ CTA from xl) must fit 1024 to 1439px. */
+@media (min-width: 1024px) and (max-width: 1439px) {
+  .dnav-list { gap: 0; }
+  .dnav-link { padding: 0 .55rem; font-size: .88rem; }
+  .dnav-link.is-active::after { left: .55rem; right: .55rem; }
+}

@@ -50,7 +50,6 @@ export const primaryNav: NavItem[] = [
   { label: "Work", href: "/work" },
   { label: "Insights & Guides", href: "/insights" },
   { label: "About Us", href: "/about" },
-  { label: "Meet the team", href: "/team" },
   { label: "Talk to us", href: "/contact" },
 ];
 

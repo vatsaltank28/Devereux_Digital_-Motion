@@ -59,7 +59,7 @@ export default async function ArticlePage({ params }: { params: Promise<Params> 
           description: a.description,
           image: `${site.url}${articleCover(a)}`,
           mainEntityOfPage: url,
-          author: { "@type": "Person", name: "Lorenzo Devereux", url: `${site.url}/team` },
+          author: { "@type": "Person", name: "Lorenzo Devereux", url: `${site.url}/about` },
           publisher: { "@type": "Organization", name: site.name, url: site.url },
           keywords: [a.primaryKeyword, ...a.keywords].join(", "),
         }}

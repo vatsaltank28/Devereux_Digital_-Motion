@@ -1,6 +1,6 @@
 /**
- * Service pricing, from the client document "Devereux Digitals Pricing.pdf"
- * (Changes, Services and Reviews). All prices are USD starting estimates.
+ * Service pricing, from the client document "Devereux Digitals Pricing.pdf".
+ * All prices are USD starting estimates.
  */
 
 export interface MonthlyPackage {

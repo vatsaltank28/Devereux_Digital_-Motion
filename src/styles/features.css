@@ -346,7 +346,7 @@
 .art-cta-text { margin-top: .5rem; font-size: 1rem; }
 @media (min-width: 1024px) { .cs-gallery:not(:has(.cs-gallery-phone)) { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 
-/* About: beliefs, standards, team */
+/* About: beliefs, standards, services */
 .about-beliefs { display: grid; gap: clamp(.5rem, .3rem + .8vw, 1rem); padding-block: clamp(1rem, .5rem + 2vw, 2.5rem); font-family: var(--font-display); font-size: clamp(1.7rem, 1.1rem + 2.7vw, 3.75rem); font-weight: 600; line-height: 1.12; letter-spacing: -.025em; text-wrap: balance; }
 .about-standards { background: var(--color-surface); }
 .about-standards-list > div { display: grid; gap: .25rem; padding-block: 1.35rem; border-top: 1px solid var(--color-border); }
@@ -354,8 +354,17 @@
 .about-standards-list dt { font-family: var(--font-display); font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2.25rem); font-weight: 600; line-height: 1.15; letter-spacing: -.02em; color: var(--color-text); }
 .about-standards-list dd { color: var(--color-text-muted); }
 @media (min-width: 768px) { .about-standards-list > div { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); align-items: baseline; gap: 2rem; } }
-.about-person { display: flex; align-items: center; gap: 1rem; padding-block: 1rem; border-block: 1px solid var(--color-border); }
-.about-person-img { flex: none; width: 5rem; height: 5rem; border-radius: 999px; object-fit: cover; object-position: 50% 30%; }
+.about-services { display: grid; gap: 2rem; }
+.about-services h3 { padding-bottom: .75rem; border-bottom: 1px solid var(--color-border-strong); font-family: var(--font-display); font-size: clamp(1.25rem, 1.1rem + .5vw, 1.5rem); font-weight: 600; letter-spacing: -.015em; color: var(--color-text); }
+.about-services ul { margin-top: .35rem; }
+.about-services a { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 2.75rem; color: var(--color-text-muted); transition: color .2s; }
+.about-services a:focus-visible { outline: 2px solid var(--color-accent-bright); outline-offset: 2px; }
+@media (hover: hover) { .about-services a:hover { color: var(--color-accent-bright); } }
+@media (min-width: 768px) {
+  .about-services { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 2.5rem; align-content: start; }
+  /* Subgrid keeps the heading dividers level when one group title wraps. */
+  .about-services > div { display: grid; grid-row: span 2; grid-template-rows: subgrid; }
+}
 
 /* Insights: scannable guide index */
 .guide-index { border-top: 1px solid var(--color-border); }

@@ -9,7 +9,6 @@ import { CookieSettingsLink } from "./CookieSettingsLink";
 
 const companyLinks = [
   { label: "About Us", href: "/about" },
-  { label: "Meet the team", href: "/team" },
   { label: "Insights & Guides", href: "/insights" },
   { label: "Talk to us", href: "/contact" },
 ];
