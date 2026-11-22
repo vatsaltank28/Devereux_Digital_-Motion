@@ -85,7 +85,6 @@ export function ContactCards({ className }: { className?: string }) {
   );
 }
 
-const tiktokPath = "M16.5 3c.4 2.2 1.8 3.6 4 3.9v3.4a8 8 0 0 1-4-1.3v6.3A6.2 6.2 0 1 1 10.3 9v3.5a2.8 2.8 0 1 0 2.8 2.8V3h3.4Z";
 const brandSvg = (path: ReactNode) => (
   <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false">{path}</svg>
 );
@@ -100,28 +99,21 @@ const APP_ICONS = {
       <path fill="#C5221F" d="M1 5.5v2l5 3.8V4.8L4.6 3.7C3.1 2.6 1 3.6 1 5.5Z" />
     </>,
   ),
-  tiktok: brandSvg(
-    <>
-      <path fill="#25F4EE" transform="translate(-.7 -.5)" d={tiktokPath} />
-      <path fill="#FE2C55" transform="translate(.7 .5)" d={tiktokPath} />
-      <path fill="currentColor" d={tiktokPath} />
-    </>,
+  discord: brandSvg(
+    <path fill="#5865F2" d="M19.6 5.3A16.5 16.5 0 0 0 15.5 4l-.5 1a15.3 15.3 0 0 0-6 0l-.5-1a16.4 16.4 0 0 0-4.1 1.3C1.8 9.2 1.1 13 1.5 16.7a16.6 16.6 0 0 0 5 2.5l1.1-1.7a10.7 10.7 0 0 1-1.7-.8l.4-.3a11.8 11.8 0 0 0 11.4 0l.4.3-1.7.8 1.1 1.7a16.5 16.5 0 0 0 5-2.5c.5-4.3-.7-8-2.9-11.4ZM8.7 14.4c-1 0-1.8-.9-1.8-2s.8-2 1.8-2 1.8.9 1.8 2-.8 2-1.8 2Zm6.6 0c-1 0-1.8-.9-1.8-2s.8-2 1.8-2 1.8.9 1.8 2-.8 2-1.8 2Z" />,
   ),
-  facebook: brandSvg(
-    <>
-      <circle cx="12" cy="12" r="11" fill="#1877F2" />
-      <path fill="#fff" d="M16.7 15.2l.5-3.2h-3.1V9.9c0-.9.4-1.7 1.8-1.7h1.4V5.5s-1.3-.2-2.5-.2c-2.5 0-4.2 1.5-4.2 4.3V12H7.8v3.2h2.8v7.7a11 11 0 0 0 3.5 0v-7.7h2.6Z" />
-    </>,
+  whatsapp: brandSvg(
+    <path fill="#25D366" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2.1 1-2.4c.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.2.5.1.6-.1l.9-1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.3.1.2.1.7-.1 1.3Z" />,
   ),
 };
 
-/** Gmail, TikTok and Facebook app icons, for the mobile and tablet menu. */
+/** Discord, Gmail and WhatsApp app icons, for the mobile and tablet menu. */
 export function AppIcons({ className }: { className?: string }) {
-  const social = (label: string) => site.social.find((s) => s.label === label)?.href;
+  const { discord, email, whatsapp } = site.contact;
   const apps = [
-    { label: "Gmail", href: site.contact.email ? `mailto:${site.contact.email}` : undefined, icon: APP_ICONS.gmail },
-    { label: "TikTok", href: social("TikTok"), icon: APP_ICONS.tiktok, external: true },
-    { label: "Facebook", href: social("Facebook"), icon: APP_ICONS.facebook, external: true },
+    { label: "Discord", href: discord, icon: APP_ICONS.discord, external: true },
+    { label: "Gmail", href: email ? `mailto:${email}` : undefined, icon: APP_ICONS.gmail },
+    { label: "WhatsApp", href: whatsapp, icon: APP_ICONS.whatsapp, external: true },
   ].filter((a) => a.href);
   return (
     <ul className={cn("flex items-center gap-3", className)}>

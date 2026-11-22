@@ -30,6 +30,12 @@ const founder = {
   expertise: ["Digital Strategy", "Technology", "Business Innovation", "Brand Growth", "SMP & Server Marketing", "Community Building"],
 };
 
+const founderPoints = [
+  { title: "Strategy first", body: "Every engagement begins with understanding the goal, the audience and what success should look like." },
+  { title: "Clear ownership", body: "A single point of contact from first conversation to launch and beyond." },
+  { title: "Built to last", body: "Work that is clear to manage, measurable and ready to grow with you." },
+];
+
 const standards = [
   { title: "Purpose", body: "Understand the business before proposing the work." },
   { title: "Clarity", body: "Open communication and honest expectations." },
@@ -66,31 +72,46 @@ export default function AboutPage() {
       </section>
 
       <section aria-labelledby="founder-title" className="section-tight border-t border-line">
-        <div className="wrap-wide grid items-center gap-10 lg:grid-cols-12 lg:gap-16">
-          <Reveal className="mx-auto w-full max-w-[20rem] lg:col-span-4 lg:max-w-[22rem]">
-            {/* Placeholder until the client supplies a professional photograph of the founder. */}
-            <div className="founder-photo">
-              <span aria-hidden="true" className="founder-mono">LD</span>
-            </div>
-          </Reveal>
-          <div className="lg:col-span-7 lg:col-start-6">
+        <div className="wrap-wide grid gap-10 lg:grid-cols-12 lg:gap-16">
+          <div className="lg:col-span-7 lg:col-start-6 lg:row-start-1">
             <SectionLabel>The founder</SectionLabel>
-            <SplitHeading id="founder-title" className="t-h2 mt-5 max-w-[16ch]">
-              Started to close a gap.
+            <SplitHeading id="founder-title" className="t-h2 mt-5 max-w-[18ch]">
+              One partner for the whole digital picture.
             </SplitHeading>
             <Reveal>
-              <p className="t-lead mt-6 max-w-[38rem]">
-                Lorenzo Devereux saw how hard it was for businesses to find dependable digital expertise in one place. He founded Devereux Digitals to change that.
+              <p className="t-lead mt-6 max-w-[40rem]">
+                Lorenzo Devereux founded Devereux Digitals after seeing how difficult it was for organizations to find dependable digital expertise in one place.
               </p>
-              <p className="mt-6 font-display text-lg font-semibold">{founder.name}</p>
-              <p className="text-sm text-muted">{founder.role}</p>
-              <ul className="mt-5 flex flex-wrap gap-2" aria-label="Areas of expertise">
+              <p className="mt-5 max-w-[40rem] text-muted">
+                Strategy, design, development and marketing too often sit with separate suppliers, leaving clients to coordinate the work and absorb the gaps between them. Devereux Digitals was established to bring those disciplines together under a single standard of delivery, for businesses, brands, SMPs, servers and online communities alike.
+              </p>
+              <dl className="founder-points">
+                {founderPoints.map((p) => (
+                  <div key={p.title}>
+                    <dt>{p.title}</dt>
+                    <dd>{p.body}</dd>
+                  </div>
+                ))}
+              </dl>
+            </Reveal>
+          </div>
+          <Reveal className="lg:col-span-4 lg:row-start-1">
+            <aside className="founder-card" aria-label="Founder profile">
+              {/* Monogram until the client supplies a professional photograph of the founder. */}
+              <div className="founder-photo">
+                <span aria-hidden="true" className="founder-mono">LD</span>
+              </div>
+              <div className="founder-id">
+                <p className="font-display text-xl font-semibold">{founder.name}</p>
+                <p className="mt-1 text-sm text-muted">{founder.role}</p>
+              </div>
+              <ul className="founder-tags" aria-label="Areas of expertise">
                 {founder.expertise.map((e) => (
                   <li key={e} className="best-for-label">{e}</li>
                 ))}
               </ul>
-            </Reveal>
-          </div>
+            </aside>
+          </Reveal>
         </div>
       </section>
 
