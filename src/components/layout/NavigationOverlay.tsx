@@ -8,6 +8,7 @@ import { serviceGroups, workLinks } from "@/data/nav";
 import { LogoMark } from "@/components/visuals/LogoMark";
 import { NavItem } from "./NavItem";
 import { LinkButton } from "@/components/ui/Button";
+import { AppIcons } from "@/components/ui/ContactLinks";
 import { ArrowRight, CloseIcon } from "@/components/ui/Icons";
 import { cn } from "@/lib/cn";
 
@@ -184,22 +185,11 @@ export function NavigationOverlay({ open, onClose, triggerRef }: NavigationOverl
             </nav>
           </div>
 
-          <div className="wrap-wide safe-bottom flex flex-col gap-6 border-t border-line pt-6 sm:flex-row sm:items-center sm:justify-between">
+          <div className="menu-foot wrap-wide flex shrink-0 flex-col gap-5 border-t border-line pt-5 sm:flex-row sm:items-center sm:justify-between">
             <LinkButton href="/contact" arrow onClick={onClose} location="menu" className="w-full sm:w-auto">
               {ctaLabels.discuss}
             </LinkButton>
-            <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm">
-              {site.contact.email && (
-                <a className="link-quiet" href={`mailto:${site.contact.email}`}>
-                  {site.contact.email}
-                </a>
-              )}
-              {site.social.map((s) => (
-                <a key={s.label} className="link-quiet" href={s.href} target="_blank" rel="noopener noreferrer">
-                  {s.label}
-                </a>
-              ))}
-            </div>
+            <AppIcons className="justify-center sm:justify-end" />
           </div>
         </div>
       )

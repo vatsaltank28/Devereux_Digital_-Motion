@@ -85,22 +85,22 @@ export const services: Service[] = [
   },
   {
     slug: "digital-marketing",
-    bestFor: "Businesses and brands.",
+    bestFor: "Businesses, brands, SMPs, servers and more.",
     number: "02",
     title: "Digital & Sales Marketing",
     shortTitle: "Digital & Sales",
     shortDescription:
-      "Strategy, content and channel management that connect your marketing to your business goals.",
+      "Strategy, content and channel management for almost anything you want to grow, not just businesses.",
     heroHeadline: "A marketing plan you can follow and measure.",
     heroDescription:
-      "We build the strategy, plan the content and manage the channels, then report in plain language on what is and isn’t working.",
+      "Whether you run a business, a brand, an SMP or a server, we build the strategy, plan the content and manage the channels, then report in plain language on what is and isn’t working.",
     intro:
-      "Marketing works best when every post, page and campaign has a reason to exist. We start by agreeing what your business needs from marketing, choose the channels that fit, and keep the reporting tied to those goals rather than to vanity numbers.",
+      "Marketing works best when every post, page and campaign has a reason to exist. We start by agreeing what your business, brand or community needs from marketing, choose the channels that fit, and keep the reporting tied to those goals rather than to vanity numbers.",
     art: "marketing",
     problems: [
       { title: "Activity without a strategy", description: "Posting and promoting without a clear goal makes it hard to know what is working." },
       { title: "Content with no plan behind it", description: "Ideas arrive in bursts, then stall. A content calendar keeps output steady and on message." },
-      { title: "Visibility without the right audience", description: "Being seen is not the same as being found by people who might hire you." },
+      { title: "Visibility without the right audience", description: "Being seen is not the same as being found by people who want what you offer." },
       { title: "Reports that don’t answer the real question", description: "Dashboards full of metrics that never link back to enquiries or business goals." },
     ],
     deliverables: [
@@ -133,13 +133,13 @@ export const services: Service[] = [
     packages: [],
     seoTitle: "Digital & Sales Marketing",
     seoDescription:
-      "Digital marketing strategy, content planning, channel management and reporting from Devereux Digitals, built around your business goals.",
+      "Digital marketing strategy, content, channel management and reporting from Devereux Digitals for businesses, brands, SMPs and servers.",
     status: "published",
     sortOrder: 2,
   },
   {
     slug: "paid-advertising",
-    bestFor: "Businesses and ecommerce brands.",
+    bestFor: "Businesses, brands, SMPs, servers and more.",
     number: "03",
     title: "Paid Advertising",
     shortTitle: "Paid Advertising",
@@ -147,7 +147,7 @@ export const services: Service[] = [
       "Structured campaigns, tested creative and clear reporting so every part of your budget has a job.",
     heroHeadline: "Paid campaigns with structure behind every budget decision.",
     heroDescription:
-      "We set up, test and optimize paid campaigns, then report on spend and results without the jargon.",
+      "From businesses and brands to SMPs and servers, we set up, test and optimize paid campaigns, then report on spend and results without the jargon.",
     intro:
       "Paid advertising rewards discipline: clear objectives, clean tracking and steady testing. We build campaigns around the outcome you actually want, keep you in control of budget, and share what we learn as the campaigns run.",
     art: "ads",

@@ -27,7 +27,7 @@ const beliefs = [
 const founder = {
   name: "Lorenzo Devereux",
   role: "Founder & CEO, Devereux Digitals",
-  expertise: ["Digital Strategy", "Technology", "Business Innovation"],
+  expertise: ["Digital Strategy", "Technology", "Business Innovation", "Brand Growth", "SMP & Server Marketing", "Community Building"],
 };
 
 const standards = [

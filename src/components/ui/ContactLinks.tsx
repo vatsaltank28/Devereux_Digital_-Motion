@@ -85,6 +85,63 @@ export function ContactCards({ className }: { className?: string }) {
   );
 }
 
+const tiktokPath = "M16.5 3c.4 2.2 1.8 3.6 4 3.9v3.4a8 8 0 0 1-4-1.3v6.3A6.2 6.2 0 1 1 10.3 9v3.5a2.8 2.8 0 1 0 2.8 2.8V3h3.4Z";
+const brandSvg = (path: ReactNode) => (
+  <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false">{path}</svg>
+);
+
+const APP_ICONS = {
+  gmail: brandSvg(
+    <>
+      <path fill="#4285F4" d="M2.5 20H6v-8.7L1 7.5v11A1.5 1.5 0 0 0 2.5 20Z" />
+      <path fill="#34A853" d="M18 20h3.5a1.5 1.5 0 0 0 1.5-1.5v-11l-5 3.8V20Z" />
+      <path fill="#FBBC04" d="M18 4.8v6.5l5-3.8v-2c0-1.9-2.1-2.9-3.6-1.8L18 4.8Z" />
+      <path fill="#EA4335" d="M6 11.3V4.8l6 4.5 6-4.5v6.5l-6 4.5-6-4.5Z" />
+      <path fill="#C5221F" d="M1 5.5v2l5 3.8V4.8L4.6 3.7C3.1 2.6 1 3.6 1 5.5Z" />
+    </>,
+  ),
+  tiktok: brandSvg(
+    <>
+      <path fill="#25F4EE" transform="translate(-.7 -.5)" d={tiktokPath} />
+      <path fill="#FE2C55" transform="translate(.7 .5)" d={tiktokPath} />
+      <path fill="currentColor" d={tiktokPath} />
+    </>,
+  ),
+  facebook: brandSvg(
+    <>
+      <circle cx="12" cy="12" r="11" fill="#1877F2" />
+      <path fill="#fff" d="M16.7 15.2l.5-3.2h-3.1V9.9c0-.9.4-1.7 1.8-1.7h1.4V5.5s-1.3-.2-2.5-.2c-2.5 0-4.2 1.5-4.2 4.3V12H7.8v3.2h2.8v7.7a11 11 0 0 0 3.5 0v-7.7h2.6Z" />
+    </>,
+  ),
+};
+
+/** Gmail, TikTok and Facebook app icons, for the mobile and tablet menu. */
+export function AppIcons({ className }: { className?: string }) {
+  const social = (label: string) => site.social.find((s) => s.label === label)?.href;
+  const apps = [
+    { label: "Gmail", href: site.contact.email ? `mailto:${site.contact.email}` : undefined, icon: APP_ICONS.gmail },
+    { label: "TikTok", href: social("TikTok"), icon: APP_ICONS.tiktok, external: true },
+    { label: "Facebook", href: social("Facebook"), icon: APP_ICONS.facebook, external: true },
+  ].filter((a) => a.href);
+  return (
+    <ul className={cn("flex items-center gap-3", className)}>
+      {apps.map((a) => (
+        <li key={a.label}>
+          <a
+            href={a.href}
+            aria-label={a.label}
+            title={a.label}
+            {...(a.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+            className="grid size-12 place-items-center rounded-xl border border-line-strong bg-surface transition-colors hover:border-[var(--color-text)]"
+          >
+            {a.icon}
+          </a>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
 /** Row of round icon buttons, for the footer. */
 export function ContactIcons({ className }: { className?: string }) {
   const channels = getChannels();
