@@ -10,6 +10,8 @@ const securityHeaders = [
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
+  // Link previews need absolute URLs: fall back to the domain Netlify provides at build time.
+  env: { NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL || process.env.URL || "" },
   images: { formats: ["image/avif", "image/webp"], qualities: [75, 90] },
   async redirects() {
     return [{ source: "/team", destination: "/about", permanent: true }];

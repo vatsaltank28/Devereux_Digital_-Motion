@@ -7,9 +7,12 @@ interface MetaInput {
   /** Route path beginning with "/" */
   path: string;
   noindex?: boolean;
-  /** Absolute or root-relative OG image. Defaults to the generated route-level OG image. */
+  /** Absolute or root-relative OG image. Defaults to the brand share image. */
   image?: string;
 }
+
+/** Logo card shown when a link to the site is shared. */
+export const defaultShareImage = { url: "/og-image.png", width: 1200, height: 630, alt: "Devereux Digitals logo" };
 
 /**
  * Builds consistent per-route metadata: unique title/description, canonical, Open Graph, Twitter.
@@ -29,13 +32,13 @@ export function buildMetadata({ title, description, path, noindex, image }: Meta
       description,
       url,
       locale: "en_US",
-      images: image ? [{ url: image }] : undefined,
+      images: [image ? { url: image } : defaultShareImage],
     },
     twitter: {
       card: "summary_large_image",
       title: `${title} | ${site.name}`,
       description,
-      images: image ? [image] : undefined,
+      images: [image ?? defaultShareImage.url],
     },
   };
 }

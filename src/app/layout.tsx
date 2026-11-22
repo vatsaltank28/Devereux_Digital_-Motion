@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
 import Script from "next/script";
 import { site } from "@/lib/site";
-import { organizationJsonLd, websiteJsonLd } from "@/lib/seo";
+import { defaultShareImage, organizationJsonLd, websiteJsonLd } from "@/lib/seo";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import "@/styles/globals.css";
@@ -35,8 +35,9 @@ export const metadata: Metadata = {
     description: site.description,
     url: site.url,
     locale: "en_US",
+    images: [defaultShareImage],
   },
-  twitter: { card: "summary_large_image", title: `${site.name} | Web Design, AI Automation & Digital Solutions`, description: site.description },
+  twitter: { card: "summary_large_image", title: `${site.name} | Web Design, AI Automation & Digital Solutions`, description: site.description, images: [defaultShareImage.url] },
 };
 
 export const viewport: Viewport = {
