@@ -1,3 +1,10 @@
+/* Logo gradient: brighter on dark so the mark never fades into the background. */
+:root { --logo-1: #4a8bff; --logo-2: #2563eb; --logo-3: #1e4fd1; --logo-4: #2b65ec; }
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) { --logo-1: #0a5bff; --logo-2: #05339c; --logo-3: #06154d; --logo-4: #0a2a80; }
+}
+:root[data-theme="light"] { --logo-1: #0a5bff; --logo-2: #05339c; --logo-3: #06154d; --logo-4: #0a2a80; }
+
 /* Menu footer: keep clear of the phone's home bar and browser toolbar. */
 .menu-foot { padding-bottom: calc(1.5rem + env(safe-area-inset-bottom)); }
 

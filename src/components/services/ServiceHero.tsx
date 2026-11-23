@@ -10,13 +10,25 @@ import { ProjectArt } from "@/components/visuals/ProjectArt";
 import Magnet from "@/components/reactbits/Magnet";
 
 /** S01, Service introduction. Same entrance grammar as the home hero, with service specific artwork. */
-export function ServiceHero({ service, cover }: { service: Service; cover?: MediaImage }) {
+export function ServiceHero({
+  service,
+  cover,
+  workHref = "#work",
+  showVisual = true,
+}: {
+  service: Service;
+  cover?: MediaImage;
+  /** Where "View Our Work" goes: live case studies when the service has them. */
+  workHref?: string;
+  /** Off for services that lead with live projects directly under the hero. */
+  showVisual?: boolean;
+}) {
   const isEditing = service.slug === "video-content";
   return (
     <header className="relative isolate overflow-hidden pb-10 pt-[calc(var(--header-h)+1.5rem)] sm:pb-20 sm:pt-[calc(var(--header-h)+4rem)] lg:pb-28">
       <div className="hero-atmosphere absolute inset-0 -z-10 opacity-80" aria-hidden="true" />
       <div className="wrap-wide grid gap-8 lg:grid-cols-12 lg:items-center lg:gap-16">
-        <div className="lg:col-span-7">
+        <div className={showVisual ? "lg:col-span-7" : "lg:col-span-9"}>
           <div className="mb-5 md:mb-8">
             <Breadcrumbs
               trail={[{ name: "Home", href: "/" }, { name: "Services", href: "/services" }, { name: service.shortTitle }]}
@@ -45,8 +57,8 @@ export function ServiceHero({ service, cover }: { service: Service; cover?: Medi
                   Start Your Project
                 </LinkButton>
               </Magnet>
-              {cover && (
-                <LinkButton href="#work" variant="secondary" location={`service-hero-work:${service.slug}`} className="max-sm:w-full">
+              {(cover || !showVisual) && (
+                <LinkButton href={workHref} variant="secondary" location={`service-hero-work:${service.slug}`} className="max-sm:w-full">
                   View Our Work
                 </LinkButton>
               )}
@@ -54,22 +66,24 @@ export function ServiceHero({ service, cover }: { service: Service; cover?: Medi
           )}
         </div>
 
-        <div className="hero-scene-in lg:col-span-5">
-          {isEditing ? (
-            <EditsCard compact />
-          ) : (
-          <figure>
-            <div className="overflow-hidden rounded-[var(--radius-card)] border border-line bg-surface" style={{ aspectRatio: "4 / 3" }}>
-              {cover ? (
-                <Image src={cover.src} alt={cover.alt} width={cover.width} height={cover.height} priority sizes="(max-width: 1024px) 92vw, 40vw" className="h-full w-full object-cover object-top" />
-              ) : (
-                <ProjectArt variant={service.art} className="h-full w-full" />
-              )}
-            </div>
-            {cover && <figcaption className="t-caption mt-3 max-sm:hidden">{cover.alt}</figcaption>}
-          </figure>
-          )}
-        </div>
+        {showVisual && (
+          <div className="hero-scene-in lg:col-span-5">
+            {isEditing ? (
+              <EditsCard compact />
+            ) : (
+              <figure>
+                <div className="overflow-hidden rounded-[var(--radius-card)] border border-line bg-surface" style={{ aspectRatio: "4 / 3" }}>
+                  {cover ? (
+                    <Image src={cover.src} alt={cover.alt} width={cover.width} height={cover.height} priority sizes="(max-width: 1024px) 92vw, 40vw" className="h-full w-full object-cover object-top" />
+                  ) : (
+                    <ProjectArt variant={service.art} className="h-full w-full" />
+                  )}
+                </div>
+                {cover && <figcaption className="t-caption mt-3 max-sm:hidden">{cover.alt}</figcaption>}
+              </figure>
+            )}
+          </div>
+        )}
       </div>
     </header>
   );

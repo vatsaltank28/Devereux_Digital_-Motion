@@ -12,7 +12,21 @@ function save(state: { statistics: boolean; marketing: boolean }) {
     localStorage.setItem(KEY, JSON.stringify(value));
   } catch {}
   (window as unknown as { __cookieConsent?: ConsentState }).__cookieConsent = value;
+  updateGoogleConsent(state);
   window.dispatchEvent(new CustomEvent("devereux:consent", { detail: value }));
+}
+
+/** Google Consent Mode v2: Statistics controls analytics storage, Marketing controls the ad signals. */
+function updateGoogleConsent({ statistics, marketing }: { statistics: boolean; marketing: boolean }) {
+  const w = window as unknown as { gtag?: (...args: unknown[]) => void; ddClearAnalyticsCookies?: () => void };
+  const ads = marketing ? "granted" : "denied";
+  w.gtag?.("consent", "update", {
+    analytics_storage: statistics ? "granted" : "denied",
+    ad_storage: ads,
+    ad_user_data: ads,
+    ad_personalization: ads,
+  });
+  if (!statistics) w.ddClearAnalyticsCookies?.();
 }
 
 function Toggle({ label, desc, checked, disabled, onChange }: { label: string; desc: string; checked: boolean; disabled?: boolean; onChange?: (v: boolean) => void }) {

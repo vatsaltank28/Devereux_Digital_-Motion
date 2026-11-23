@@ -17,6 +17,7 @@ import { WhatToExpect } from "./WhatToExpect";
 import { ServiceExtras } from "./ServiceExtras";
 import { ToolLogos } from "./ToolLogos";
 import { ServiceCaseStudies } from "./ServiceCaseStudies";
+import { MarketingShowcase } from "@/components/work/MarketingShowcase";
 import { projectsForService } from "@/data/portfolio";
 import { ServicePricing } from "./ServicePricing";
 import { getPricing } from "@/data/pricing";
@@ -31,6 +32,8 @@ import { ServiceCTA } from "./ServiceCTA";
 export function ServicePageTemplate({ service }: { service: Service }) {
   const reviews = getReviews(service.slug);
   const work = serviceWork[service.slug] ?? [];
+  // Services with live case studies lead with them; their feature image moves underneath.
+  const hasLiveWork = projectsForService(service.slug).some((p) => p.caseStudy);
   // Editing is delivered by Devereux Edits: per the client, show only what's included, reviews and the link.
   const isEditing = service.slug === "video-content";
   const faqs = getFaqs(service.slug);
@@ -49,12 +52,18 @@ export function ServicePageTemplate({ service }: { service: Service }) {
       {/* Master prompt §7 order: Overview, Included, Selected Work, Pricing & Add ons, How It Works,
           Why Choose (What to expect), Reviews, FAQs, CTA. Sections without real content are omitted. */}
       <JsonLd data={serviceJsonLd({ title: service.title, description: service.seoDescription, slug: service.slug })} />
-      <ServiceHero service={service} cover={work[0]} />
-      <ServiceCaseStudies slug={service.slug} serviceTitle={service.shortTitle} />
+      <ServiceHero
+        service={service}
+        cover={hasLiveWork ? undefined : work[0]}
+        showVisual={!hasLiveWork}
+        workHref={hasLiveWork ? "#case-studies" : "#work"}
+      />
+      <ServiceCaseStudies slug={service.slug} serviceTitle={service.shortTitle} spotlight={hasLiveWork ? work[0] : undefined} />
+      {service.slug === "digital-marketing" && <MarketingShowcase />}
       <IncludedList items={included[service.slug] ?? []} />
       <ServiceExtras slug={service.slug} />
       <ToolLogos slug={service.slug} />
-      {!isEditing && <WorkGallery images={work} serviceTitle={service.title} projects={projectsForService(service.slug)} />}
+      {!isEditing && <WorkGallery images={hasLiveWork ? work.slice(1) : work} serviceTitle={service.title} projects={projectsForService(service.slug)} />}
       {price && <ServicePricing pricing={price} slug={service.slug} serviceTitle={service.shortTitle} />}
       {service.processSteps.length > 0 && <ProcessSteps steps={service.processSteps} />}
       <WhatToExpect />

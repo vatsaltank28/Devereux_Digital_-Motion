@@ -31,7 +31,12 @@ export default function WorkPage() {
           </Suspense>
         </div>
       </section>
-      <FinalCTA location="work-final-cta" />
+      <FinalCTA
+        heading="Have something worth bringing to the market?"
+        description="Whether you’re launching a new product, growing a business, promoting software or building an online community, let’s develop a marketing strategy around your goals."
+        primaryLabel="Start a project"
+        location="work-final-cta"
+      />
     </>
   );
 }

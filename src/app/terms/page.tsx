@@ -11,7 +11,7 @@ export const metadata: Metadata = buildMetadata({
   noindex: true,
 });
 
-const EFFECTIVE_DATE = "October 17, 2026";
+const EFFECTIVE_DATE = "November 22, 2026";
 
 const Section = ({ n, title, children }: { n: number; title: string; children: ReactNode }) => (
   <section className="border-t border-line pt-8">
@@ -52,12 +52,13 @@ export default function TermsPage() {
 
             <Section n={2} title="Our services">
               <p>
-                We provide web design and development, digital and sales marketing, paid advertising, ecommerce solutions, video and content, AI and business solutions, and branding and creative design. The exact scope, deliverables and timeline for each project are confirmed in writing before work begins.
+                We provide web design and development, digital and sales marketing, paid advertising, ecommerce solutions, video and content, AI and business solutions, and branding and creative design for businesses, brands, creators, SMPs, servers and online communities. The exact scope, deliverables and timeline for each project are confirmed in writing before work begins.
               </p>
             </Section>
 
             <Section n={3} title="Pricing and quotes">
               <ul className="list-disc space-y-2 pl-5">
+                <li>Submitting a project enquiry does not create a contract or commit you or us to a project.</li>
                 <li>All prices shown on this website are in US dollars (USD).</li>
                 <li>Prices are starting estimates. Final pricing depends on project scope and is confirmed in your quote or proposal.</li>
                 <li>Optional add ons are priced separately and confirmed in your quote.</li>

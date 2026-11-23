@@ -9,15 +9,17 @@ import { Button } from "@/components/ui/Button";
 import { AlertIcon, CheckIcon } from "@/components/ui/Icons";
 
 /**
- * Detailed project enquiry. On submit the form validates, then POSTs to /api/enquiry, which delivers
- * the enquiry through the configured provider (Resend or a webhook, see .env.example).
- * If no provider is configured the API says so honestly, and the form falls back to opening the
- * visitor's email app with the enquiry written out, so an enquiry is never silently lost.
+ * Detailed project enquiry. On submit the form validates, then POSTs to Netlify Forms through the
+ * static detection file public/__forms.html (keep its field names in sync with this form).
+ * If submission fails, the visitor's details stay in the form with a clear error and a direct email link.
  */
 
-const BUDGETS = ["Under $500", "$500 to $1,500", "$1,500 to $5,000", "$5,000+", "Not sure yet"];
-const TIMELINES = ["ASAP", "Within 1 month", "1 to 3 months", "Flexible"];
+const BUDGETS = ["Under $500", "$500–$1,499", "$1,500–$4,999", "$5,000+", "Not sure yet"];
+const TIMELINES = ["Immediately", "Within 2 weeks", "Within 1 month", "1–3 months", "Flexible"];
 const CONTACT_PREFS = ["Email", "Phone call", "WhatsApp"];
+const REFERRALS = ["Google Search", "Instagram", "Facebook", "TikTok", "LinkedIn", "Discord", "Referral", "Advertisement", "Other"];
+const SELECT_CLASS =
+  "field-input appearance-none bg-[url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2216%22 height=%2216%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23a5a9b2%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22><path d=%22m6 9 6 6 6-6%22/></svg>')] bg-[length:16px] bg-[right_1rem_center] bg-no-repeat pr-11";
 
 /** One short, optional question per service (master prompt §17). */
 const SERVICE_QUESTIONS: Record<string, { label: string; options?: string[]; placeholder?: string }> = {
@@ -40,6 +42,7 @@ interface Values {
   budget: string;
   timeline: string;
   contactPref: string;
+  referral: string;
   message: string;
   consent: boolean;
   pkg: string;
@@ -47,7 +50,7 @@ interface Values {
   serviceDetail: string;
 }
 type Errors = Partial<Record<keyof Values, string>>;
-const fieldOrder: Array<keyof Values> = ["name", "email", "phone", "service", "budget", "timeline", "message", "consent"];
+const fieldOrder: Array<keyof Values> = ["name", "email", "phone", "service", "budget", "timeline", "message", "contactPref", "consent"];
 
 function validate(v: Values): Errors {
   const e: Errors = {};
@@ -56,48 +59,12 @@ function validate(v: Values): Errors {
   if (v.phone.trim() && !/^[+\d][\d\s()-]{6,}$/.test(v.phone.trim())) e.phone = "Enter a valid phone number, including country code.";
   if ((v.contactPref === "Phone call" || v.contactPref === "WhatsApp") && !v.phone.trim())
     e.phone = `Add a number so we can reach you by ${v.contactPref === "WhatsApp" ? "WhatsApp" : "phone"}.`;
-  if (!v.service) e.service = "Choose the service you’re interested in.";
-  if (!v.budget) e.budget = "Choose an approximate budget.";
+  if (!v.service) e.service = "Choose at least one service.";
   if (!v.timeline) e.timeline = "Choose a timeline.";
   if (v.message.trim().length < 30) e.message = "Tell us a little more about the project (at least 30 characters).";
+  if (!v.contactPref) e.contactPref = "Choose how you’d like us to contact you.";
   if (!v.consent) e.consent = "Please confirm so we can reply to your enquiry.";
   return e;
-}
-
-function buildMail(v: Values) {
-  const service = serviceOptions.find((o) => o.value === v.service)?.label ?? v.service;
-  const subject = `New project enquiry: ${service} | ${v.name.trim()}`;
-  const line = (k: string, val: string) => `${k}: ${val.trim() || "Not provided"}`;
-  const body = [
-    "Hello Devereux Digitals,",
-    "",
-    "I would like to enquire about a project. My details are below.",
-    "",
-    "CONTACT DETAILS",
-    line("Name", v.name),
-    line("Email", v.email),
-    line("Phone", v.phone),
-    line("Preferred contact", v.contactPref),
-    "",
-    "BUSINESS",
-    line("Company", v.company),
-    line("Current website / social", v.website),
-    "",
-    "PROJECT",
-    line("Service", service),
-    line("Service detail", v.serviceDetail),
-    line("Package", v.pkg),
-    line("Add ons", v.addOns.join(", ")),
-    line("Budget", v.budget),
-    line("Timeline", v.timeline),
-    "",
-    "PROJECT DETAILS",
-    v.message.trim(),
-    "",
-    "Kind regards,",
-    v.name.trim(),
-  ].join("\n");
-  return { subject, body, href: `mailto:${site.contact.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}` };
 }
 
 function FieldError({ id, message }: { id: string; message?: string }) {
@@ -134,7 +101,7 @@ export function ProjectEnquiryForm({
   selectedAddOns?: string[];
 }) {
   const uid = useId();
-  const initialService = serviceOptions.some((o) => o.value === defaultService) ? (defaultService as string) : "";
+  const initialService = defaultService !== "multiple-services" && serviceOptions.some((o) => o.value === defaultService) ? (defaultService as string) : "";
   const [values, setValues] = useState<Values>({
     name: "",
     email: "",
@@ -144,7 +111,8 @@ export function ProjectEnquiryForm({
     service: initialService,
     budget: "",
     timeline: "",
-    contactPref: "Email",
+    contactPref: "",
+    referral: "",
     message: "",
     consent: false,
     pkg: selectedPackage ?? "",
@@ -153,21 +121,14 @@ export function ProjectEnquiryForm({
   });
   const [status, setStatus] = useState<"idle" | "sending" | "delivered" | "error">("idle");
   const [serverError, setServerError] = useState("");
-  const startedAt = useRef(0);
   const started = useRef(false);
   const [errors, setErrors] = useState<Errors>({});
-  const [sent, setSent] = useState<null | ReturnType<typeof buildMail>>(null);
-  const [copied, setCopied] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
   const successRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    startedAt.current = Date.now();
-  }, []);
-
-  useEffect(() => {
-    if (sent || status === "delivered") successRef.current?.focus();
-  }, [sent, status]);
+    if (status === "delivered") successRef.current?.focus();
+  }, [status]);
 
   const id = (name: string) => `${uid}-${name}`;
   const describe = (name: keyof Values) => (errors[name] ? id(`${name}-error`) : undefined);
@@ -195,36 +156,27 @@ export function ProjectEnquiryForm({
     setErrors(errs);
     if (Object.keys(errs).length) {
       const first = fieldOrder.find((f) => errs[f]);
-      if (first) formRef.current?.querySelector<HTMLElement>(`[name="${first}"]`)?.focus();
+      if (first) formRef.current?.querySelector<HTMLElement>(`[data-field="${first}"], [name="${first}"]:not([type="hidden"])`)?.focus();
       track("contact_form_error", { fields: Object.keys(errs).join(",") });
       return;
     }
+    const formData = new FormData(e.currentTarget);
     setStatus("sending");
     setServerError("");
-    const honeypot = formRef.current?.querySelector<HTMLInputElement>('input[name="nickname"]')?.value ?? "";
     try {
-      const res = await fetch("/api/enquiry", {
+      const res = await fetch("/__forms.html", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...values, nickname: honeypot, startedAt: startedAt.current }),
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(formData as unknown as Record<string, string>).toString(),
       });
-      const body = (await res.json().catch(() => ({}))) as { ok?: boolean; delivered?: boolean; code?: string; message?: string };
-      if (res.ok && body.delivered) {
-        track("contact_form_submit", { service: values.service, method: "api" });
+      if (res.ok) {
+        track("contact_form_submit", { service: values.service, method: "netlify" });
         setStatus("delivered");
         return;
       }
-      // Delivery isn't configured yet: hand over to the visitor's email app instead (never pretend it sent).
-      if ((res.ok && body.delivered === false) || body.code === "not_configured") {
-        const mail = buildMail(values);
-        track("contact_form_submit", { service: values.service, method: "mailto" });
-        setStatus("idle");
-        window.location.href = mail.href;
-        setSent(mail);
-        return;
-      }
+      track("contact_form_error", { fields: "submission" });
       setStatus("error");
-      setServerError(body.message ?? "We couldn’t send your enquiry just now. Please try again shortly.");
+      setServerError("We couldn’t send your enquiry just now. Please try again shortly.");
     } catch {
       setStatus("error");
       setServerError("We couldn’t reach our server. Check your connection and try again. Your details are still in the form.");
@@ -232,71 +184,35 @@ export function ProjectEnquiryForm({
   };
 
   const errorCount = Object.values(errors).filter(Boolean).length;
-  const question = SERVICE_QUESTIONS[values.service];
+  const selectedServices = values.service ? values.service.split(",") : [];
+  const question = selectedServices.length === 1 ? SERVICE_QUESTIONS[selectedServices[0]!] : undefined;
+  const toggleService = (slug: string) => {
+    const nextServices = selectedServices.includes(slug) ? selectedServices.filter((s) => s !== slug) : [...selectedServices, slug];
+    const service = nextServices.join(",");
+    setValues((v) => ({ ...v, service, serviceDetail: "" }));
+    if (errors.service) setErrors((cur) => ({ ...cur, service: service ? undefined : cur.service }));
+  };
 
   if (status === "delivered") {
     return (
-      <div ref={successRef} tabIndex={-1} role="status" aria-live="polite" className="card p-8 outline-none md:p-12">
-        <span className="grid size-12 place-items-center rounded-full bg-[color-mix(in_srgb,var(--color-success)_18%,transparent)] text-success">
+      <div ref={successRef} tabIndex={-1} role="status" aria-live="polite" className="card p-8 text-center outline-none md:p-12">
+        <span className="mx-auto grid size-12 place-items-center rounded-full bg-[color-mix(in_srgb,var(--color-success)_18%,transparent)] text-success">
           <CheckIcon size={24} />
         </span>
-        <h2 className="t-h3 mt-6">Thank you for your enquiry</h2>
-        <p className="t-body mt-3">
-          Our team will review your project and get back to you at <strong className="text-ink">{values.email}</strong>.
+        <h2 className="t-h3 mt-6">Enquiry successfully submitted!</h2>
+        <p className="t-body mx-auto mt-3 max-w-[34rem]">
+          Thank you for considering Devereux Digitals. We’ve received your project details and our team will review your enquiry.
         </p>
-        <div className="mt-8 flex flex-wrap gap-6">
+        <h3 className="t-h4 mt-8">What happens next?</h3>
+        <ol className="mx-auto mt-4 grid max-w-[26rem] list-decimal gap-2 pl-5 text-left text-muted">
+          <li>We’ll review your requirements.</li>
+          <li>We’ll contact you within one business day.</li>
+          <li>We’ll discuss the best approach for your project.</li>
+        </ol>
+        <div className="mt-8 flex flex-wrap justify-center gap-6">
           <Link href="/work" className="link-arrow">
             Explore our work
           </Link>
-          <Link href="/" className="link-arrow">
-            Back to home
-          </Link>
-        </div>
-      </div>
-    );
-  }
-
-  if (sent) {
-    return (
-      <div ref={successRef} tabIndex={-1} role="status" aria-live="polite" className="card p-8 outline-none md:p-12">
-        <span className="grid size-12 place-items-center rounded-full bg-[color-mix(in_srgb,var(--color-success)_18%,transparent)] text-success">
-          <CheckIcon size={24} />
-        </span>
-        <h2 className="t-h3 mt-6">Your enquiry is ready to send</h2>
-        <p className="t-body mt-3">
-          We’ve opened your email app with everything filled in. Just press <strong className="text-ink">Send</strong> and we’ll reply to{" "}
-          <strong className="text-ink">{values.email}</strong>.
-        </p>
-        <p className="t-body mt-3">If your email app didn’t open, use one of these options:</p>
-        <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-          <a href={sent.href} className="field-input inline-flex w-auto items-center justify-center font-semibold">
-            Open email again
-          </a>
-          <button
-            type="button"
-            className="field-input inline-flex w-auto items-center justify-center font-semibold"
-            onClick={async () => {
-              try {
-                await navigator.clipboard.writeText(`To: ${site.contact.email}\nSubject: ${sent.subject}\n\n${sent.body}`);
-                setCopied(true);
-              } catch {
-                setCopied(false);
-              }
-            }}
-          >
-            {copied ? "Copied to clipboard" : "Copy enquiry text"}
-          </button>
-        </div>
-        <p className="t-caption mt-4">
-          Or email us directly at{" "}
-          <a href={`mailto:${site.contact.email}`} className="text-ink underline underline-offset-4">
-            {site.contact.email}
-          </a>
-        </p>
-        <div className="mt-8 flex flex-wrap gap-6">
-          <button type="button" className="link-arrow" onClick={() => setSent(null)}>
-            Edit enquiry
-          </button>
           <Link href="/" className="link-arrow">
             Back to home
           </Link>
@@ -359,9 +275,12 @@ export function ProjectEnquiryForm({
       aria-busy={status === "sending"}
       className="card relative scroll-mt-[calc(var(--header-h)+1rem)] space-y-7 p-6 md:p-10"
     >
+      <input type="hidden" name="form-name" value="contact" />
+      <input type="hidden" name="pkg" value={values.pkg} />
+      <input type="hidden" name="addOns" value={values.addOns.join(", ")} />
       <div aria-hidden="true" className="absolute -left-[9999px] h-px w-px overflow-hidden">
         <label>
-          Leave this empty <input type="text" name="nickname" tabIndex={-1} autoComplete="off" defaultValue="" />
+          Leave this empty <input type="text" name="bot-field" tabIndex={-1} autoComplete="off" defaultValue="" />
         </label>
       </div>
       <div className="flex flex-wrap items-start justify-between gap-3">
@@ -380,11 +299,11 @@ export function ProjectEnquiryForm({
 
       <Step n={1} title="About you">
         <div className="grid gap-6 sm:grid-cols-2">
-          {text("name", "Full name", { type: "text", autoComplete: "name" })}
-          {text("email", "Email address", { type: "email", inputMode: "email", autoComplete: "email" })}
-          {text("phone", <>Phone / WhatsApp {optional}</>, { type: "tel", inputMode: "tel", autoComplete: "tel", placeholder: "+1 555 123 4567" })}
-          {text("company", <>Company or brand {optional}</>, { type: "text", autoComplete: "organization" })}
-          {text("website", <>Current website or social link {optional}</>, { type: "text", inputMode: "url", placeholder: "https://" }, true)}
+          {text("name", "Full name *", { type: "text", autoComplete: "name" })}
+          {text("email", "Work email address *", { type: "email", inputMode: "email", autoComplete: "email" })}
+          {text("phone", <>Phone / WhatsApp number {optional}</>, { type: "tel", inputMode: "tel", autoComplete: "tel", placeholder: "+1 555 123 4567" })}
+          {text("company", <>Business, brand, creator or community name {optional}</>, { type: "text", autoComplete: "organization" })}
+          {text("website", <>Website or social media link {optional}</>, { type: "text", inputMode: "url", placeholder: "https://" }, true)}
         </div>
       </Step>
 
@@ -419,29 +338,19 @@ export function ProjectEnquiryForm({
               )}
             </div>
           )}
-          <div className="field">
-            <label htmlFor={id("service")} className="field-label">
-              Service of interest
-            </label>
-            <select
-              id={id("service")}
-              name="service"
-              value={values.service}
-              onChange={onChange}
-              onBlur={onBlur}
-              aria-invalid={Boolean(errors.service)}
-              aria-describedby={describe("service")}
-              className="field-input appearance-none bg-[url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2216%22 height=%2216%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23a5a9b2%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22><path d=%22m6 9 6 6 6-6%22/></svg>')] bg-[length:16px] bg-[right_1rem_center] bg-no-repeat pr-11"
-            >
-              <option value="" disabled>
-                Choose a service
-              </option>
-              {serviceOptions.map((o) => (
-                <option key={o.value} value={o.value}>
-                  {o.label}
-                </option>
+          <div className="field" role="group" aria-labelledby={id("service-label")} aria-describedby={describe("service")}>
+            <p id={id("service-label")} className="field-label">
+              Which services do you need? * <span className="font-normal text-subtle">Choose all that apply</span>
+            </p>
+            <input type="hidden" name="service" value={values.service} />
+            <div className="chip-group mt-1">
+              {serviceOptions.filter((o) => o.value !== "multiple-services").map((o, i) => (
+                <label key={o.value} className="chip">
+                  <input type="checkbox" data-field={i === 0 ? "service" : undefined} checked={selectedServices.includes(o.value)} onChange={() => toggleService(o.value)} />
+                  <span>{o.label}</span>
+                </label>
               ))}
-            </select>
+            </div>
             <FieldError id={id("service-error")} message={errors.service} />
           </div>
           {question &&
@@ -462,8 +371,8 @@ export function ProjectEnquiryForm({
             ) : (
               text("serviceDetail", <>{question.label} {optional}</>, { type: "text", placeholder: question.placeholder, maxLength: 300 })
             ))}
-          {chips("budget", "Approximate budget (USD)", BUDGETS)}
-          {chips("timeline", "Ideal timeline", TIMELINES)}
+          {chips("budget", "Approximate budget in USD (optional)", BUDGETS)}
+          {chips("timeline", "Ideal timeline *", TIMELINES)}
         </div>
       </Step>
 
@@ -471,8 +380,11 @@ export function ProjectEnquiryForm({
         <div className="grid gap-6">
           <div className="field">
             <label htmlFor={id("message")} className="field-label">
-              Tell us about the project
+              Tell us about your project
             </label>
+            <p id={id("message-help")} className="t-caption mb-2">
+              Describe what you’re looking to achieve, the challenges you’re facing and any specific requirements. Include relevant links or references if available.
+            </p>
             <textarea
               id={id("message")}
               name="message"
@@ -481,16 +393,34 @@ export function ProjectEnquiryForm({
               onChange={onChange}
               onBlur={onBlur}
               aria-invalid={Boolean(errors.message)}
-              aria-describedby={[id("message-hint"), describe("message")].filter(Boolean).join(" ")}
-              placeholder="Your goals, who it’s for, anything that has or hasn’t worked before, and examples you like."
+              aria-describedby={[id("message-help"), id("message-hint"), describe("message")].filter(Boolean).join(" ")}
+              placeholder="Tell us about your project..."
               className="field-input min-h-40 resize-y py-3"
             />
             <p id={id("message-hint")} className="t-caption mt-1.5">
-              The more detail you share, the more useful our first reply will be.
+              A little detail helps us understand exactly what you need.
             </p>
             <FieldError id={id("message-error")} message={errors.message} />
           </div>
-          {chips("contactPref", "How should we contact you?", CONTACT_PREFS)}
+        </div>
+      </Step>
+
+      <Step n={4} title="Staying in touch">
+        <div className="grid gap-6">
+          {chips("contactPref", "Preferred contact method *", CONTACT_PREFS)}
+          <div className="field">
+            <label htmlFor={id("referral")} className="field-label">
+              How did you hear about us? {optional}
+            </label>
+            <select id={id("referral")} name="referral" value={values.referral} onChange={onChange} className={SELECT_CLASS}>
+              <option value="">Select an option</option>
+              {REFERRALS.map((o) => (
+                <option key={o} value={o}>
+                  {o}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
       </Step>
 
@@ -527,11 +457,11 @@ export function ProjectEnquiryForm({
         </div>
       )}
 
-      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <p className="t-caption max-w-[24rem]">What happens next: we review your project details and reply with questions or a recommended next step.</p>
-        <Button type="submit" arrow className="max-sm:w-full" disabled={status === "sending"}>
-          {status === "sending" ? "Sending…" : "Send enquiry"}
+      <div className="flex flex-col gap-3">
+        <Button type="submit" arrow className="w-full" disabled={status === "sending"}>
+          {status === "sending" ? "Submitting…" : "Submit Project Enquiry"}
         </Button>
+        <p className="t-caption text-center">No commitment required. We’ll review your enquiry and respond within one business day.</p>
       </div>
     </form>
   );

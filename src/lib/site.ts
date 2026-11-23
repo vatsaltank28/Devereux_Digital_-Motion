@@ -18,10 +18,11 @@ export const site = {
   tagline: "A Digital Solutions Agency for Businesses, Brands & Creators.",
   description:
     "Devereux Digitals delivers web design, digital marketing, AI automation, branding and video production for businesses, brands, entrepreneurs and creators.",
-  url: (clean(process.env.NEXT_PUBLIC_SITE_URL) ?? "http://localhost:3000").replace(/\/$/, ""),
+  /** Production domain for canonicals, sitemap, robots, social and structured data. Deliberately not host-derived. */
+  url: "https://devereuxdigitals.com",
   locale: "en",
   contact: {
-    email: clean(process.env.NEXT_PUBLIC_CONTACT_EMAIL) ?? "devereuxdigitals1@gmail.com",
+    email: clean(process.env.NEXT_PUBLIC_CONTACT_EMAIL) ?? "contact@devereuxdigitals.com",
     phone: clean(process.env.NEXT_PUBLIC_CONTACT_PHONE) ?? "+1 716 363 9707",
     whatsapp: clean(process.env.NEXT_PUBLIC_WHATSAPP_URL) ?? "https://wa.me/16827938815",
     discord: clean(process.env.NEXT_PUBLIC_DISCORD_URL) ?? "https://discord.com/users/1323213896240205845",

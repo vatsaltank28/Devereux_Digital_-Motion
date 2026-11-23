@@ -1,18 +1,20 @@
 import Image from "next/image";
 import Link from "next/link";
-import { serviceWork } from "@/data/media";
-import { services } from "@/data/services";
+import { categoryLabel, coverImage, portfolio } from "@/data/portfolio";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { SplitHeading } from "@/components/motion/SplitHeading";
 
 /**
- * "The kind of work we do": two rows of real portfolio pieces drifting in opposite directions
- * (React Bits-style infinite gallery, CSS-driven, pauses on hover, static for reduced motion).
+ * "The kind of work we do": two rows of live websites drifting in opposite directions, each opening
+ * its case study (React Bits-style infinite gallery, CSS-driven, pauses on hover, static for reduced motion).
  */
-const items = Object.entries(serviceWork).flatMap(([slug, imgs]) =>
-  imgs.slice(0, 3).map((img) => ({ ...img, slug, service: services.find((s) => s.slug === slug)?.shortTitle ?? "" })),
-);
-const rows = [items.filter((_, i) => i % 2 === 0), items.filter((_, i) => i % 2 === 1)];
+const items = portfolio
+  .filter((p) => p.caseStudy)
+  .map((p) => {
+    const img = coverImage(p.media[0]);
+    return { src: img.src, width: img.width, height: img.height, alt: `${p.title} website`, slug: p.slug, service: categoryLabel(p.category), title: p.title };
+  });
+const rows = [items, [...items].reverse()];
 
 export function WorkMarquee() {
   return (
@@ -25,8 +27,7 @@ export function WorkMarquee() {
           </SplitHeading>
         </div>
         <p className="t-body lg:col-span-4 lg:col-start-9">
-          A look at recent projects across every service: store redesigns, ad dashboards, brand identities, CRM automations
-          and search growth. Tap any piece to see the full service.
+          A look at live websites, online stores and AI products we’ve worked on. Tap any project to open its case study.
         </p>
       </div>
       <div className="flex flex-col gap-4">
@@ -37,7 +38,7 @@ export function WorkMarquee() {
                 row.map((it) => (
                   <Link
                     key={`${dup}-${it.src}`}
-                    href={`/services/${it.slug}`}
+                    href={`/work/${it.slug}`}
                     className="wm-item"
                     tabIndex={dup ? -1 : undefined}
                     aria-hidden={dup ? true : undefined}
@@ -45,8 +46,8 @@ export function WorkMarquee() {
                     <Image src={it.src} alt={dup ? "" : it.alt} width={it.width} height={it.height} sizes="360px" className="wm-img" />
                     <span className="wm-cap">
                       <span className="wm-tag">{it.service}</span>
-                      <span className="wm-desc">{it.alt}</span>
-                      <span className="wm-view">View project <span aria-hidden="true">→</span></span>
+                      <span className="wm-desc">{it.title}</span>
+                      <span className="wm-view">View case study <span aria-hidden="true">→</span></span>
                     </span>
                   </Link>
                 )),

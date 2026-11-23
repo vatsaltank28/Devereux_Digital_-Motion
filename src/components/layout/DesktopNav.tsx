@@ -3,8 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import { getService } from "@/data/services";
-import { serviceGroups, workLinks } from "@/data/nav";
+import type { DesktopNavData } from "@/data/navMenu";
 import { NavItem } from "./NavItem";
 import { cn } from "@/lib/cn";
 
@@ -75,7 +74,7 @@ function Dropdown({ id, label, open, active, onOpen, onToggle, onLeave, onDismis
  * Always visible desktop navigation (lg and up) with Services and Work dropdowns.
  * Closes on Escape, outside click, focus leaving, or navigation (state is tied to the path it opened on).
  */
-export function DesktopNav() {
+export function DesktopNav({ data }: { data: DesktopNavData }) {
   const pathname = usePathname();
   const [state, setState] = useState<{ id: MenuId; on: string } | null>(null);
   const openId = state && state.on === pathname ? state.id : null;
@@ -123,19 +122,15 @@ export function DesktopNav() {
         <Dropdown id="services" label="Services" active={isActive("/services")} {...handlers("services")}>
           <div className="mega-inner">
             <div className="mega-cols">
-              {serviceGroups.map((g) => (
+              {data.groups.map((g) => (
                 <div key={g.title}>
                   <p className="mega-group">{g.title}</p>
                   <ul className="mt-3 space-y-1">
-                    {g.slugs.map((slug) => {
-                      const s = getService(slug);
-                      if (!s) return null;
-                      return (
-                        <li key={slug}>
-                          <NavItem href={`/services/${slug}`} onClick={close} title={s.title} desc={s.bestFor ?? s.shortDescription} glyph={slug} />
-                        </li>
-                      );
-                    })}
+                    {g.items.map((s) => (
+                      <li key={s.slug}>
+                        <NavItem href={`/services/${s.slug}`} onClick={close} title={s.title} desc={s.desc} glyph={s.slug} />
+                      </li>
+                    ))}
                   </ul>
                 </div>
               ))}
@@ -158,7 +153,7 @@ export function DesktopNav() {
             <div>
               <p className="mega-group">Browse our work</p>
               <ul className="mega-work mt-3">
-                {workLinks.map((w) => (
+                {data.work.map((w) => (
                   <li key={w.id}>
                     <NavItem href={w.href} onClick={close} title={w.label} desc={w.desc} glyph={w.glyph} count={w.count} />
                   </li>

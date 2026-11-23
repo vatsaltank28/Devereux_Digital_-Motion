@@ -4,7 +4,9 @@ import { publishedServices } from "@/data/services";
 /** Service choices offered in the enquiry form. "not-sure" is always available. */
 export const serviceOptions = [
   ...publishedServices.map((s) => ({ value: s.slug, label: s.title })),
-  { value: "not-sure", label: "Not sure yet" },
+  { value: "multiple-services", label: "Multiple Services" },
+  { value: "not-sure", label: "Not Sure Yet" },
+  { value: "other", label: "Other" },
 ] as const;
 
 const serviceValues = serviceOptions.map((o) => o.value) as [string, ...string[]];

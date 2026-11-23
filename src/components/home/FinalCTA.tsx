@@ -13,6 +13,7 @@ interface FinalCTAProps {
   service?: string;
   primaryLabel?: string;
   location?: string;
+  secondary?: { label: string; href: string };
 }
 
 /** H05, Final CTA. Reused by every page so the conversion path is identical everywhere. */
@@ -22,6 +23,7 @@ export function FinalCTA({
   service,
   primaryLabel = ctaLabels.startProject,
   location = "final-cta",
+  secondary,
 }: FinalCTAProps) {
   const href = service ? `/contact?service=${encodeURIComponent(service)}` : "/contact";
   return (
@@ -42,6 +44,11 @@ export function FinalCTA({
               {primaryLabel}
             </LinkButton>
           </Magnet>
+          {secondary && (
+            <LinkButton href={secondary.href} variant="secondary" location={`${location}-secondary`} className="max-sm:w-full">
+              {secondary.label}
+            </LinkButton>
+          )}
           {site.contact.email && (
             <a className="link-quiet text-[1.0625rem]" href={`mailto:${site.contact.email}`}>
               or write to {site.contact.email}

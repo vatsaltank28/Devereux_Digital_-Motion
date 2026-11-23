@@ -1,0 +1,41 @@
+/* Marketing demonstration projects: required label, stat tiles, showcase cards. */
+.demo-banner { max-width: 60rem; padding: .7rem .9rem; border: 1px solid color-mix(in srgb, var(--color-tag) 45%, var(--color-border)); border-radius: .75rem;
+  background: color-mix(in srgb, var(--color-tag) 8%, var(--color-surface)); font-size: .86rem; line-height: 1.5; color: var(--color-text); }
+.demo-tag { display: inline-flex; width: fit-content; padding: .3rem .55rem; border: 1px solid color-mix(in srgb, var(--color-tag) 50%, transparent); border-radius: .4rem;
+  font: 600 .64rem/1.2 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .08em; text-transform: uppercase; color: var(--color-tag); }
+
+.mk-tiles { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .6rem; }
+@media (min-width: 900px) { .mk-tiles { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .85rem; } }
+.mk-tile { display: flex; flex-direction: column-reverse; justify-content: flex-end; gap: .45rem; min-width: 0; padding: clamp(.9rem, .7rem + .8vw, 1.5rem); border: 1px solid var(--color-border); border-radius: var(--radius-card); background: var(--color-surface); }
+.mk-tile dd { font-family: var(--font-display); font-size: clamp(1.45rem, 1.05rem + 2vw, 2.75rem); font-weight: 700; line-height: 1.05; letter-spacing: -.03em; color: var(--color-text); overflow-wrap: anywhere; }
+.mk-tile dt { font-size: clamp(.78rem, .74rem + .2vw, .95rem); line-height: 1.35; color: var(--color-text-muted); }
+.mk-tile.is-primary dd { color: var(--color-success); }
+
+.mk-more { margin-top: .85rem; border: 1px solid var(--color-border); border-radius: var(--radius-card); background: var(--color-surface); }
+.mk-more summary { display: flex; align-items: center; min-height: 3rem; padding: .5rem 1rem; font-size: .92rem; font-weight: 600; cursor: pointer; }
+.mk-more summary:focus-visible { outline: 2px solid var(--color-accent-bright); outline-offset: 2px; border-radius: inherit; }
+.mk-more dl { display: grid; padding: 0 1rem .6rem; }
+@media (min-width: 768px) { .mk-more dl { grid-template-columns: 1fr 1fr; column-gap: 2.5rem; } }
+.mk-more dl > div { display: flex; justify-content: space-between; gap: 1rem; padding: .6rem 0; border-top: 1px solid var(--color-border); font-size: .9rem; }
+.mk-more dt { color: var(--color-text-muted); }
+.mk-more dd { font-weight: 600; font-variant-numeric: tabular-nums; }
+
+.mk-impact { display: flex; flex-direction: column; gap: 1.25rem; padding: clamp(1.25rem, 1rem + 1.2vw, 2.25rem); border: 1px solid color-mix(in srgb, var(--color-accent) 35%, var(--color-border)); border-radius: var(--radius-card); background: var(--color-surface); }
+@media (min-width: 900px) { .mk-impact { flex-direction: row; align-items: center; justify-content: space-between; gap: 3rem; } }
+
+.mk-showcase { display: grid; gap: .75rem; }
+@media (min-width: 560px) { .mk-showcase { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1100px) { .mk-showcase { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; } }
+.mk-card { display: flex; flex-direction: column; height: 100%; padding: 1.25rem; border: 1px solid var(--color-border); border-radius: var(--radius-card); background: var(--color-surface); transition: border-color .25s, transform .25s var(--ease-out); }
+.mk-card:hover { border-color: var(--color-accent-bright); transform: translateY(-2px); }
+.mk-card:focus-visible { outline: 2px solid var(--color-accent-bright); outline-offset: 2px; }
+.mk-card-img { display: block; aspect-ratio: 16 / 10; overflow: hidden; border-radius: calc(var(--radius-card) - 8px); background: var(--color-surface-3); }
+.mk-card-value { margin-top: .9rem; font-family: var(--font-display); font-size: clamp(2rem, 1.6rem + 1.2vw, 2.75rem); font-weight: 700; line-height: 1; letter-spacing: -.03em; color: var(--color-success); }
+.mk-card-label { margin-top: .4rem; font-size: .88rem; color: var(--color-text-muted); }
+.mk-card-name { margin-top: 1.5rem; padding-top: .9rem; border-top: 1px solid var(--color-border); font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; }
+.mk-card-cat { margin-top: .15rem; font-size: .8rem; color: var(--color-text-muted); }
+@media (prefers-reduced-motion: reduce) { .mk-card { transition: none; } .mk-card:hover { transform: none; } }
+
+.project-card-demo { display: flex; flex-direction: column; justify-content: center; height: 100%; padding: 1.25rem; background: var(--color-surface-2); }
+.project-card-demo b { font-family: var(--font-display); font-size: clamp(1.9rem, 1.5rem + 1.2vw, 2.6rem); line-height: 1; letter-spacing: -.03em; color: var(--color-success); }
+.project-card-demo small { margin-top: .4rem; font-size: .85rem; color: var(--color-text-muted); }

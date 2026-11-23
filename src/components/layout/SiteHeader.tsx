@@ -10,6 +10,7 @@ import { LinkButton } from "@/components/ui/Button";
 import dynamic from "next/dynamic";
 import { ThemeToggle } from "./ThemeToggle";
 import { DesktopNav } from "./DesktopNav";
+import type { DesktopNavData } from "@/data/navMenu";
 
 // The full screen menu is only needed after "Menu" is tapped: keep it out of the initial bundle.
 const NavigationOverlay = dynamic(() => import("./NavigationOverlay").then((m) => m.NavigationOverlay), { ssr: false });
@@ -19,7 +20,7 @@ const NavigationOverlay = dynamic(() => import("./NavigationOverlay").then((m) =
  * The menu "belongs" to the path it was opened on, so any navigation (links, browser back/forward)
  * closes it without an effect driven state update.
  */
-export function SiteHeader() {
+export function SiteHeader({ navData }: { navData: DesktopNavData }) {
   const pathname = usePathname();
   const [openedOn, setOpenedOn] = useState<string | null>(null);
   const [scrolled, setScrolled] = useState(false);
@@ -61,7 +62,7 @@ export function SiteHeader() {
             <span className="whitespace-nowrap font-display text-[1.02rem] font-semibold tracking-tight sm:text-[1.15rem]">{site.name}</span>
           </Link>
 
-          <DesktopNav />
+          <DesktopNav data={navData} />
 
           <div className="flex items-center gap-2 sm:gap-3">
             <ThemeToggle />

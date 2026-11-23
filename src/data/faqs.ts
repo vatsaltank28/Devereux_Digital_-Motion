@@ -99,6 +99,20 @@ export const faqs: Faq[] = [
     "Yes. A refresh can modernize and tighten an identity while keeping the recognition you’ve already built."),
 ];
 
+const home = (sortOrder: number, question: string, answer: string): Faq => ({ id: `home-${sortOrder}`, sortOrder, question, answer });
+
+/** Homepage FAQ. Answers stay consistent with the proposal-led policies above. */
+export const homeFaqs: Faq[] = [
+  home(1, "What services do you offer?", "Web design and development, digital and sales marketing, paid advertising, ecommerce, video and content, AI and business solutions, and branding and creative design. You can use one service or combine several."),
+  home(2, "How does the project process work?", "We move through five stages: Discover, Strategize, Create, Refine, and Launch & Grow. You review the work at agreed checkpoints along the way."),
+  home(3, "How long does a project usually take?", "It depends on scope and on how quickly feedback and content arrive. We confirm a realistic schedule in the written proposal before work begins."),
+  home(4, "What is the estimated project cost?", "Every project is scoped individually. Your proposal sets out what is included, what is not, and how payment is structured."),
+  home(5, "Can you maintain a website after launch?", "Yes. Post launch support and maintenance can be agreed as an option in your proposal, depending on how much help you want."),
+  home(6, "What information do I need to provide?", "A short summary of your goals is enough to start. Your logo, brand assets, existing content and examples you like all help if you have them."),
+  home(7, "Can you work with an existing website?", "Yes. We can improve, optimize or redesign an existing website once we understand how it is built and what it needs to do."),
+  home(8, "Do you offer ongoing marketing services?", "Yes. Digital marketing and paid advertising can run as ongoing work, with channels and reporting agreed in your proposal."),
+];
+
 export function getFaqs(serviceSlug?: string): Faq[] {
   return faqs.filter((f) => f.serviceSlug === serviceSlug).sort((a, b) => a.sortOrder - b.sortOrder);
 }

@@ -1,27 +1,28 @@
 import { SectionLabel } from "@/components/ui/SectionLabel";
-import { SplitHeading } from "@/components/motion/SplitHeading";
-import { Reveal } from "@/components/motion/Reveal";
-import { ServiceCardGrid } from "@/components/services/ServiceCardGrid";
+import { publishedServices } from "@/data/services";
+import { projectsForService } from "@/data/portfolio";
+import { ServiceExplorer } from "./ServiceExplorer";
 
-/** H02, Services overview: seven live services plus a direct route to a conversation. */
+/** Only the fields the explorer needs reach the client bundle. */
+const items = publishedServices.map((s) => ({
+  slug: s.slug,
+  title: s.title,
+  description: s.shortDescription,
+  bestFor: s.bestFor,
+  deliverables: s.deliverables.slice(0, 4).map((d) => d.title),
+  examples: projectsForService(s.slug).slice(0, 2).map((p) => ({ slug: p.slug, title: p.title })),
+}));
+
 export function ServicesGrid() {
   return (
-    <section id="services" aria-labelledby="services-title" className="section" style={{ paddingTop: "clamp(2rem, 1rem + 3vw, 4rem)" }}>
+    <section id="services" aria-labelledby="services-title" className="section scroll-mt-[var(--header-h)] border-t border-line">
       <div className="wrap-wide">
-        <div className="mb-6 grid gap-4 md:mb-12 md:gap-6 lg:grid-cols-12 lg:items-end">
-          <div className="lg:col-span-7">
-            <SectionLabel>Services</SectionLabel>
-            <SplitHeading id="services-title" className="t-h2 mt-4 max-w-[16ch]">
-              Everything your business needs to show up online.
-            </SplitHeading>
-          </div>
-          <Reveal className="lg:col-span-4 lg:col-start-9">
-            <p className="t-body">
-              Seven services that work on their own or together. Choose one to see what we deliver, how we work and what it involves.
-            </p>
-          </Reveal>
+        <div className="mb-7 max-w-[46rem] md:mb-10">
+          <SectionLabel>Services</SectionLabel>
+          <h2 id="services-title" className="t-h2 mt-4">Everything your business needs to show up online.</h2>
+          <p className="t-body mt-4">Seven services that work on their own or together. Choose one to see what you get and who it’s for.</p>
         </div>
-        <ServiceCardGrid />
+        <ServiceExplorer services={items} />
       </div>
     </section>
   );

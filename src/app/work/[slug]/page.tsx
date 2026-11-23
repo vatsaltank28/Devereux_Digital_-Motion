@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { portfolio, getProject, coverImage, categoryLabel, portfolioCategories, relatedProjects } from "@/data/portfolio";
+import { portfolio, demoProjects, getProject, coverImage, categoryLabel, portfolioCategories, relatedProjects } from "@/data/portfolio";
+import { MarketingCaseStudyView } from "@/components/work/MarketingCaseStudyView";
 import { getService } from "@/data/services";
 import { buildMetadata, breadcrumbJsonLd } from "@/lib/seo";
 import { JsonLd } from "@/components/ui/JsonLd";
@@ -24,6 +25,9 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
   const { slug } = await params;
   const p = getProject(slug);
   if (!p) return {};
+  if (p.demo) {
+    return buildMetadata({ title: `${p.title} Case Study | ${p.demo.categoryName}`, description: p.demo.headline, path: `/work/${p.slug}`, noindex: !p.demo.resultsConfirmed });
+  }
   const cover = p.media[0];
   const img = coverImage(cover);
   return buildMetadata({ title: p.caseStudy ? `${p.title} Case Study | ${categoryLabel(p.category)}` : `${p.title} | ${categoryLabel(p.category)}`, description: p.summary, path: `/work/${p.slug}`, image: img.src });
@@ -43,6 +47,18 @@ export default async function ProjectPage({ params }: { params: Promise<Params> 
     { title: "The challenge", body: p.challenge },
     { title: "Our solution", body: p.solution },
   ].filter((s) => s.body);
+
+  if (p.demo) {
+    const i = demoProjects.findIndex((x) => x.slug === p.slug);
+    const prev = demoProjects[(i - 1 + demoProjects.length) % demoProjects.length]!;
+    const next = demoProjects[(i + 1) % demoProjects.length]!;
+    return (
+      <>
+        <MarketingCaseStudyView p={p} cs={p.demo} prev={prev} next={next} />
+        <FinalCTA heading={p.demo.cta.title} description={p.demo.cta.body} service={p.demo.service} primaryLabel="Start a project" location={`demo-cta:${p.slug}`} />
+      </>
+    );
+  }
 
   if (p.caseStudy) {
     const studies = portfolio.filter((x) => x.caseStudy);

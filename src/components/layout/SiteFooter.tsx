@@ -47,6 +47,7 @@ export function SiteFooter() {
               </a>
             ) : null}
             <ContactIcons className="mt-5" />
+            <Link href="/contact" className="btn btn-primary btn-sm sf-cta">Start a project</Link>
           </div>
 
           <nav aria-label="Footer" className="sf-nav">

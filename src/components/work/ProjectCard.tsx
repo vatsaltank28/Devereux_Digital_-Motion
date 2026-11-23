@@ -8,8 +8,9 @@ export function ProjectCard({ project, className, priority, headingLevel = 3 }: 
   const H = headingLevel === 2 ? "h2" : "h3";
   const thumb = coverImage(project.media[0]);
   const cs = project.caseStudy;
-  const badge = cs?.badge ?? (project.kind === "collection" ? "Work samples" : categoryLabel(project.category));
-  const tags = cs?.tags ?? project.tech;
+  const demo = project.demo;
+  const badge = demo ? "Marketing" : cs?.badge ?? (project.kind === "collection" ? "Work samples" : categoryLabel(project.category));
+  const tags = demo ? [demo.categoryName] : cs?.tags ?? project.tech;
   return (
     <article className={cn("project-card group", className)}>
       <div className="project-card-chrome" aria-hidden="true">
@@ -36,7 +37,7 @@ export function ProjectCard({ project, className, priority, headingLevel = 3 }: 
         </H>
         <p className="mt-2 line-clamp-2 text-[0.92rem] leading-relaxed text-muted">{project.summary}</p>
         <span className="mt-auto inline-flex items-center gap-1.5 pt-4 text-sm font-semibold text-accent-bright" aria-hidden="true">
-          {cs ? "View case study" : "View project"} <span className="transition-transform group-hover:translate-x-0.5">→</span>
+          {demo || cs ? "View case study" : "View project"} <span className="transition-transform group-hover:translate-x-0.5">→</span>
         </span>
       </div>
     </article>

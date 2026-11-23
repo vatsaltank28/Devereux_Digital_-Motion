@@ -1,77 +1,42 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef } from "react";
-import { animate, stagger } from "animejs";
-import { serviceWork } from "@/data/media";
 
 /**
- * Hero visual: a stack of real client work in browser frames, with result chips floating around it.
- * anime.js handles the staggered entrance and a slow idle float; the pointer tilts the stack (parallax).
- * Everything is static for reduced motion.
+ * Hero visual: a stack of live client websites in browser frames, each opening its case study,
+ * with result chips around it. Server rendered; motion is CSS only and off for reduced motion.
  */
 const CARDS = [
-  { img: serviceWork["ecommerce-solutions"]![0]!, label: "Ecommerce", cls: "hs-card--a" },
-  { img: serviceWork["branding-creative-design"]![0]!, label: "Branding", cls: "hs-card--b" },
-  { img: serviceWork["ai-business-solutions"]![0]!, label: "AI & Automation", cls: "hs-card--c" },
+  { slug: "apparelnbags", name: "ApparelnBags", label: "Ecommerce", cls: "hs-card--a", priority: true },
+  { slug: "reloop", name: "Reloop", label: "Web Design", cls: "hs-card--b", priority: false },
+  { slug: "seamless-ai", name: "Seamless.AI", label: "AI & Automation", cls: "hs-card--c", priority: false },
 ];
 
 const CHIPS = [
-  { text: "Orders doubled this month", tone: "pink", cls: "hs-chip--1", href: "/work", label: "Orders doubled this month: see our work" },
-  { text: "5.0 ★ client rating", tone: "white", cls: "hs-chip--2", href: "/#reviews", label: "5.0 ★ client rating: read client reviews" },
-  { text: "$20K deal closed from ads", tone: "cobalt", cls: "hs-chip--3", href: "/work", label: "$20K deal closed from ads: see our work" },
+  { text: "Orders doubled this month", tone: "pink", cls: "hs-chip--1", href: "/#reviews" },
+  { text: "5.0 ★ client rating", tone: "white", cls: "hs-chip--2", href: "/#reviews" },
+  { text: "$20K deal closed from ads", tone: "cobalt", cls: "hs-chip--3", href: "/#reviews" },
 ];
 
 export function HeroShowcase() {
-  const root = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const el = root.current;
-    if (!el || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const cards = el.querySelectorAll<HTMLElement>(".hs-card");
-    const chips = el.querySelectorAll<HTMLElement>(".hs-chip");
-
-    animate(cards, { opacity: [0, 1], translateY: [60, 0], scale: [0.92, 1], duration: 1200, ease: "outExpo", delay: stagger(140, { start: 250 }) });
-    animate(chips, { opacity: [0, 1], translateX: [-24, 0], duration: 900, ease: "outBack(1.6)", delay: stagger(180, { start: 900 }) });
-    const floats = [...chips].map((c, i) =>
-      animate(c, { translateY: [0, i % 2 ? 10 : -10], duration: 2600 + i * 400, ease: "inOutSine", loop: true, alternate: true, delay: 1800 }),
-    );
-
-    const stack = el.querySelector<HTMLElement>(".hs-stack")!;
-    const onMove = (e: PointerEvent) => {
-      const r = el.getBoundingClientRect();
-      const x = (e.clientX - r.left) / r.width - 0.5;
-      const y = (e.clientY - r.top) / r.height - 0.5;
-      animate(stack, { rotateY: x * 10, rotateX: -y * 8, duration: 800, ease: "outQuad" });
-    };
-    const onLeave = () => animate(stack, { rotateY: 0, rotateX: 0, duration: 900, ease: "outElastic(1, .6)" });
-    el.addEventListener("pointermove", onMove);
-    el.addEventListener("pointerleave", onLeave);
-    return () => {
-      floats.forEach((f) => f.pause());
-      el.removeEventListener("pointermove", onMove);
-      el.removeEventListener("pointerleave", onLeave);
-    };
-  }, []);
-
   return (
-    <div ref={root} className="hs-root" aria-label="Recent client work" role="group">
+    <div className="hs-root" aria-label="Recent client work" role="group">
       <div aria-hidden="true" className="hs-aurora" />
       <div className="hs-stack">
         {CARDS.map((c) => (
-          <figure key={c.label} className={`hs-card ${c.cls}`}>
-            <div className="hs-bar" aria-hidden="true">
-              <i />
-              <i />
-              <i />
-              <span>{c.label}</span>
-            </div>
-            <Image src={c.img.src} alt={c.img.alt} width={c.img.width} height={c.img.height} sizes="(max-width: 1024px) 70vw, 30vw" priority className="hs-img" />
+          <figure key={c.slug} className={`hs-card ${c.cls}`}>
+            <Link href={`/work/${c.slug}`} className="block">
+              <div className="hs-bar">
+                <i aria-hidden="true" />
+                <i aria-hidden="true" />
+                <i aria-hidden="true" />
+                <span>{c.label}</span>
+              </div>
+              <Image src={`/work/case-studies/${c.slug}/still-1.jpg`} alt={`${c.name} case study`} width={1920} height={1200} sizes="(max-width: 1024px) 62vw, 30vw" priority={c.priority} className="hs-img" />
+            </Link>
           </figure>
         ))}
         {CHIPS.map((c) => (
-          <Link key={c.text} href={c.href} aria-label={c.label} className={`hs-chip hs-chip-link hs-chip--${c.tone} ${c.cls}`}>
+          <Link key={c.text} href={c.href} className={`hs-chip hs-chip-link hs-chip--${c.tone} ${c.cls}`}>
             <span aria-hidden="true" className="hs-chip-dot" />
             {c.text}
           </Link>

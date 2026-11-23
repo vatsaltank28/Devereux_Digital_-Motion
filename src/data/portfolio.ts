@@ -1,5 +1,6 @@
 import { serviceWork, type MediaImage } from "./media";
 import { caseStudies, type CaseStudy } from "./caseStudies";
+import { marketingCaseStudies, type MarketingCaseStudy } from "./marketingCaseStudies";
 
 /**
  * PORTFOLIO, built only from work supplied in the client's Services folder (public/work).
@@ -50,7 +51,19 @@ export interface PortfolioProject {
   featured?: boolean;
   /** Full case study write up (see caseStudies.ts). */
   caseStudy?: CaseStudy;
+  /** Marketing client campaign. Figures stay hidden and the page noindexed until results are confirmed. */
+  demo?: MarketingCaseStudy;
 }
+
+const demo = (slug: keyof typeof marketingCaseStudies, title: string, alt: string): PortfolioProject => ({
+  slug,
+  title,
+  category: "marketing",
+  kind: "project",
+  summary: marketingCaseStudies[slug].headline,
+  media: [{ type: "image", src: `/work/campaigns/${slug === "aurelle" ? "aurelle-beauty-flatlay" : slug}.jpg`, alt, width: 1200, height: 750 }],
+  demo: marketingCaseStudies[slug],
+});
 
 const img = (service: string, n: number, alt?: string): PortfolioMedia => {
   const m = serviceWork[service]?.[n - 1];
@@ -287,7 +300,14 @@ export const portfolio: PortfolioProject[] = [
     summary: "Page insights, weekly performance trends and campaign budget tracking from social media management.",
     media: [img("digital-marketing", 4), img("digital-marketing", 5), img("digital-marketing", 6)],
   },
+  demo("nexora", "Nexora", "Stock photo of a laptop showing an analytics dashboard"),
+  demo("aurelle", "AURELLE", "Beauty products arranged on a neutral background"),
+  demo("vortex-hub", "VORTEX HUB", "Stock photo of a neon gaming setup"),
+  demo("stratford-consulting", "STRATFORD CONSULTING", "Stock photo of a business strategy meeting"),
 ];
+
+export const demoProjects = portfolio.filter((p) => p.demo);
+export const realProjects = portfolio.filter((p) => !p.demo);
 
 /** Thumbnail for any media item (videos use their poster). */
 export const coverImage = (m: PortfolioMedia | undefined): MediaImage => {
@@ -302,9 +322,9 @@ export const categoryLabel = (id: PortfolioCategory) => portfolioCategories.find
 export const activeCategories = portfolioCategories.filter((c) => portfolio.some((p) => p.category === c.id));
 export const projectsForService = (service: string) => {
   const cat = portfolioCategories.find((c) => c.service === service)?.id ?? (service === "paid-advertising" ? "marketing" : undefined);
-  return cat ? portfolio.filter((p) => p.category === cat) : [];
+  return cat ? realProjects.filter((p) => p.category === cat) : [];
 };
 export const relatedProjects = (p: PortfolioProject, n = 3) =>
-  [...portfolio.filter((x) => x.slug !== p.slug && x.category === p.category), ...portfolio.filter((x) => x.category !== p.category && x.featured)]
+  [...realProjects.filter((x) => x.slug !== p.slug && x.category === p.category), ...realProjects.filter((x) => x.category !== p.category && x.featured)]
     .filter((x) => x.slug !== p.slug)
     .slice(0, n);

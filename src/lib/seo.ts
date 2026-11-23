@@ -12,7 +12,7 @@ interface MetaInput {
 }
 
 /** Logo card shown when a link to the site is shared. */
-export const defaultShareImage = { url: "/og-image.png", width: 1200, height: 630, alt: "Devereux Digitals logo" };
+export const defaultShareImage = { url: "/og-image-v2.jpg", width: 1536, height: 806, alt: "Devereux Digitals: Scale Faster. Grow Bigger." };
 
 /**
  * Builds consistent per-route metadata: unique title/description, canonical, Open Graph, Twitter.

@@ -2,7 +2,7 @@
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useMemo } from "react";
-import { activeCategories, portfolio, type PortfolioCategory } from "@/data/portfolio";
+import { activeCategories, realProjects as portfolio, type PortfolioCategory } from "@/data/portfolio";
 import { track } from "@/lib/analytics";
 import { ProjectCard } from "./ProjectCard";
 

@@ -1,4 +1,4 @@
-import { activeCategories, portfolio, type PortfolioCategory } from "./portfolio";
+import { activeCategories, realProjects as portfolio, type PortfolioCategory } from "./portfolio";
 
 /** Service groups shared by the desktop mega menu and the mobile menu. */
 export const serviceGroups: { title: string; slugs: string[] }[] = [

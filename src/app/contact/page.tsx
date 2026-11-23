@@ -13,7 +13,7 @@ export const metadata: Metadata = buildMetadata({
 });
 
 const nextSteps = [
-  { title: "Send your enquiry", body: "Fill in the form. Your email app opens with everything written, ready to send." },
+  { title: "Send your enquiry", body: "Complete the form and submit it. Your enquiry comes straight to us." },
   { title: "We review it", body: "We read your goals, budget and timeline, and reply within one business day." },
   { title: "Discovery call", body: "A short call to clarify scope and answer your questions. No obligation." },
   { title: "Proposal", body: "A clear plan with deliverables, timeline and price, so you can decide with confidence." },
@@ -35,11 +35,11 @@ export default async function ContactPage({ searchParams }: { searchParams: Prom
             <Breadcrumbs trail={[{ name: "Home", href: "/" }, { name: "Contact" }]} />
           </div>
           <SectionLabel>Talk to us</SectionLabel>
-          <SplitHeading as="h1" trigger="load" delay={0.05} className="t-h1 mt-6 max-w-[10ch]">
-            Start a project.
+          <SplitHeading as="h1" trigger="load" delay={0.05} className="t-h2 mt-6 max-w-[16ch]">
+            Let’s build something that moves you forward.
           </SplitHeading>
           <p className="hero-rise t-lead mt-7" style={{ animationDelay: "0.4s" }}>
-            Share a few details about your business and goals. We’ll review your enquiry and reply within one business day with clear next steps.
+            Tell us what you’re looking to achieve. Whether it’s a new digital project, a growth campaign or something entirely different, we’ll help you find the right solution.
           </p>
 
           <div className="hero-rise mt-10" style={{ animationDelay: "0.5s" }}>

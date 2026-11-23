@@ -30,7 +30,7 @@ export function ServiceCardGrid() {
             </span>
             <span>
               <span className="t-h4 block">Not sure which solution your business needs?</span>
-              <span className="mt-3 block text-[0.95rem] leading-relaxed opacity-80">
+              <span className="mt-3 block text-[0.95rem] leading-relaxed">
                 Tell us what you’re trying to achieve. We’ll help you identify the right starting point.
               </span>
               <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold">Find the Right Solution →</span>

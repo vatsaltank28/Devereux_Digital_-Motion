@@ -1,30 +1,37 @@
 import { HomeHero } from "@/components/home/HomeHero";
-import { FeaturedReview } from "@/components/home/FeaturedReview";
+import { ClientMarquee } from "@/components/home/ClientMarquee";
 import { ServicesGrid } from "@/components/home/ServicesGrid";
 import { FeaturedWork } from "@/components/home/FeaturedWork";
-import { ProcessSteps } from "@/components/services/ProcessSteps";
-import { howWeWork } from "@/data/home";
+import { CaseStudySpotlight } from "@/components/home/CaseStudySpotlight";
 import { CapabilityStats } from "@/components/home/CapabilityStats";
-import { ClientMarquee } from "@/components/home/ClientMarquee";
-import { FinalCTA } from "@/components/home/FinalCTA";
 import { WhyDevereux } from "@/components/home/WhyDevereux";
+import { ProcessSteps } from "@/components/services/ProcessSteps";
+import { FeaturedReview } from "@/components/home/FeaturedReview";
+import { HomeFAQ } from "@/components/home/HomeFAQ";
+import { FinalCTA } from "@/components/home/FinalCTA";
+import { howWeWork } from "@/data/home";
 
-/**
- * Landing page (client revision): no scroll animation, it opens straight on the
- * Design · Build · Grow hero, then the headline client review, every service, and the closing CTA.
- */
+/** Conversion path: promise, trust, services, work, proof, reasons, process, reviews, answers, action. */
 export default function HomePage() {
   return (
     <>
       <HomeHero />
-      <CapabilityStats />
       <ClientMarquee />
-      <FeaturedWork />
-      <FeaturedReview />
       <ServicesGrid />
-      <ProcessSteps steps={howWeWork.steps} label="How we work" title="From idea to execution." />
+      <FeaturedWork />
+      <CaseStudySpotlight />
+      <CapabilityStats />
       <WhyDevereux />
-      <FinalCTA />
+      <ProcessSteps steps={howWeWork.steps} label="How we work" title="From first conversation to launch." />
+      <FeaturedReview />
+      <HomeFAQ />
+      <FinalCTA
+        heading="Have an idea worth building?"
+        description="Let’s turn your vision into something real."
+        primaryLabel="Start your project"
+        secondary={{ label: "Explore our services", href: "/services" }}
+        location="home-final-cta"
+      />
     </>
   );
 }

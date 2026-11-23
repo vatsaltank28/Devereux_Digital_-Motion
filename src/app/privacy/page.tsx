@@ -11,7 +11,7 @@ export const metadata: Metadata = buildMetadata({
   noindex: true,
 });
 
-const EFFECTIVE_DATE = "October 17, 2026";
+const EFFECTIVE_DATE = "November 22, 2026";
 
 const Section = ({ n, title, children }: { n: number; title: string; children: ReactNode }) => (
   <section className="border-t border-line pt-8">
@@ -88,7 +88,9 @@ export default function PrivacyPage() {
                   "Full name.",
                   "Email address.",
                   "Phone number.",
-                  "Business or company name.",
+                  "Business, brand, creator or community name.",
+                  "Website or social media link.",
+                  "Your preferred contact method and how you heard about us.",
                   "Other contact information you voluntarily provide.",
                 ]}
               />
@@ -123,11 +125,11 @@ export default function PrivacyPage() {
                   "Project applications and onboarding forms.",
                   "File uploads and project submissions.",
                   "Client communications and feedback.",
-                  "Cookies and similar website technologies, where implemented.",
+                  "Cookies and similar website technologies, as described in section 5.",
                 ]}
               />
               <p>
-                When you submit our project enquiry form, the details you enter are sent securely to our team by email through our email delivery provider, and are not stored in a database on this website. If online delivery is unavailable, your own email app opens instead with your details prepared in a message addressed to {mail}, and nothing is sent until you choose to send it. The form includes basic spam protection and does not use your details for any purpose other than replying to your enquiry.
+                When you submit our project enquiry form, your details are securely transmitted to and stored by Netlify, our website hosting and form processing provider, so that we can review and respond to your enquiry. The form includes spam protection, and we use the details you submit to respond to your enquiry and for the related purposes described in this policy.
               </p>
               <p>We may also receive information through third party platforms used to communicate with clients or deliver our services.</p>
             </Section>
@@ -155,12 +157,17 @@ export default function PrivacyPage() {
 
             <Section n={5} title="Cookies and website analytics">
               <p>
-                Our website may use cookies and similar technologies to support essential functionality, understand website performance and improve user experience. These technologies may collect information about how visitors interact with our website. For example, we store your light or dark theme preference in your browser so the site displays the way you left it.
+                Our website uses cookies and similar technologies to support essential functionality, understand website performance and improve user experience. For example, we store your light or dark theme preference and your cookie choices in your browser so the site works the way you left it.
               </p>
               <p>
-                If we implement third party analytics services, such as Google Analytics, those providers may process certain technical and usage information according to their own privacy policies. Where required by applicable law, we will provide appropriate notice and choices regarding nonessential cookies and tracking technologies.
+                We use Google Analytics 4, provided by Google, with Google Consent Mode. Google Analytics cookies, such as _ga, are set only if you allow Statistics cookies. Advertising storage and advertising signals are enabled only if you allow Marketing cookies.
               </p>
-              <p>You can manage cookies through your browser settings. Disabling certain cookies may affect some website functionality.</p>
+              <p>
+                If you have not given consent, or you choose “Necessary only”, these cookies are not set. Google may still receive limited, cookieless signals, such as the page visited and technical browser information, which are used for aggregated measurement. Google processes this information according to its own privacy policies.
+              </p>
+              <p>
+                You can change or withdraw your choice at any time through “Cookie settings” in the website footer. If you withdraw Statistics consent, we remove the Google Analytics cookies from your browser. You can also manage cookies through your browser settings, although disabling certain cookies may affect some website functionality.
+              </p>
             </Section>
 
             <Section n={6} title="How we share information">
@@ -170,9 +177,10 @@ export default function PrivacyPage() {
               <List
                 items={[
                   "Payment processors and financial service providers.",
-                  "Website hosting and infrastructure providers.",
+                  "Website hosting, infrastructure and form processing providers, including Netlify.",
+                  "Website analytics providers, including Google.",
                   "Cloud storage and file sharing platforms.",
-                  "Email and communication services, including the provider that delivers website enquiries to us.",
+                  "Email and communication services.",
                   "Project management and productivity tools.",
                   "Authorized developers, designers, editors and other contractors working on assigned projects.",
                   "Legal, regulatory or government authorities when disclosure is required by law.",

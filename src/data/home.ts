@@ -43,11 +43,11 @@ export const howWeWork = {
   intro:
     "Every service follows the same backbone, adapted to the job. Details change; the discipline doesn’t.",
   steps: [
-    { title: "Discovery", description: "We understand your business, requirements, goals and challenges." },
-    { title: "Planning", description: "We recommend the right solution and prepare the project scope." },
-    { title: "Design & Development", description: "The project is created according to the agreed scope." },
-    { title: "Review & Refinement", description: "Testing, feedback and the agreed revisions." },
-    { title: "Delivery & Support", description: "Handover, launch and any agreed ongoing maintenance." },
+    { title: "Discover", description: "We understand your goals, challenges and requirements." },
+    { title: "Strategize", description: "We develop the direction and your project roadmap." },
+    { title: "Create", description: "We design and develop the solution to the agreed scope." },
+    { title: "Refine", description: "We review, test and improve the deliverables with you." },
+    { title: "Launch & Grow", description: "We launch the solution and provide any agreed ongoing support." },
   ] satisfies TitledText[],
 } as const;
 

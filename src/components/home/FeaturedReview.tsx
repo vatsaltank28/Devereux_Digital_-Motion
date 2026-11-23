@@ -1,4 +1,4 @@
-import { featuredReview } from "@/data/reviews";
+import { featuredReview, getReviews } from "@/data/reviews";
 import { featuredReviewImage } from "@/data/media";
 import { Lightbox } from "@/components/ui/Lightbox";
 import { Reveal } from "@/components/motion/Reveal";
@@ -9,12 +9,14 @@ import { Stars } from "@/components/services/ReviewWall";
  * title + score, stars, quote, client line. The original chat opens from a compact "See Chat"
  * pill inside the card, with a green pulse so it reads as tappable even at a small size.
  */
+const proof = ["paid-advertising", "digital-marketing", "web-design-development"].flatMap((slug) => getReviews(slug).filter((r) => r.chat).slice(0, 1));
+
 export function FeaturedReview() {
   return (
     <section id="reviews" aria-labelledby="featured-review-title" className="featured-review relative isolate overflow-hidden border-t border-line">
       <div aria-hidden="true" className="featured-review-glow" />
       <div className="wrap-wide flex flex-col items-center">
-        <h2 id="featured-review-title" className="sr-only">
+        <h2 id="featured-review-title" className="t-h2 mb-7 text-center">
           What clients say about working with us
         </h2>
         <Reveal className="w-full max-w-[44rem]">
@@ -58,6 +60,27 @@ export function FeaturedReview() {
             <p className="ft-note">Unedited screenshot of the client’s message, names blurred for privacy.</p>
           </figure>
         </Reveal>
+        <ul className="mt-4 grid w-full gap-4 md:grid-cols-3">
+          {proof.map((r) => (
+            <li key={r.service} className="flex">
+              <figure className="ft-card flex w-full flex-col">
+                <blockquote className="text-[0.98rem] leading-relaxed">“{r.quote}”</blockquote>
+                <figcaption className="ft-foot mt-auto">
+                  <span className="min-w-0">
+                    <span className="block font-display font-semibold">{r.name}</span>
+                    <span className="block text-sm text-muted">{r.service}</span>
+                  </span>
+                  {r.chat && (
+                    <Lightbox image={r.chat} label={`See chat from ${r.name}, ${r.service}`} caption="Original client chat (names blurred for privacy)" className="chat-pill">
+                      <span aria-hidden="true" className="chat-pill-dot" />
+                      See Chat
+                    </Lightbox>
+                  )}
+                </figcaption>
+              </figure>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );

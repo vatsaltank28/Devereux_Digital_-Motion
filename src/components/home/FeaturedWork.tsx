@@ -1,38 +1,37 @@
 import Link from "next/link";
-import { featuredProjects } from "@/data/portfolio";
+import { categoryLabel, featuredProjects, type PortfolioCategory } from "@/data/portfolio";
 import { SectionLabel } from "@/components/ui/SectionLabel";
-import { SplitHeading } from "@/components/motion/SplitHeading";
 import { ProjectCard } from "@/components/work/ProjectCard";
+import { WorkFilter } from "./WorkFilter";
 
-/** Homepage Selected Work: one strong project per pillar, each opening its own case study. */
+const TOP = new Set(["reloop", "apparelnbags", "seamless-ai", "law-firm-brand-identity", "clip", "anhem"]);
+const CATEGORIES: PortfolioCategory[] = ["web", "ecommerce", "ai", "branding"];
+const filters = [
+  { id: "all", label: "All", count: TOP.size },
+  ...CATEGORIES.map((id) => ({ id, label: categoryLabel(id), count: featuredProjects.filter((p) => p.category === id).length })),
+];
+
+/** Selected work with a light filter. "All" shows the strongest six; a category shows all of its featured work. */
 export function FeaturedWork() {
   return (
-    <section aria-labelledby="featured-work-title" className="section-tight border-t border-line">
+    <section id="selected-work" aria-labelledby="featured-work-title" className="section-tight scroll-mt-[var(--header-h)] border-t border-line">
       <div className="wrap-wide">
-        <div className="mb-6 flex flex-wrap items-end justify-between gap-4 md:mb-10">
+        <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
           <div>
             <SectionLabel>Selected work</SectionLabel>
-            <SplitHeading id="featured-work-title" className="t-h2 mt-5 max-w-[18ch]">
-              Ideas brought to life.
-            </SplitHeading>
-            <p className="t-body mt-4 max-w-[36rem]">
-              A selection of digital experiences, creative projects and business solutions we’ve delivered.
-            </p>
+            <h2 id="featured-work-title" className="t-h2 mt-4 max-w-[18ch]">Ideas brought to life.</h2>
           </div>
-          <Link href="/work" className="link-arrow max-sm:hidden">
-            Explore All Projects
-          </Link>
+          <Link href="/work" className="link-arrow inline-flex min-h-11 items-center">Explore all projects</Link>
         </div>
-        <ul className="review-rail flex gap-4 md:grid md:grid-cols-2 xl:grid-cols-4">
-          {featuredProjects.slice(0, 4).map((p) => (
-            <li key={p.slug} className="flex max-md:w-[82%] max-md:shrink-0 max-md:snap-start">
-              <ProjectCard project={p} className="w-full" />
-            </li>
-          ))}
-        </ul>
-        <Link href="/work" className="btn btn-secondary mt-6 w-full sm:hidden">
-          <span>Explore All Projects</span>
-        </Link>
+        <WorkFilter filters={filters}>
+          <ul className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {featuredProjects.map((p) => (
+              <li key={p.slug} className="sw-item flex" data-cat={p.category} data-top={TOP.has(p.slug) || undefined}>
+                <ProjectCard project={p} className="w-full" />
+              </li>
+            ))}
+          </ul>
+        </WorkFilter>
       </div>
     </section>
   );
